@@ -1,0 +1,43 @@
+{
+  "name": "dns-nameserver",
+  "version": "0.1.0",
+  "description": "DNS Nameserver",
+  "main": "index.js",
+  "bin": {},
+  "scripts": {
+    "bind": "npx -p nearley nearleyc src/bind.ne -o dist/bind.js",
+    "knot": "npx -p nearley nearleyc src/knot.ne -o dist/knot.js",
+    "nsd": "npx -p nearley nearleyc src/nsd.ne -o dist/nsd.js",
+    "mara": "npx -p nearley nearleyc src/mara.ne -o dist/mara.js",
+    "lint": "npx eslint index.js test/*.js",
+    "lintfix": "npx eslint --fix index.js test/*.js",
+    "postinstall": "npm run bind && npm run mara",
+    "release": "npx standard-version",
+    "test": "npx mocha",
+    "versions": "npx dependency-version-checker check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/NicTool/dns-nameserver.git"
+  },
+  "keywords": [
+    "dns",
+    "server"
+  ],
+  "author": "Matt Simerson <matt@tnpi.net>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/NicTool/dns-nameserver/issues"
+  },
+  "homepage": "https://github.com/NicTool/dns-nameserver#readme",
+  "devDependencies": {
+    "eslint": "^8.11.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "mocha": "^9.2.2",
+    "standard-version": "^9.3.2"
+  },
+  "dependencies": {
+    "nearley": "^2.20.1"
+  }
+}

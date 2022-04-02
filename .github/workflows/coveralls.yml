@@ -1,0 +1,40 @@
+
+on: [ pull_request ]
+
+name: Coverage
+
+env:
+  CI: true
+
+jobs:
+
+  coverage:
+    name: Codecov
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: actions/checkout@master
+      name: Checkout Module
+      with:
+        fetch-depth: 1
+
+    - name: Use Node.js
+      uses: actions/setup-node@master
+      with:
+        node-version: 14
+
+    - name: npm install
+      run: |
+        npm install
+        npm install --no-save nyc codecov
+
+    - name: run coverage
+      run: npx nyc --reporter=lcovonly npm run test
+      env:
+        NODE_ENV: cov
+
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.github_token }}
