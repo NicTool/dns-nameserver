@@ -11,7 +11,7 @@ Name servers have configuration files, each with their own format. This package 
 ## TODO
 
 - config parser
-    - [ ] bind
+    - [x] bind
     - [ ] nsd
     - [ ] knot
     - [ ] maradns
@@ -31,4 +31,4 @@ Name servers have configuration files, each with their own format. This package 
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
   + fix, feature, BREAKING CHANGE, build, chore, ci, docs, style, test
 - [keep a changelog](https://keepachangelog.com/)
-- 
+- [sentimental versioning](http://sentimentalversioning.org)

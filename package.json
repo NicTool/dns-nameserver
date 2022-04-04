@@ -11,7 +11,7 @@
     "mara": "npx -p nearley nearleyc src/mara.ne -o dist/mara.js",
     "lint": "npx eslint index.js test/*.js",
     "lintfix": "npx eslint --fix index.js test/*.js",
-    "postinstall": "npm run bind && npm run mara",
+    "postinstall": "npm run bind",
     "release": "npx standard-version",
     "test": "npx mocha",
     "versions": "npx dependency-version-checker check"
