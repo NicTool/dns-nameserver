@@ -5,6 +5,7 @@ const nearley = require('nearley')
 
 exports.parseBindConfig = async str => {
 
+  // eslint-disable-next-line node/no-unpublished-require
   const grammar = nearley.Grammar.fromCompiled(require('./dist/bind.js'))
   grammar.start = 'main'
 

@@ -43,9 +43,3 @@ rules:
   brace-style: [ error, stroustrup ]
   dot-notation: error
   prefer-const: warn
-  node/no-unpublished-require: [ error, {
-    convertPath: {
-      src/**/*.ne: [^src/(.+?)\\.ne$, lib/$1.js]
-    },
-    tryExtensions: [ .js ]
-  }]
