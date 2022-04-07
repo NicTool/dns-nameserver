@@ -4,11 +4,13 @@
   "description": "DNS Nameserver",
   "main": "index.js",
   "bin": {},
-  "engines" : { "node" : ">=12.0" },
+  "engines": {
+    "node": ">=12.0"
+  },
   "scripts": {
     "bind": "npx -p nearley nearleyc src/bind.ne -o dist/bind.js",
     "knot": "npx -p nearley nearleyc src/knot.ne -o dist/knot.js",
-    "nsd": "npx -p nearley nearleyc src/nsd.ne -o dist/nsd.js",
+    "nsd" : "npx -p nearley nearleyc src/nsd.ne  -o dist/nsd.js",
     "mara": "npx -p nearley nearleyc src/mara.ne -o dist/mara.js",
     "lint": "npx eslint index.js test/*.js",
     "lintfix": "npx eslint --fix index.js test/*.js",
