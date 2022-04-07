@@ -2,14 +2,19 @@
 main   -> (
             blank    {% id %}
           | comment  {% id %}
-          | server   {% id %}
-          | zone     {% id %}
-          | log      {% id %}
           | acl      {% id %}
+          | control  {% id %}
+          | database {% id %}
           | key      {% id %}
+          | keystore {% id %}
+          | module   {% id %}
           | policy   {% id %}
           | remote   {% id %}
+          | server   {% id %}
+          | submission {% id %}
           | template {% id %}
+          | zone     {% id %}
+          | log      {% id %}
           ):*
 
 blank       -> _ eol                                  {% asNull %}
@@ -19,14 +24,19 @@ key_val     -> __ word ":" __ word eol                {% asKeyVal %}
 
 array_block -> __ "-" __ word ":" __ word _ eol (key_val {% id %}):* eol_   {% asArray %}
 
-acl         -> "acl"      ":" eol (array_block {% id %}):* eol_ {% asTopObj %}
-key         -> "key"      ":" eol (array_block {% id %}):* eol_ {% asTopObj %}
-policy      -> "policy"   ":" eol (key_val     {% id %}):* eol  {% asTopObj %}
-remote      -> "remote"   ":" eol (key_val     {% id %}):* eol  {% asTopObj %}
-server      -> "server"   ":" eol (key_val     {% id %}):* eol  {% asTopObj %}
-template    -> "template" ":" eol (array_block {% id %}):* eol_ {% asTopObj %}
-zone        -> "zone"     ":" eol (array_block {% id %}):* eol_ {% asTopObj %}
-log         -> "log"      ":" eol (array_block {% id %}):* eol_ {% asTopObj %}
+acl         -> "acl"        ":" eol (array_block {% id %}):* eol_ {% asTopObj %}
+control     -> "control"    ":" eol (array_block {% id %}):* eol_ {% asTopObj %}
+database    -> "database"   ":" eol (array_block {% id %}):* eol_ {% asTopObj %}
+key         -> "key"        ":" eol (array_block {% id %}):* eol_ {% asTopObj %}
+keystore    -> "keystore"   ":" eol (array_block {% id %}):* eol_ {% asTopObj %}
+module      -> "module"     ":" eol (array_block {% id %}):* eol_ {% asTopObj %}
+policy      -> "policy"     ":" eol (array_block {% id %}):* eol_ {% asTopObj %}
+remote      -> "remote"     ":" eol (array_block {% id %}):* eol_ {% asTopObj %}
+server      -> "server"     ":" eol (key_val     {% id %}):* eol  {% asTopObj %}
+submission  -> "submission" ":" eol (array_block {% id %}):* eol_ {% asTopObj %}
+template    -> "template"   ":" eol (array_block {% id %}):* eol_ {% asTopObj %}
+zone        -> "zone"       ":" eol (array_block {% id %}):* eol_ {% asTopObj %}
+log         -> "log"        ":" eol (array_block {% id %}):* eol_ {% asTopObj %}
 
 _        -> [ \t]:*
 __       -> [ \t]:+
