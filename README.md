@@ -12,7 +12,7 @@ Name servers have configuration files, each with their own format. This package 
 
 - config parser
     - [x] bind
-    - [ ] nsd
+    - [x] nsd
     - [x] knot
     - [ ] maradns
     - [ ] tinydns
