@@ -1,7 +1,7 @@
+# https://nsd.docs.nlnetlabs.nl/en/latest/manpages/nsd.conf.html
 @lexer lexer
 
-main -> (
-            comment {% id %}
+main -> (   comment {% id %}
           | blank   {% id %}
           | key     {% id %}
           | pattern {% id %}
@@ -11,15 +11,17 @@ main -> (
           | zone    {% id %}
         ):*         {% id %}
 
-blank       -> %blank            {% comment %}
-comment     -> %comment          {% comment %}
-key_val     -> %key_val          {% id %}
-key         -> %key     (key_val {% asKeyValue %} | %comment {% comment %}):* {% asGroup %}
-pattern     -> %pattern (key_val {% asKeyValue %} | %comment {% comment %}):* {% asGroup %}
-remote      -> %remote  (key_val {% asKeyValue %} | %comment {% comment %}):* {% asGroup %}
-server      -> %server  (key_val {% asKeyValue %} | %comment {% comment %}):* {% asGroup %}
-tls         -> %tls     (key_val {% asKeyValue %} | %comment {% comment %}):* {% asGroup %}
-zone        -> %zone    (key_val {% asKeyValue %} | %comment {% comment %}):* {% asGroup %}
+blank       -> %blank           {% asComment %}
+comment     -> %comment         {% asComment %}
+key_val     -> %key_val         {% asKeyValue %}
+attrib      -> key_val          {% id %}
+             | comment          {% id %}
+key         -> %key     (attrib {% id %}):* {% asGroup %}
+pattern     -> %pattern (attrib {% id %}):* {% asGroup %}
+remote      -> %remote  (attrib {% id %}):* {% asGroup %}
+server      -> %server  (attrib {% id %}):* {% asGroup %}
+tls         -> %tls     (attrib {% id %}):* {% asGroup %}
+zone        -> %zone    (attrib {% id %}):* {% asGroup %}
 
 @{%
 const moo = require("moo");
@@ -36,10 +38,13 @@ const lexer = moo.compile({
   comment: /^\s*(?:#)[^\r\n]*?[\r\n]/,
 });
 
-function comment (d) { return null }
+function asComment (d) { return null }
 
 function asGroup (d) {
-  return { [d[0].type]: Object.assign({}, ...d[1].filter(e => typeof e !== 'null')) }
+  return {
+    // merge the attributes into a top level "group"
+    [d[0].type]: Object.assign({}, ...d[1].filter(e => typeof e !== 'null'))
+  }
 }
 
 const kvRe = /^[ \t]+([^\s]+?):\s*?([^\r\n#]+)(#[^\r\n]+)?[\r\n]/
