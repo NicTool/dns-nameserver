@@ -1,6 +1,6 @@
 {
   "name": "dns-nameserver",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "DNS Nameserver",
   "main": "index.js",
   "bin": {},
@@ -16,7 +16,7 @@
     "lint": "npx eslint index.js test/*.js",
     "lintfix": "npx eslint --fix index.js test/*.js",
     "postinstall": "npm run grammar",
-    "release": "npx standard-version",
+    "release": "npx standard-version --release-as=minor",
     "test": "npx mocha",
     "versions": "npx dependency-version-checker check"
   },
