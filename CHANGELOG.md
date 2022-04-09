@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/NicTool/dns-nameserver/compare/v0.1.0...v0.3.0) (2022-04-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* add maradns config parser
+
+### Features
+
+* add maradns config parser ([1b4608e](https://github.com/NicTool/dns-nameserver/commit/1b4608e22b60250a67823851772538418e59d187))
+* parsers added for Knot ([#2](https://github.com/NicTool/dns-nameserver/issues/2)) ([139235e](https://github.com/NicTool/dns-nameserver/commit/139235e8acd105ce872cddb22224e1470c972cbe))
+
 ## [0.2.0](https://github.com/NicTool/dns-nameserver/compare/v0.1.2...v0.2.0) (2022-04-08)
 
 ### [0.1.2](https://github.com/NicTool/dns-nameserver/compare/v0.1.0...v0.1.2) (2022-04-08)
