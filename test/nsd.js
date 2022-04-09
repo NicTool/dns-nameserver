@@ -19,12 +19,12 @@ describe('nsd', function () {
         server: [
           {
             'server-count': '1',
-            database      : '""',
-            zonelistfile  : '"/var/db/nsd/zone.list"',
+            database      : '',
+            zonelistfile  : '/var/db/nsd/zone.list',
             username      : 'nsd',
-            logfile       : '"/var/log/nsd.log"',
-            pidfile       : '"/var/run/nsd.pid"',
-            xfrdfile      : '"/var/db/nsd/xfrd.state"',
+            logfile       : '/var/log/nsd.log',
+            pidfile       : '/var/run/nsd.pid',
+            xfrdfile      : '/var/db/nsd/xfrd.state',
           },
         ],
         zone: [
@@ -45,7 +45,6 @@ describe('nsd', function () {
       })
     })
 
-
     it('parses example.com', async () => {
       const file = './test/fixtures/nsd/example.com'
       const buf = await fs.readFile(file)
@@ -56,9 +55,9 @@ describe('nsd', function () {
         server: [
           {
             'server-count': '1',
-            database      : '""',
-            logfile       : '"/var/log/nsd.log"',
-            pidfile       : '"/var/run/nsd.pid"',
+            database      : '',
+            logfile       : '/var/log/nsd.log',
+            pidfile       : '/var/run/nsd.pid',
             username      : 'nsd',
           },
         ],
@@ -97,7 +96,5 @@ describe('nsd', function () {
         ],
       })
     })
-
-})
-
+  })
 })
