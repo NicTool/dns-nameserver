@@ -2,19 +2,21 @@
 const assert = require('assert')
 const fs     = require('fs').promises
 
-const ns = require('../index.js')
+const ns = require('../lib/bind.js')
 
 
-describe('parseBindConfig', function () {
+describe('bind', function () {
 
-  it('parses named.conf file', async () => {
-    const file = './test/fixtures/bind/named.conf-ztrax-master'
-    const buf = await fs.readFile(file)
+  describe('parseConfig', function () {
 
-    const r = await ns.parseBindConfig(buf.toString())
-    // console.dir(r, { depth: null })
-    assert.equal(r.length, 5)
+    it('parses named.conf file', async () => {
+      const file = './test/fixtures/bind/named.conf-ztrax-master'
+      const buf = await fs.readFile(file)
+
+      const r = await ns.parseConfig(buf.toString())
+      // console.dir(r, { depth: null })
+      assert.equal(r.length, 5)
+    })
   })
+
 })
-
-
