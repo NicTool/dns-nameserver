@@ -51,6 +51,6 @@ const kvRe = /^[ \t]+([^\s]+?):\s*?([^\r\n#]+)(#[^\r\n]+)?[\r\n]/
 
 function asKeyValue (d) {
   const match = d[0].value.match(kvRe)
-  return { [match[1]]: match[2].trim() }
+  return { [match[1]]: match[2].trim().replace(/^"(.*)"$/, '$1') }
 }
 %}
