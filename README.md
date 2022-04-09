@@ -14,7 +14,7 @@ Name servers have configuration files, each with their own format. This package 
     - [x] bind
     - [x] nsd
     - [x] knot
-    - [ ] maradns
+    - [x] maradns
     - [ ] tinydns
     - [ ] powerdns
 - [ ] config generator
