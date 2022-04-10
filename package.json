@@ -16,7 +16,6 @@
     "grammar": "npm run bind && npm run knot && npm run nsd",
     "lint": "npx eslint index.js test/*.js",
     "lintfix": "npx eslint --fix index.js test/*.js",
-    "postinstall": "npm run grammar",
     "release": "npx standard-version --release-as=minor",
     "test": "npx mocha",
     "versions": "npx dependency-version-checker check"
@@ -45,7 +44,6 @@
   "dependencies": {
     "chalk": "^5.0.1",
     "command-line-args": "^5.2.1",
-    "command-line-usage": "^6.1.2",
-    "nearley": "^2.20.1"
+    "command-line-usage": "^6.1.2"
   }
 }
