@@ -4,6 +4,7 @@
   "description": "DNS Nameserver",
   "main": "index.js",
   "bin": {},
+  "type": "module",
   "engines": {
     "node": ">=14.0"
   },
@@ -42,6 +43,9 @@
     "standard-version": "^9.3.2"
   },
   "dependencies": {
+    "chalk": "^5.0.1",
+    "command-line-args": "^5.2.1",
+    "command-line-usage": "^6.1.2",
     "nearley": "^2.20.1"
   }
 }
