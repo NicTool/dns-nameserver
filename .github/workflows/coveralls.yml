@@ -27,10 +27,10 @@ jobs:
     - name: npm install
       run: |
         npm install
-        npm install --no-save nyc codecov
+        npm install --no-save c8 codecov
 
     - name: run coverage
-      run: npx nyc --reporter=lcovonly npm run test
+      run: npx c8 --reporter=lcovonly npm run test
       env:
         NODE_ENV: cov
 
