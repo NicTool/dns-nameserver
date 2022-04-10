@@ -1,8 +1,8 @@
 
-const assert = require('assert')
-const fs     = require('fs').promises
+import assert from 'assert'
+import fs     from 'fs/promises'
 
-const ns = require('../lib/maradns.js')
+import { parseConfig } from '../lib/maradns.js'
 
 describe('maradns', function () {
 
@@ -12,7 +12,7 @@ describe('maradns', function () {
       const file = './test/fixtures/maradns/mararc'
       const buf = await fs.readFile(file)
 
-      const r = await ns.parseConfig(buf.toString())
+      const r = await parseConfig(buf.toString())
       // console.dir(r, { depth: null })
       assert.deepEqual(r, {
         chroot_dir         : '/etc/maradns',
@@ -31,7 +31,7 @@ describe('maradns', function () {
       const file = './test/fixtures/maradns/example.com'
       const buf = await fs.readFile(file)
 
-      const r = await ns.parseConfig(buf.toString())
+      const r = await parseConfig(buf.toString())
       // console.dir(r, { depth: null })
       assert.deepEqual(r, {
         'csv2["example.com."]' : 'db.example.com',

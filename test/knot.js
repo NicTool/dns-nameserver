@@ -1,8 +1,9 @@
 
-const assert = require('assert')
-const fs     = require('fs').promises
+import assert from 'assert'
+import fs     from 'fs/promises'
 
-const ns = require('../lib/knot.js')
+import { parseConfig } from '../lib/knot.js'
+
 
 describe('knot', function () {
 
@@ -12,10 +13,10 @@ describe('knot', function () {
       const file = './test/fixtures/knot/knotd-v2.conf'
       const buf = await fs.readFile(file)
 
-      const r = await ns.parseConfig(buf.toString())
+      const r = await parseConfig(buf.toString())
       // console.dir(r, { depth: null })
       assert.deepEqual(r, {
-        server: [{ listen: '0.0.0.0@53' }, { listen: '::@53' }],
+        server: [{ listen: [ '0.0.0.0@53', '::@53' ] }],
         zone  : [
           {
             domain : 'example.com',
@@ -31,10 +32,10 @@ describe('knot', function () {
       const file = './test/fixtures/knot/knotd-v3.conf'
       const buf = await fs.readFile(file)
 
-      const r = await ns.parseConfig(buf.toString())
+      const r = await parseConfig(buf.toString())
       // console.dir(r, { depth: null })
       assert.deepEqual(r, {
-        server: [{ listen: '0.0.0.0@53' }, { listen: '::@53' }],
+        server: [{ listen: [ '0.0.0.0@53' ,'::@53' ] }],
         zone  : [
           {
             domain : 'example.com',
@@ -50,10 +51,10 @@ describe('knot', function () {
       const file = './test/fixtures/knot/knot-flex.conf'
       const buf = await fs.readFile(file)
 
-      const r = await ns.parseConfig(buf.toString())
+      const r = await parseConfig(buf.toString())
       // console.dir(r, { depth: null })
       assert.deepStrictEqual(r, {
-        server: [{ listen: '0.0.0.0@53' }, { listen: '::@53' }],
+        server: [{ listen: [ '0.0.0.0@53', '::@53' ] }],
         zone  : [
           {
             domain : 'example.com',
@@ -76,7 +77,7 @@ describe('knot', function () {
       const file = './test/fixtures/knot/ns2.cadillac.net.conf'
       const buf = await fs.readFile(file)
 
-      const r = await ns.parseConfig(buf.toString())
+      const r = await parseConfig(buf.toString())
       // console.dir(r, { depth: null })
       assert.deepEqual(r, {
         zone: [

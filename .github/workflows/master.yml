@@ -22,18 +22,16 @@ jobs:
           fetch-depth: 0
 
       - name: Setup node.js ${{ env.node_version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ env.node_version }}
           registry-url: https://registry.npmjs.org/
 
       - run: npm install
 
-      - name: Run tests
-        run: npm run test
+      - run: npm run test
 
-      - name: publish to NPM
-        run: npm publish --access public
+      - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 

@@ -1,8 +1,8 @@
 
-const assert = require('assert')
-const fs     = require('fs').promises
+import assert from 'assert'
+import fs     from 'fs/promises'
 
-const ns = require('../lib/nsd.js')
+import { parseConfig } from '../lib/nsd.js'
 
 
 describe('nsd', function () {
@@ -13,12 +13,12 @@ describe('nsd', function () {
       const file = './test/fixtures/nsd/nsd.conf'
       const buf = await fs.readFile(file)
 
-      const r = await ns.parseConfig(buf.toString())
+      const r = await parseConfig(buf.toString())
       // console.dir(r, { depth: null })
       assert.deepEqual(r, {
         server: [
           {
-            'server-count': '1',
+            'server-count': 1,
             database      : '',
             zonelistfile  : '/var/db/nsd/zone.list',
             username      : 'nsd',
@@ -49,16 +49,26 @@ describe('nsd', function () {
       const file = './test/fixtures/nsd/example.com'
       const buf = await fs.readFile(file)
 
-      const r = await ns.parseConfig(buf.toString())
+      const r = await parseConfig(buf.toString())
       // console.dir(r, { depth: null })
       assert.deepEqual(r, {
         server: [
           {
-            'server-count': '1',
+            'server-count': 1,
             database      : '',
             logfile       : '/var/log/nsd.log',
             pidfile       : '/var/run/nsd.pid',
             username      : 'nsd',
+          },
+        ],
+        'remote-control': [
+          {
+            'control-cert-file': '/etc/nsd/nsd_control.pem',
+            'control-enable'   : 'yes',
+            'control-interface': '127.0.0.1',
+            'control-key-file' : '/etc/nsd/nsd_control.key',
+            'server-cert-file' : '/etc/nsd/nsd_server.pem',
+            'server-key-file'  : '/etc/nsd/nsd_server.key',
           },
         ],
         zone: [
@@ -74,7 +84,7 @@ describe('nsd', function () {
       const file = './test/fixtures/nsd/ns2.cadillac.net.conf'
       const buf = await fs.readFile(file)
 
-      const r = await ns.parseConfig(buf.toString())
+      const r = await parseConfig(buf.toString())
       // console.dir(r, { depth: null })
       assert.deepEqual(r, {
         zone: [
