@@ -8,6 +8,15 @@ Nameserver configuration parsers and generators
 Name servers have configuration files, each with their own format. This package abstracts the unique implementations into a set of common actions.
 
 
+## FUNCTIONS
+
+### getZones
+
+Returns a list of zones (and zone files) from the specified nameserver config file.
+
+
+
+
 ## TODO
 
 - config parser
@@ -15,7 +24,7 @@ Name servers have configuration files, each with their own format. This package 
     - [x] nsd
     - [x] knot
     - [x] maradns
-    - [ ] tinydns
+    - [x] tinydns
     - [ ] powerdns
 - [ ] config generator
     - [ ] bind
@@ -24,6 +33,13 @@ Name servers have configuration files, each with their own format. This package 
     - [ ] maradns
     - [ ] tinydns
     - [ ] powerdns
+
+
+
+## SEE ALSO
+
+- [Dictionary of DNS terms](https://nictool.github.io/web/Dictionary)
+- [Wikipedia, DNS Server Software](https://en.wikipedia.org/wiki/Comparison_of_DNS_server_software)
 
 
 ## DEVELOP

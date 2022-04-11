@@ -14,6 +14,7 @@
     "nsd": "npx -p nearley nearleyc src/nsd-moo.ne -o dist/nsd.js",
     "mara": "npx -p nearley nearleyc src/mara.ne -o dist/mara.js",
     "grammar": "npm run bind && npm run knot && npm run nsd",
+    "coverage": "npx c8 npm test",
     "lint": "npx eslint index.js test/*.js",
     "lintfix": "npx eslint --fix index.js test/*.js",
     "release": "npx standard-version --release-as=minor",

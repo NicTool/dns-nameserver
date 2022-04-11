@@ -2,7 +2,7 @@
 import assert from 'assert'
 import fs     from 'fs/promises'
 
-import { parseConfig } from '../lib/nsd.js'
+import { getZones, parseConfig } from '../lib/nsd.js'
 
 
 describe('nsd', function () {
@@ -107,4 +107,20 @@ describe('nsd', function () {
       })
     })
   })
+
+  describe('getZones', function () {
+    it('returns a list of zones', async () => {
+
+      const filePath = './test/fixtures/nsd/nsd.conf'
+      const r = await getZones(filePath)
+      // console.dir(r, { depth: null })
+      const expected = new Map([
+        [ 'example.com',    '/etc/nsd/example.com.zone' ],
+        [ 'masterzone.com', '/etc/nsd/masterzone.com.zone' ],
+        [ 'secondzone.com', '/etc/nsd/secondzone.com.zone' ],
+      ])
+      assert.deepStrictEqual(r, expected)
+    })
+  })
+
 })

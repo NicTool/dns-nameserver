@@ -2,7 +2,7 @@
 import assert from 'assert'
 import fs     from 'fs/promises'
 
-import { parseConfig } from '../lib/bind.js'
+import { getZones, parseConfig } from '../lib/bind.js'
 
 
 describe('bind', function () {
@@ -62,4 +62,20 @@ describe('bind', function () {
     })
   })
 
+  describe('getZones', function () {
+    it('returns a list of zones', async () => {
+
+      const filePath = './test/fixtures/bind/named.conf-ztrax-master'
+      const r = await getZones(filePath)
+      // console.dir(r, { depth: null })
+      const expected = new Map([
+        [ '.' , 'root.servers' ],
+        [ 'example.com' , 'master/master.example.com' ],
+        [ 'localhost' , 'master.localhost' ],
+        [ '0.0.127.in-addr.arpa' , 'localhost.rev' ],
+        [ '0.168.192.in-addr.arpa' , '192.168.0.rev' ],
+      ])
+      assert.deepStrictEqual(r, expected)
+    })
+  })
 })

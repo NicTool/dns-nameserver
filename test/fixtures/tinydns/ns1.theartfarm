@@ -1,0 +1,657 @@
+Z0.0.127.in-addr.arpa:ns1.cadillac.net.:hostmaster.theartfarm.com:2012082803:57600:7200:604800:3600:86400::
+&0.0.127.in-addr.arpa::ns1.cadillac.net.:14400::
+&0.0.127.in-addr.arpa::ns2.cadillac.net.:14400::
+&0.0.127.in-addr.arpa::ns3.cadillac.net.:14400::
+&0.0.127.in-addr.arpa::ns3.theartfarm.com.:14400::
+&0.0.127.in-addr.arpa::ns1.theartfarm.com.:14400::
+&0.0.127.in-addr.arpa::ns2.theartfarm.com.:14400::
+Zallguitar.com:ns3.theartfarm.com.:hostmaster.theartfarm.com:2018051702:57600:7200:604800:3600:86400::
+&allguitar.com::ns3.theartfarm.com.:14400::
+&allguitar.com::ns1.theartfarm.com.:14400::
+&allguitar.com::ns2.theartfarm.com.:14400::
+Zhorsenetwork.com:ns3.theartfarm.com.:hostmaster.theartfarm.com:2014030201:57600:7200:604800:3600:86400::
+&horsenetwork.com::ns3.theartfarm.com.:14400::
+&horsenetwork.com::ns1.theartfarm.com.:14400::
+&horsenetwork.com::ns2.theartfarm.com.:14400::
+Zlakeshoretower.com:ns3.theartfarm.com.:hostmaster.theartfarm.com:2014030200:57600:7200:604800:3600:86400::
+&lakeshoretower.com::ns3.theartfarm.com.:14400::
+&lakeshoretower.com::ns1.theartfarm.com.:14400::
+&lakeshoretower.com::ns2.theartfarm.com.:14400::
+Zneisgroup.com:ns3.theartfarm.com.:hostmaster.theartfarm.com:2007020800:57600:7200:604800:3600:86400::
+&neisgroup.com::ns3.theartfarm.com.:14400::
+&neisgroup.com::ns1.theartfarm.com.:14400::
+&neisgroup.com::ns2.theartfarm.com.:14400::
+Ztheartfarm.com:ns3.theartfarm.com.:hostmaster.theartfarm.com:2022032700:16384:2048:1048576:2560:86400::
+&theartfarm.com::ns3.theartfarm.com.:14400::
+&theartfarm.com::ns1.theartfarm.com.:14400::
+&theartfarm.com::ns2.theartfarm.com.:14400::
+Ztimbersmart.com:ns3.theartfarm.com.:hostmaster.theartfarm.com:2018051701:57600:7200:604800:3600:86400::
+&timbersmart.com::ns3.theartfarm.com.:14400::
+&timbersmart.com::ns1.theartfarm.com.:14400::
+&timbersmart.com::ns2.theartfarm.com.:14400::
+Zmikezerbe.com:ns3.theartfarm.com.:hostmaster.theartfarm.com:2007021401:57600:7200:604800:3600:86400::
+&mikezerbe.com::ns3.theartfarm.com.:14400::
+&mikezerbe.com::ns1.theartfarm.com.:14400::
+&mikezerbe.com::ns2.theartfarm.com.:14400::
+Zadvancedgraphicimages.com:ns3.theartfarm.com.:hostmaster.theartfarm.com:2018051701:57600:7200:604800:3600:86400::
+&advancedgraphicimages.com::ns3.theartfarm.com.:14400::
+&advancedgraphicimages.com::ns1.theartfarm.com.:14400::
+&advancedgraphicimages.com::ns2.theartfarm.com.:14400::
+Zpleinairwest.com:ns3.theartfarm.com.:hostmaster.pleinairwest.com:2018051701:57600:7200:604800:3600:86400::
+&pleinairwest.com::ns3.theartfarm.com.:14400::
+&pleinairwest.com::ns1.theartfarm.com.:14400::
+&pleinairwest.com::ns2.theartfarm.com.:14400::
+Zlynboyer.com:ns3.theartfarm.com.:hostmaster.theartfarm.com:2018042803:57600:7200:604800:3600:86400::
+&lynboyer.com::ns3.theartfarm.com.:14400::
+&lynboyer.com::ns1.theartfarm.com.:14400::
+&lynboyer.com::ns2.theartfarm.com.:14400::
+Ztikismikis.org:ns3.theartfarm.com.:hostmaster.tikismikis.org:2014030200:16384:2048:1048576:2560:86400::
+&tikismikis.org::ns3.theartfarm.com.:14400::
+&tikismikis.org::ns1.theartfarm.com.:14400::
+&tikismikis.org::ns2.theartfarm.com.:14400::
+Zhorseshoeing.org:ns3.theartfarm.com.:hostmaster.horseshoeing.org:2019121000:16384:2048:1048576:2560:86400::
+&horseshoeing.org::ns3.theartfarm.com.:14400::
+&horseshoeing.org::ns1.theartfarm.com.:14400::
+&horseshoeing.org::ns2.theartfarm.com.:14400::
+Zcadillacjaycees.org:ns3.theartfarm.com.:hostmaster.cadillacjaycees.org:2014030200:16384:2048:1048576:2560:86400::
+&cadillacjaycees.org::ns3.theartfarm.com.:14400::
+&cadillacjaycees.org::ns1.theartfarm.com.:14400::
+&cadillacjaycees.org::ns2.theartfarm.com.:14400::
+Zdurbensl.com:ns3.theartfarm.com.:hostmaster.durbensl.com:2011121503:16384:2048:1048576:2560:86400::
+&durbensl.com::ns3.theartfarm.com.:14400::
+&durbensl.com::ns1.theartfarm.com.:14400::
+&durbensl.com::ns2.theartfarm.com.:14400::
+Zehwushu.org:ns3.theartfarm.com.:hostmaster.ehwushu.org:2007101001:16384:2048:1048576:2560:86400::
+&ehwushu.org::ns3.theartfarm.com.:14400::
+&ehwushu.org::ns1.theartfarm.com.:14400::
+&ehwushu.org::ns2.theartfarm.com.:14400::
+Ztxalamako.org:ns3.theartfarm.com.:hostmaster.txalamako.org:2007101001:16384:2048:1048576:2560:86400::
+&txalamako.org::ns3.theartfarm.com.:14400::
+&txalamako.org::ns1.theartfarm.com.:14400::
+&txalamako.org::ns2.theartfarm.com.:14400::
+Zalannowell.com:ns3.theartfarm.com.:hostmaster.alannowell.com:2014030201:16384:2048:1048576:2560:86400::
+&alannowell.com::ns3.theartfarm.com.:14400::
+&alannowell.com::ns1.theartfarm.com.:14400::
+&alannowell.com::ns2.theartfarm.com.:14400::
+Zhabispace.com:ns3.theartfarm.com.:hostmaster.habispace.com:2014030200:16384:2048:1048576:2560:86400::
+&habispace.com::ns3.theartfarm.com.:14400::
+&habispace.com::ns1.theartfarm.com.:14400::
+&habispace.com::ns2.theartfarm.com.:14400::
+Zmartagil.com:ns3.theartfarm.com.:hostmaster.martagil.com:2011111800:16384:2048:1048576:2560:86400::
+&martagil.com::ns3.theartfarm.com.:14400::
+&martagil.com::ns1.theartfarm.com.:14400::
+&martagil.com::ns2.theartfarm.com.:14400::
+Zchefadmin.com:ns3.theartfarm.com.:hostmaster.chefadmin.com:2012092600:16384:2048:1048576:2560:86400::
+&chefadmin.com::ns3.theartfarm.com.:14400::
+&chefadmin.com::ns1.theartfarm.com.:14400::
+&chefadmin.com::ns2.theartfarm.com.:14400::
+Zellenscorners.biz:ns3.theartfarm.com.:hostmaster.ellenscorners.biz:2014030200:16384:2048:1048576:2560:86400::
+&ellenscorners.biz::ns3.theartfarm.com.:14400::
+&ellenscorners.biz::ns1.theartfarm.com.:14400::
+&ellenscorners.biz::ns2.theartfarm.com.:14400::
+Zamandakiessel.com:ns3.theartfarm.com.:hostmaster.amandakiessel.com:2009033105:16384:2048:1048576:2560:86400::
+&amandakiessel.com::ns3.theartfarm.com.:14400::
+&amandakiessel.com::ns1.theartfarm.com.:14400::
+&amandakiessel.com::ns2.theartfarm.com.:14400::
+Zcarolesimon.com:ns3.theartfarm.com.:hostmaster.carolesimon.com:2019121000:16384:2048:1048576:2560:86400::
+&carolesimon.com::ns3.theartfarm.com.:14400::
+&carolesimon.com::ns1.theartfarm.com.:14400::
+Zonviewmagazine.com:ns3.theartfarm.com.:hostmaster.onviewmagazine.com:2021102400:16384:2048:1048576:2560:86400::
+&onviewmagazine.com::ns3.theartfarm.com.:14400::
+&onviewmagazine.com::ns1.theartfarm.com.:14400::
+&onviewmagazine.com::ns2.theartfarm.com.:14400::
+Zanimasacademics.com:ns3.theartfarm.com.:hostmaster.animasacademics.com:2014030200:16384:2048:1048576:2560:86400::
+&animasacademics.com::ns3.theartfarm.com.:14400::
+&animasacademics.com::ns1.theartfarm.com.:14400::
+&animasacademics.com::ns2.theartfarm.com.:14400::
+Zequikits.com:ns3.theartfarm.com.:hostmaster.equikits.com:2014030200:16384:2048:1048576:2560:86400::
+&equikits.com::ns3.theartfarm.com.:14400::
+&equikits.com::ns1.theartfarm.com.:14400::
+&equikits.com::ns2.theartfarm.com.:14400::
+Zdurangotutoring.com:ns3.theartfarm.com.:hostmaster.durangotutoring.com:2014030200:16384:2048:1048576:2560:86400::
+&durangotutoring.com::ns3.theartfarm.com.:14400::
+&durangotutoring.com::ns1.theartfarm.com.:14400::
+&durangotutoring.com::ns2.theartfarm.com.:14400::
+Zbenkiessel.com:ns3.theartfarm.com.:hostmaster.benkiessel.com:2011071100:16384:2048:1048576:2560:86400::
+&benkiessel.com::ns3.theartfarm.com.:14400::
+&benkiessel.com::ns1.theartfarm.com.:14400::
+&benkiessel.com::ns2.theartfarm.com.:14400::
+Zthewallacecollective.com:ns3.theartfarm.com.:hostmaster.thewallacecollective.com:2011102708:16384:2048:1048576:2560:86400::
+&thewallacecollective.com::ns3.theartfarm.com.:14400::
+&thewallacecollective.com::ns1.theartfarm.com.:14400::
+&thewallacecollective.com::ns2.theartfarm.com.:14400::
+Ztatooshenv.com:ns3.theartfarm.com.:hostmaster.tatooshenv.com:2011102400:16384:900:1048576:2560:86400::
+&tatooshenv.com::ns3.theartfarm.com.:14400::
+&tatooshenv.com::ns1.theartfarm.com.:14400::
+&tatooshenv.com::ns2.theartfarm.com.:14400::
+Zimmer-gucken.org:ns3.theartfarm.com.:hostmaster.immer-gucken.org:2014030200:16384:900:1048576:2560:86400::
+&immer-gucken.org::ns3.theartfarm.com.:14400::
+&immer-gucken.org::ns1.theartfarm.com.:14400::
+&immer-gucken.org::ns2.theartfarm.com.:14400::
+Zmichigansolutionsgroup.com:ns3.theartfarm.com.:hostmaster.michigansolutionsgroup.com:2014030200:16384:900:1048576:2560:86400::
+&michigansolutionsgroup.com::ns3.theartfarm.com.:14400::
+&michigansolutionsgroup.com::ns1.theartfarm.com.:14400::
+&michigansolutionsgroup.com::ns2.theartfarm.com.:14400::
+Zlgptools.com:ns3.theartfarm.com.:hostmaster.lgptools.com:2014030200:16384:900:1048576:2560:86400::
+&lgptools.com::ns3.theartfarm.com.:14400::
+&lgptools.com::ns1.theartfarm.com.:14400::
+&lgptools.com::ns2.theartfarm.com.:14400::
+Zansliabh.com:ns3.theartfarm.com.:hostmaster.ansliabh.com:2014030200:16384:900:1048576:2560:86400::
+&ansliabh.com::ns3.theartfarm.com.:14400::
+&ansliabh.com::ns1.theartfarm.com.:14400::
+&ansliabh.com::ns2.theartfarm.com.:14400::
+Zautosolutionsofmichigan.com:ns3.theartfarm.com.:hostmaster.autosolutionsofmichigan.com:2013032801:16384:900:1048576:2560:86400::
+&autosolutionsofmichigan.com::ns3.theartfarm.com.:14400::
+&autosolutionsofmichigan.com::ns1.theartfarm.com.:14400::
+&autosolutionsofmichigan.com::ns2.theartfarm.com.:14400::
+Zstonehouserecording.com:ns3.theartfarm.com.:hostmaster.stonehouserecording.com:2012112806:16384:900:1048576:2560:86400::
+&stonehouserecording.com::ns3.theartfarm.com.:14400::
+&stonehouserecording.com::ns1.theartfarm.com.:14400::
+&stonehouserecording.com::ns2.theartfarm.com.:14400::
+Zokfein.com:ns3.theartfarm.com.:hostmaster.okfein.com.:2014030200:16384:900:1048576:2560:86400::
+&okfein.com::ns3.theartfarm.com.:14400::
+&okfein.com::ns1.theartfarm.com.:14400::
+&okfein.com::ns2.theartfarm.com.:14400::
+Zchainoflakesband.com:ns3.theartfarm.com.:hostmaster.chainoflakesband.com.:2014030200:16384:900:1048576:2560:86400::
+&chainoflakesband.com::ns3.theartfarm.com.:14400::
+&chainoflakesband.com::ns1.theartfarm.com.:14400::
+&chainoflakesband.com::ns2.theartfarm.com.:14400::
+Zlucaswilsonmusic.com:ns3.theartfarm.com.:hostmaster.lucaswilsonmusic.com.:2014030200:16384:900:1048576:2560:86400::
+&lucaswilsonmusic.com::ns3.theartfarm.com.:14400::
+&lucaswilsonmusic.com::ns1.theartfarm.com.:14400::
+&lucaswilsonmusic.com::ns2.theartfarm.com.:14400::
+Z_report._dmarc.theartfarm.com:ns3.theartfarm.com.:hostmaster.theartfarm.com.:2017091101:16384:900:1048576:2560:86400::
+&_report._dmarc.theartfarm.com::ns3.theartfarm.com.:14400::
+&_report._dmarc.theartfarm.com::ns1.theartfarm.com.:14400::
+&_report._dmarc.theartfarm.com::ns2.theartfarm.com.:14400::
+Zthesantarosalia.com:ns3.theartfarm.com.:hostmaster.thesantarosalia.com.:2017091101:16384:900:1048576:2560:86400::
+&thesantarosalia.com::ns3.theartfarm.com.:14400::
+&thesantarosalia.com::ns1.theartfarm.com.:14400::
+&thesantarosalia.com::ns2.theartfarm.com.:14400::
+Zhomesteadedmonds.com:ns3.theartfarm.com.:hostmaster.homesteadedmonds.com.:2014020100:16384:900:1048576:2560:86400::
+&homesteadedmonds.com::ns3.theartfarm.com.:14400::
+&homesteadedmonds.com::ns1.theartfarm.com.:14400::
+&homesteadedmonds.com::ns2.theartfarm.com.:14400::
+Zworkshopab2c.com:ns3.theartfarm.com.:hostmaster.workshopab2c.com.:2017091100:16384:900:1048576:2560:86400::
+&workshopab2c.com::ns3.theartfarm.com.:14400::
+&workshopab2c.com::ns1.theartfarm.com.:14400::
+&workshopab2c.com::ns2.theartfarm.com.:14400::
+Zlasantarosalia.com:ns3.theartfarm.com.:hostmaster.lasantarosalia.com.:2014020100:16384:900:1048576:2560:86400::
+&lasantarosalia.com::ns3.theartfarm.com.:14400::
+&lasantarosalia.com::ns1.theartfarm.com.:14400::
+&lasantarosalia.com::ns2.theartfarm.com.:14400::
+Zandreguimond.com:ns3.theartfarm.com.:hostmaster.andreguimond.com.:2014031510:16384:900:1048576:2560:86400::
+&andreguimond.com::ns3.theartfarm.com.:14400::
+&andreguimond.com::ns1.theartfarm.com.:14400::
+&andreguimond.com::ns2.theartfarm.com.:14400::
+Zmatchurchill.com:ns3.theartfarm.com.:hostmaster.matchurchill.com.:2014031507:16384:900:1048576:2560:86400::
+&matchurchill.com::ns3.theartfarm.com.:14400::
+&matchurchill.com::ns1.theartfarm.com.:14400::
+&matchurchill.com::ns2.theartfarm.com.:14400::
+Zstumpgrindingbydale.com:ns3.theartfarm.com.:hostmaster.stumpgrindingbydale.com.:2014043010:16384:900:1048576:2560:86400::
+&stumpgrindingbydale.com::ns3.theartfarm.com.:14400::
+&stumpgrindingbydale.com::ns1.theartfarm.com.:14400::
+&stumpgrindingbydale.com::ns2.theartfarm.com.:14400::
+Z160/27.51.128.66.in-addr.arpa:ns3.theartfarm.com.:hostmaster.theartfarm.com.:2019120900:16384:900:1048576:2560:86400::
+&160/27.51.128.66.in-addr.arpa::ns3.theartfarm.com.:14400::
+&160/27.51.128.66.in-addr.arpa::ns1.theartfarm.com.:14400::
+&160/27.51.128.66.in-addr.arpa::ns2.theartfarm.com.:14400::
+Zwilsonwhitleymusic.com:ns3.theartfarm.com.:hostmaster.wilsonwhitleymusic.com.:2014062406:16384:900:1048576:2560:86400::
+&wilsonwhitleymusic.com::ns3.theartfarm.com.:14400::
+&wilsonwhitleymusic.com::ns1.theartfarm.com.:14400::
+&wilsonwhitleymusic.com::ns2.theartfarm.com.:14400::
+Zsolutionsconsultantsllc.com:ns3.theartfarm.com.:hostmaster.solutionsconsultantsllc.com.:2014062802:16384:900:1048576:2560:86400::
+&solutionsconsultantsllc.com::ns3.theartfarm.com.:14400::
+&solutionsconsultantsllc.com::ns1.theartfarm.com.:14400::
+&solutionsconsultantsllc.com::ns2.theartfarm.com.:14400::
+Zrainydayreflections.net:ns3.theartfarm.com.:hostmaster.rainydayreflections.net.:2015012206:16384:900:1048576:2560:86400::
+&rainydayreflections.net::ns3.theartfarm.com.:14400::
+&rainydayreflections.net::ns1.theartfarm.com.:14400::
+&rainydayreflections.net::ns2.theartfarm.com.:14400::
+Zsiloremoval.com:ns3.theartfarm.com.:hostmaster.siloremoval.com.:2017061507:16384:900:1048576:2560:86400::
+&siloremoval.com::ns3.theartfarm.com.:14400::
+&siloremoval.com::ns1.theartfarm.com.:14400::
+&siloremoval.com::ns2.theartfarm.com.:14400::
+Zcefalonia.org:ns3.theartfarm.com.:hostmaster.cefalonia.org.:2018051704:16384:900:1048576:2560:86400::
+&cefalonia.org::ns3.theartfarm.com.:14400::
+&cefalonia.org::ns1.theartfarm.com.:14400::
+&cefalonia.org::ns2.theartfarm.com.:14400::
+Zw8ct.net:ns3.theartfarm.com.:hostmaster.w8ct.net.:2019021906:16384:900:1048576:2560:86400::
+&w8ct.net::ns3.theartfarm.com.:14400::
+&w8ct.net::ns1.theartfarm.com.:14400::
+&w8ct.net::ns2.theartfarm.com.:14400::
+Zequilateralarchitecture.com:ns3.theartfarm.com.:hostmaster.equilateralarchitecture.com.:2019031608:16384:900:1048576:2560:86400::
+&equilateralarchitecture.com::ns3.theartfarm.com.:14400::
+&equilateralarchitecture.com::ns1.theartfarm.com.:14400::
+&equilateralarchitecture.com::ns2.theartfarm.com.:14400::
+Zequi-lateral.com:ns3.theartfarm.com.:hostmaster.equi-lateral.com.:2019031607:16384:900:1048576:2560:86400::
+&equi-lateral.com::ns3.theartfarm.com.:14400::
+&equi-lateral.com::ns1.theartfarm.com.:14400::
+&equi-lateral.com::ns2.theartfarm.com.:14400::
+Zqcwa10.net:ns3.theartfarm.com.:hostmaster.qcwa10.net.:2019050804:16384:900:1048576:2560:86400::
+&qcwa10.net::ns3.theartfarm.com.:14400::
+&qcwa10.net::ns1.theartfarm.com.:14400::
+&qcwa10.net::ns2.theartfarm.com.:14400::
+Zinterplayerartists.com:ns3.theartfarm.com.:hostmaster.interplayerartists.com.:2020020307:16384:900:1048576:2560:86400::
+&interplayerartists.com::ns3.theartfarm.com.:14400::
+&interplayerartists.com::ns1.theartfarm.com.:14400::
+&interplayerartists.com::ns2.theartfarm.com.:14400::
+Zinterplayartists.com:ns3.theartfarm.com.:hostmaster.interplayartists.com.:2020020607:16384:900:1048576:2560:86400::
+&interplayartists.com::ns3.theartfarm.com.:14400::
+&interplayartists.com::ns1.theartfarm.com.:14400::
+&interplayartists.com::ns2.theartfarm.com.:14400::
+Z_tcp.theartfarm.com:ns3.theartfarm.com.:hostmaster.theartfarm.com..:2021011407:16384:900:1048576:2560:86400::
+&_tcp.theartfarm.com::ns3.theartfarm.com.:14400::
+&_tcp.theartfarm.com::ns1.theartfarm.com.:14400::
+&_tcp.theartfarm.com::ns2.theartfarm.com.:14400::
+Zamenchorus.org:ns3.theartfarm.com.:hostmaster.amenchorus.org.:2021102400:16384:900:1048576:2560:86400::
+&amenchorus.org::ns3.theartfarm.com.:14400::
+&amenchorus.org::ns1.theartfarm.com.:14400::
+&amenchorus.org::ns2.theartfarm.com.:14400::
+Zctacllc.com:ns3.theartfarm.com.:hostmaster.ctacllc.com.:2022040511:16384:900:1048576:2560:86400::
+&ctacllc.com::ns3.theartfarm.com.:14400::
+&ctacllc.com::ns1.theartfarm.com.:14400::
+&ctacllc.com::ns2.theartfarm.com.:14400::
+^1.0.0.127.in-addr.arpa:localhost.:28800::
+^2.0.0.127.in-addr.arpa:mysql.:3600::
+^17.0.0.127.in-addr.arpa:ns3.theartfarm.com.:3600::
+@allguitar.com.::mail.theartfarm.com.:10:28800::
++localhost.allguitar.com:127.0.0.1:28800::
++www.allguitar.com:66.128.51.168:28800::
+C*.allguitar.com:www.allguitar.com.:28800::
+Cmail.allguitar.com:mail.theartfarm.com.:3600::
+'allguitar.com.:v=spf1 include\072mx.theartfarm.com -all:28800::
++allguitar.com.:66.128.51.168:28800::
++localhost.horsenetwork.com:127.0.0.1:28800::
++www.horsenetwork.com:66.128.51.167:3600::
+C*.horsenetwork.com:www.horsenetwork.com.:28800::
+'horsenetwork.com.:v=spf1 include\072mx.theartfarm.com -all:3600::
+@horsenetwork.com.::mail.theartfarm.com.:10:3600::
+Cmiva4.horsenetwork.com:www.horsenetwork.com.:86400::
+Cmiva5.horsenetwork.com:www.horsenetwork.com.:86400::
++localhost.lakeshoretower.com:127.0.0.1:28800::
++lakeshoretower.com.:66.128.51.173:3600::
+Cwww.lakeshoretower.com:lakeshoretower.com.:3600::
+'lakeshoretower.com.:v=spf1 -all:86400::
+@neisgroup.com.::mail.neisgroup.com.:10:28800::
++www.neisgroup.com:66.128.51.167:28800::
+C*.neisgroup.com:www.neisgroup.com.:28800::
++mail.neisgroup.com:66.128.51.165:3600::
+@theartfarm.com.::mail.theartfarm.com.:10:28800::
++localhost.theartfarm.com:127.0.0.1:86400::
++ns1.theartfarm.com:192.48.85.147:86400::
++www.theartfarm.com:66.128.51.172:28800::
+Cart.theartfarm.com:mail.theartfarm.com.:86400::
+Cftp.theartfarm.com:www.theartfarm.com.:28800::
+Cpop.theartfarm.com:mail.theartfarm.com.:28800::
+Csmtp.theartfarm.com:mail.theartfarm.com.:28800::
+Cimap.theartfarm.com:mail.theartfarm.com.:28800::
+Cdns.theartfarm.com:dns.tnpi.net.:86400::
+Cwww2.theartfarm.com:ns2.theartfarm.com.:3600::
++ns2.theartfarm.com:66.128.51.172:28800::
+'theartfarm.com.:v=spf1 include\072mx.theartfarm.com ip4\07269.64.153.131 ip4\072172.16.16.5 -all:86400::
+'mail.theartfarm.com:v=spf1 a -all:28800::
+'www.theartfarm.com:v=spf1 a mx ip4\072127.0.0.24 -all:86400::
++vhost0.theartfarm.com:66.128.51.173:86400::
++mail.theartfarm.com:66.128.51.165:28800::
+Ctoaster.theartfarm.com:mail.theartfarm.com.:3600::
++ns3.theartfarm.com:138.210.133.60:28800::
++theartfarm.com.:66.128.51.172:28800::
++lo.mail.theartfarm.com:127.0.0.6:86400::
+'mar2013._domainkey.theartfarm.com:v=DKIM1;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5Q41fZ8CqpSgzSWpDY88oGq+bXKHdROGHmyjY6+b8qLUmdoHgpcaBUhL2zhZChvx5uayVJRV\057gWxPZtODsozOqPk6fl8Mn1VH1MBsuQdShnC0a\057Tcm8bPW0NE2viHysUamvL+X5Ea9H2GyVGKpe6rdKrmUiCzZyRYwTYqLvC9HhkTNWjR3TuP5mA2rmBO8IBPBFkdaz7WveNaiR8ImegA+wv1uCYcQLwcz3bn\057U2yK2UzFGsJLZ1KCTqr8WMPTuy1zc5zClHpZZMmCl3uk02bE59RVa7zzyZwVEGeRcjouq0rh5JCl057rMK2cwA2wu\057\0578svN+pGZAKJCnuFlpC0bwIDAQAB:3600::
+:ns1.theartfarm.com:28:\046\007\360\140\260\010\376\355\000\000\000\000\000\000\000\007:86400::
+'_dmarc.theartfarm.com:v=DMARC1; p=reject; rua=mailto\072dmarc-feedback@theartfarm.com; ruf=mailto\072dmarc-feedback@theartfarm.com; pct=100:86400::
+@www.theartfarm.com::mail.theartfarm.com.:10:28800::
+'_dmarc.dmarc.theartfarm.com:v=DMARC1; p=reject; pct=100:86400::
+'dmarc.theartfarm.com:v=spf1 include\072mx.theartfarm.com -all:86400::
+@dmarc.theartfarm.com::mail.theartfarm.com.:10:86400::
++dmarc.theartfarm.com:66.128.51.165:86400::
+'mx.theartfarm.com:v=spf1 ip4\07266.128.51.160\05727 ip4\072192.48.85.146\05729 ip4\072173.45.131.0\05727 ip4\072204.11.99.0\05727 ip6\0722605\0727900\07220\072a\072\072\05764 ip6\0722605\072ae00\072329\072\0720\05764 -all:86400::
+Chtpta.theartfarm.com:vhost0.theartfarm.com.:86400::
+'vhost0.theartfarm.com:v=spf1 include\072mx.theartfarm.com -all:86400::
+'ns3.theartfarm.com:v=spf1 a ip4\072138.210.133.60 ip4\07246.105.8.147 -all:86400::
+:ns2.theartfarm.com:28:\046\005\256\000\003\051\000\000\000\000\000\000\000\000\000\015:86400::
+Cwordpress.theartfarm.com:www.theartfarm.com.:86400::
+:theartfarm.com.:257:\000\005issueletsencrypt.org:28800::
+:theartfarm.com.:257:\000\011issuewildletsencrypt.org:28800::
+:vhost0.theartfarm.com:28:\046\005\256\000\003\051\000\000\000\000\000\000\000\000\000\016:86400::
+:mail.theartfarm.com:28:\046\005\256\000\003\051\000\000\000\000\000\000\000\000\000\024:3600::
+:_submissions._tcp.theartfarm.com:33:\000\001\000\000\001\321\004mail\012theartfarm\003com\000:86400::
+:_submission._tcp.theartfarm.com:33:\000\002\000\001\002K\004mail\012theartfarm\003com\000:86400::
+:_imaps._tcp.theartfarm.com:33:\000\001\000\000\003\341\004mail\012theartfarm\003com\000:86400::
+:_pop3s._tcp.theartfarm.com:33:\000\005\000\005\003\343\004mail\012theartfarm\003com\000:86400::
+:_imap._tcp.theartfarm.com:33:\000\024\000\024\000\217\000:86400::
+:_pop3._tcp.theartfarm.com:33:\000\036\000\036\000n\000:86400::
+:_smtps._tcp.theartfarm.com:33:\000\001\000\005\001\321\004mail\012theartfarm\003com\000:86400::
+'apr2019._domainkey.mail.theartfarm.com:v=DKIM1;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoW91trHF9nBzY3DeFtauDbPbr904YNBgW7mh\0578s5Fcmsi3TPB1bSqyBcr2BjYGqCG1KPFBvs+IRZNMDgHJ4wMSdC+4Pt6wXkMJpElNg4DjuP7q2UALJsOQ\057H54VtH8TWVMOekmc4W3um8ZqxePGJkWd2UGV+YT00dR8jLne5d+9MXo3CayOe3L7rK9uEvm0u8dLYLJaTmPdKI+8LWEIuxC4KeRsaB\05710M7NIaR73C5wB0HlTOm7MQW3806rTdlFYpO9Rtx2uV3stqCIfUYK9qeGLJFXHjLxh0nki4ztVIZdPi9TkZnj+juS5k8GTADSGy7PWawUnbhjEDyd4JX5YxwIDAQAB:86400::
+:ns1.theartfarm.com:28:\046\005\171\000\000\040\000\012\000\000\000\000\000\000\000\005:86400::
++ns1.theartfarm.com:173.45.131.5:86400::
++ns1.theartfarm.com:204.11.99.5:86400::
++mx-out.theartfarm.com:66.128.51.178:86400::
+:mx-out.theartfarm.com:28:\046\005\256\000\003\051\000\000\000\000\000\000\000\000\000\022:86400::
+'theartfarm.com.:stripe-verification=a5fd4f2f0595baed5ff34b5faa4fbbfe1a3c558edb5d3e1f79a1b47c17034045:86400::
+Cgx5ikgyqu5utchzqxnda5sy3h6ewk6lq._domainkey.theartfarm.com:gx5ikgyqu5utchzqxnda5sy3h6ewk6lq.dkim.custom-email-domain.stripe.com.:86400::
+Cgrb7wv2d72sx6p5fqsyharhfttcqze5k._domainkey.theartfarm.com:grb7wv2d72sx6p5fqsyharhfttcqze5k.dkim.custom-email-domain.stripe.com.:86400::
+Cjvrtqqla7zic6raf6thqpxz7opi2rb3y._domainkey.theartfarm.com:jvrtqqla7zic6raf6thqpxz7opi2rb3y.dkim.custom-email-domain.stripe.com.:86400::
+Cbounce.theartfarm.com:custom-email-domain.stripe.com.:86400::
+Cnecuy2jndtkly53o5bwge3ql7heuanso._domainkey.theartfarm.com:necuy2jndtkly53o5bwge3ql7heuanso.dkim.custom-email-domain.stripe.com.:86400::
+Cuioeay3aanrll4ieckdmwlaxbjmfrprc._domainkey.theartfarm.com:uioeay3aanrll4ieckdmwlaxbjmfrprc.dkim.custom-email-domain.stripe.com.:86400::
+Chyug5cnsxwoj5wmcejqudu2l7iwxz3c2._domainkey.theartfarm.com:hyug5cnsxwoj5wmcejqudu2l7iwxz3c2.dkim.custom-email-domain.stripe.com.:86400::
+:cid.theartfarm.com:35:\000\144\000\012\002""\002""\043"!^urn\072cid\072.+@([^\134.]+\134.)(.*)$!\1342!i"\001.\000:86400::
+:localhost.theartfarm.com:28:\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\001:86400::
+@timbersmart.com.::mail.timbersmart.com.:0:3600::
++localhost.timbersmart.com:127.0.0.1:28800::
++www.timbersmart.com:66.128.51.173:7200::
+C*.timbersmart.com:www.timbersmart.com.:28800::
++mail.timbersmart.com:66.128.51.165:3600::
+'timbersmart.com.:v=spf1 include\072mx.theartfarm.com -all:3600::
+'_dmarc.timbersmart.com:v=DMARC1; p=reject; rua=mailto\072dmarc-feedback@theartfarm.com; ruf=mailto\072dmarc-feedback@theartfarm.com; pct=100:3600::
+'apr2013._domainkey.timbersmart.com:v=DKIM1;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtzQmsYkqpkawQdbM2nrZr2iJdzODo38xadaY+wjW1m1LNHFoY6WEopTgxHN5uNOehd61hzhmr0TyrqhTrlQfAe500DDBNEcFbGHO+ChcutrdPnvPoBAD2mcGCdVUkxnHoIkMFrGYmFTAV9Gf+Yv6e5593EnFFKvCPweUFo2pdpObJ0NGHtL55yhvL4DFdFvb3JL9C120j\057o+lwb9H5TVzuZMMlWM\057ZKNkqiULExtbzYcshH2V2wLkotDShlnO\057a7OTODc5c5BJlX+VRrmOJwpM8YoI6zlGHI2w79YI5M5NVxqwmguwVe6\057tcaK3PU12mSollGo1uI1PsOq7ygw9jUQIDAQAB:86400::
++timbersmart.com.:66.128.51.173:3600::
+C*.mikezerbe.com.:www.mikezerbe.com:28800::
++localhost.mikezerbe.com:127.0.0.1:28800::
++www.mikezerbe.com:66.128.51.167:28800::
+C*.advancedgraphicimages.com:www.advancedgraphicimages.com:28800::
++localhost.advancedgraphicimages.com:127.0.0.1:86400::
+@advancedgraphicimages.com.::mail.theartfarm.com.:10:28800::
++www.advancedgraphicimages.com:66.128.51.173:14400::
+Cmail.advancedgraphicimages.com:mail.theartfarm.com.:3600::
+'advancedgraphicimages.com.:v=spf1 include\072mx.theartfarm.com -all:86400::
++advancedgraphicimages.com.:66.128.51.173:28800::
+C*.pleinairwest.com.:www.pleinairwest.com.:28800::
+@pleinairwest.com.::mail.theartfarm.com.:10:28800::
++localhost.pleinairwest.com:127.0.0.1:28800::
++www.pleinairwest.com:66.128.51.173:28800::
+Cmail.pleinairwest.com:mail.theartfarm.com.:86400::
+'pleinairwest.com.:v=spf1 include\072mx.theartfarm.com -all:28800::
++pleinairwest.com.:66.128.51.173:28800::
+C*.lynboyer.com.:www.lynboyer.com.:28800::
+@lynboyer.com.::mail.theartfarm.com.:0:28800::
++localhost.lynboyer.com:127.0.0.1:28800::
++www.lynboyer.com:66.128.51.173:28800::
+'lynboyer.com.:v=spf1 include\072mx.theartfarm.com -all:28800::
+'_dmarc.lynboyer.com:v=DMARC1; p=reject; rua=mailto\072dmarc-feedback@theartfarm.com; ruf=mailto\072dmarc-feedback@theartfarm.com; pct=100:3600::
+'apr2013._domainkey.lynboyer.com:v=DKIM1;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsgks1FeoXFJL5Q+AwHPdCmPgIBEPH2v3AX6yoChMaArHJR21oNmDgGOEEwWI2\0575reJDmNlBz5N74I2qkjuBv\057qB9VtkXIqU3RCpgU9jw5j4KpPRtwrAfsvRyKVKrwWiy\057lVPaHPk4ZMCSThvsMs5prwtYrbk\057qAAIrn0dwPhKY2i+ALG4yqFV8CjPU7KBV57YwfL1Psc7mVxJhKyREjD7ovEAw41HvJQhaGqv\057Qm5c7UqRRT2FTPpyHBLKphUJzKDWHDkKvbRbCsESvkwAzSnpzAqvVhmpdGfKJ\057Bz7meGkSun3oR\057eg+xKf4wWrw5cnRmk3O1lXjcjwu+EMUlBf3QIDAQAB:86400::
++lynboyer.com.:66.128.51.173:28800::
++tikismikis.org.:66.128.51.173:3600::
+Cmail.tikismikis.org:mail.theartfarm.com.:3600::
+@tikismikis.org.::mail.theartfarm.com.:10:3600::
+C*.tikismikis.org.:tikismikis.org.:3600::
+'tikismikis.org.:v=spf1 include\072mx.theartfarm.com -all:86400::
+Cwww.horseshoeing.org:www.mikezerbe.com.:3600::
++horseshoeing.org.:209.99.64.53:3600::
+Cwww.cadillacjaycees.org:cadillacjaycees.org.:3600::
+Cmail.cadillacjaycees.org:mail.theartfarm.com.:3600::
+@cadillacjaycees.org.::mail.theartfarm.com.:10:3600::
++cadillacjaycees.org.:66.128.51.173:3600::
+'cadillacjaycees.org.:v=spf1 include\072mx.theartfarm.com -all:86400::
++durbensl.com.:66.128.51.173:3600::
+'durbensl.com.:v=spf1 -all:3600::
++ehwushu.org.:66.128.51.173:3600::
+Cmail.ehwushu.org:mail.theartfarm.com.:3600::
+Cwww.ehwushu.org:ehwushu.org.:3600::
+@ehwushu.org.::mail.theartfarm.com.:10:3600::
+'ehwushu.org.:v=spf1 a mx ~all:3600::
+Cmail.txalamako.org:mail.theartfarm.com.:3600::
+Cwww.txalamako.org:txalamako.org.:3600::
++txalamako.org.:66.128.51.173:3600::
+@txalamako.org.::mail.theartfarm.com.:10:3600::
+C*.txalamako.org.:txalamako.org.:3600::
++alannowell.com.:66.128.51.173:3600::
+Cmail.alannowell.com:mail.theartfarm.com.:3600::
+C*.alannowell.com.:alannowell.com.:3600::
+@alannowell.com.::mail.theartfarm.com.:10:3600::
+'alannowell.com.:v=spf1 include\072mx.theartfarm.com -all:86400::
++habispace.com.:66.128.51.173:3600::
++mail.habispace.com:66.128.51.172:3600::
+C*.habispace.com.:habispace.com.:3600::
+@habispace.com.::mail.habispace.com.:10:3600::
+'habispace.com.:v=spf1 include\072mx.theartfarm.com -all:3600::
++martagil.com.:66.128.51.173:3600::
+Cmail.martagil.com:mail.theartfarm.com.:3600::
+Cwww.martagil.com:martagil.com.:3600::
+@martagil.com.::mail.theartfarm.com.:10:3600::
+'martagil.com.:v=spf1 a mx ~all:3600::
++chefadmin.com.:72.233.91.82:500::
++mail.chefadmin.com:66.128.51.165:3600::
+Cwww.chefadmin.com:chefadmin.com.:3600::
+@chefadmin.com.::mail.chefadmin.com.:10:3600::
+Cdns.chefadmin.com:dns.tnpi.net.:3600::
++shoot-at-me.chefadmin.com:127.0.0.1:3600::
++ellenscorners.biz.:66.128.51.173:3600::
+Cmail.ellenscorners.biz:mail.theartfarm.com.:3600::
+Cwww.ellenscorners.biz:ellenscorners.biz.:3600::
+@ellenscorners.biz.::mail.theartfarm.com.:10:3600::
+'ellenscorners.biz.:v=spf1 include\072mx.theartfarm.com -all:3600::
++amandakiessel.com.:66.128.51.173:3600::
+Cmail.amandakiessel.com:mail.theartfarm.com.:3600::
+Cwww.amandakiessel.com:amandakiessel.com.:3600::
+@amandakiessel.com.::mail.theartfarm.com.:10:3600::
+'amandakiessel.com.:v=spf1 a mx ~all:3600::
+'carolesimon.com.:v=spf1 -all:86400::
++onviewmagazine.com.:66.128.51.173:3600::
++mail.onviewmagazine.com:66.128.51.165:3600::
+C*.onviewmagazine.com.:onviewmagazine.com.:3600::
+@onviewmagazine.com.::mail.onviewmagazine.com.:10:3600::
+'onviewmagazine.com.:v=spf1 include\072mx.theartfarm.com -all:86400::
++localhost.onviewmagazine.com:127.0.0.1:86400::
++animasacademics.com.:66.128.51.173:3600::
++mail.animasacademics.com:66.128.51.165:3600::
+C*.animasacademics.com.:animasacademics.com.:3600::
+@animasacademics.com.::mail.animasacademics.com.:10:3600::
+'animasacademics.com.:v=spf1 include\072mx.theartfarm.com -all:3600::
++ANACS.animasacademics.com:69.175.70.186:86400::
++equikits.com.:66.128.51.173:3600::
++mail.equikits.com:66.128.51.165:3600::
+C*.equikits.com.:equikits.com.:3600::
+@equikits.com.::mail.equikits.com.:10:3600::
+'equikits.com.:v=spf1 include\072mx.theartfarm.com -all:3600::
++durangotutoring.com.:66.128.51.173:3600::
+Cwww.durangotutoring.com:durangotutoring.com.:3600::
+'durangotutoring.com.:v=spf1 -all:86400::
++benkiessel.com.:66.128.51.173:3600::
+Cmail.benkiessel.com:mail.theartfarm.com.:3600::
+C*.benkiessel.com.:benkiessel.com.:3600::
+@benkiessel.com.::mail.theartfarm.com.:10:3600::
++thewallacecollective.com.:66.128.51.173:3600::
+Cmail.thewallacecollective.com:ghs.google.com.:3600::
+C*.thewallacecollective.com.:thewallacecollective.com.:3600::
+'thewallacecollective.com.:v=spf1 a mx ~all:3600::
+@thewallacecollective.com.::ASPMX.L.GOOGLE.COM.:1:3600::
+@thewallacecollective.com.::ALT1.ASPMX.L.GOOGLE.COM.:5:3600::
+@thewallacecollective.com.::ALT2.ASPMX.L.GOOGLE.COM.:5:3600::
+@thewallacecollective.com.::ASPMX2.GOOGLEMAIL.COM.:10:3600::
+@thewallacecollective.com.::ASPMX3.GOOGLEMAIL.COM.:10:3600::
+Cwww.tatooshenv.com:tatooshenv.com.:3600::
+@tatooshenv.com.::mail.tatooshenv.com.:10:3600::
+'tatooshenv.com.:v=spf1 a mx -all:3600::
++mail.tatooshenv.com:66.128.51.165:3600::
++tatooshenv.com.:66.128.51.173:3600::
++immer-gucken.org.:66.128.51.173:3600::
++mail.immer-gucken.org:66.128.51.165:3600::
+Cwww.immer-gucken.org:immer-gucken.org.:3600::
+@immer-gucken.org.::mail.immer-gucken.org.:10:3600::
+'immer-gucken.org.:v=spf1 include\072mx.theartfarm.com -all:86400::
++michigansolutionsgroup.com.:66.128.51.173:3600::
++mail.michigansolutionsgroup.com:66.128.51.165:3600::
+C*.michigansolutionsgroup.com.:michigansolutionsgroup.com.:3600::
+@michigansolutionsgroup.com.::mail.michigansolutionsgroup.com.:10:3600::
+'michigansolutionsgroup.com.:v=spf1 include\072mx.theartfarm.com -all:3600::
++lgptools.com.:66.128.51.173:3600::
++mail.lgptools.com:66.128.51.165:3600::
+C*.lgptools.com:lgptools.com.:3600::
+@lgptools.com.::mail.lgptools.com.:10:3600::
+'lgptools.com.:v=spf1 a mx -all:3600::
++ansliabh.com.:66.128.51.173:3600::
++mail.ansliabh.com:66.128.51.165:3600::
+C*.ansliabh.com:ansliabh.com.:3600::
+@ansliabh.com.::mail.ansliabh.com.:10:3600::
+'ansliabh.com.:v=spf1 a mx -all:3600::
++autosolutionsofmichigan.com.:66.128.51.169:3600::
++mail.autosolutionsofmichigan.com:66.128.51.169:3600::
+Cwww.autosolutionsofmichigan.com:autosolutionsofmichigan.com.:3600::
+@autosolutionsofmichigan.com.::mail.autosolutionsofmichigan.com.:10:3600::
++stonehouserecording.com.:66.128.51.173:3600::
+Cwww.stonehouserecording.com:stonehouserecording.com.:3600::
+@stonehouserecording.com.::ASPMX.L.GOOGLE.com.:10:3600::
++okfein.com.:66.128.51.173:3600::
++mail.okfein.com:66.128.51.165:3600::
+Cwww.okfein.com:okfein.com.:3600::
+@okfein.com.::mail.okfein.com.:10:3600::
+'okfein.com.:v=spf1 a mx -all:3600::
++chainoflakesband.com.:66.128.51.173:3600::
++mail.chainoflakesband.com:66.128.51.165:3600::
+Cwww.chainoflakesband.com:chainoflakesband.com.:3600::
+@chainoflakesband.com.::mail.chainoflakesband.com.:10:3600::
+'chainoflakesband.com.:v=spf1 a mx -all:3600::
++lucaswilsonmusic.com.:66.128.51.173:3600::
++mail.lucaswilsonmusic.com:66.128.51.165:3600::
+Cwww.lucaswilsonmusic.com:lucaswilsonmusic.com.:3600::
+@lucaswilsonmusic.com.::mail.lucaswilsonmusic.com.:10:3600::
+'lucaswilsonmusic.com.:v=spf1 a mx -all:3600::
+'lynboyer.com._report._dmarc.theartfarm.com:v=DMARC1:86400::
+'simerson.com._report._dmarc.theartfarm.com:v=DMARC1:86400::
+'simerson.net._report._dmarc.theartfarm.com:v=DMARC1:86400::
+'cadillac.net._report._dmarc.theartfarm.com:v=DMARC1:86400::
+'nictool.com._report._dmarc.theartfarm.com:v=DMARC1:86400::
+'timbersmart.com._report._dmarc.theartfarm.com:v=DMARC1:86400::
+'tnpi.biz._report._dmarc.theartfarm.com:v=DMARC1:86400::
+'tnpi.net._report._dmarc.theartfarm.com:v=DMARC1:86400::
+'mesick.us._report._dmarc.theartfarm.com:v=DMARC1:86400::
+'simerson.org._report._dmarc.theartfarm.com:v=DMARC1:86400::
+'mail-dmarc.tnpi.net._report._dmarc.theartfarm.com:v=DMARC1; rua=mailto\072invalid-test@theartfarm.com;:86400::
+'thesantarosalia.com._report._dmarc.theartfarm.com:v=DMARC1:86400::
+'workshopab2c.com._report._dmarc.theartfarm.com:v=DMARC1:86400::
++thesantarosalia.com.:66.128.51.173:3600::
+Cwww.thesantarosalia.com:thesantarosalia.com.:3600::
+@thesantarosalia.com.::mail.theartfarm.com.:0:3600::
+'thesantarosalia.com.:v=spf1 a mx -all:3600::
+'_dmarc.thesantarosalia.com:v=DMARC1; p=quarantine; rua=mailto\072dmarc-feedback@theartfarm.com; ruf=mailto\072dmarc-feedback@theartfarm.com;:3600::
+'sep2017._domainkey.thesantarosalia.com:v=DKIM1;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr9qAdVzOdcuoEK1Jlzkjbem15LOxxgtYQz6nnv08C0xAkxr8ZEwM8V+7AVkV\057pwVCAqYVq1PVT4oDWaYynyzgs0XYOmF9Fr6YfIw67U67IkUwbio5BJWJWNDBHGX4i8rvjzDT1kUhzihtxr5h2P7SKp448yuKj4jxsVN0m4znFC+vOAcVwA\05738sfS0TQaKscQweD57xR+NYHKzxoswpm0RMSkd8XMoqUReEYF1siu8VxBiRqI4hkldH+wDAtvhcnaSFW9R1RgfdQWJrPl85ptissJoLVd8FDPwuiHraDq7pPCW0dd6+GfRTi9pkeAF1YYOR71r9KlSlI+X\057sXa634QIDAQAB:86400::
++homesteadedmonds.com.:66.128.51.173:3600::
+Cwww.homesteadedmonds.com:homesteadedmonds.com.:3600::
+@homesteadedmonds.com.::mail.theartfarm.com.:0:3600::
+'homesteadedmonds.com.:v=spf1 a mx -all:86400::
+'_dmarc.homesteadedmonds.com:v=DMARC1; p=none; rua=mailto\072dmarc-feedback@theartfarm.com; ruf=mailto\072dmarc-feedback@theartfarm.com;:86400::
+@workshopab2c.com.::mail.theartfarm.com.:0:86400::
++workshopab2c.com.:66.128.51.173:86400::
+Cwww.workshopab2c.com:workshopab2c.com.:86400::
+'_dmarc.workshopab2c.com:v=DMARC1; p=none; rua=mailto\072dmarc-feedback@theartfarm.com; ruf=mailto\072dmarc-feedback@theartfarm.com;:86400::
+'workshopab2c.com.:v=spf1 a mx -all:86400::
+'sep2017._domainkey.workshopab2c.com:v=DKIM1;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAochuzvUrejZOJwCzDxIrSadUl4FetSRQYDc1eiWA\0577W+Jj\057ngphh6LNtgGL0GvWXsTWqQO7wTjyTnKOBddRv9OVE\057Ld+Zy70HauUo5YYTtOwf\057oDSwxKYFHIxivmQJYwiWYeuSUoN3LfUtkqAFUvAP4Ye+3JFQ4UyBP\0577FjIMucn7ZqLxp9I0SYMg\057b309tz7Pm\057wkeizE2pAjgWgD5Z1VWNVdQMilEpkrJ\057N0KFhSvaMmxDP2O+y28gKJ50uFpxDEUerNWtQrsH6sTykOAUI15SkOwk9OtzLZM4l+VXElLxejDRMrU4V6p9IeC2v29zIoRgbreTrlTuOmKwLWVAqQIDAQAB:86400::
++lasantarosalia.com.:66.128.51.173:3600::
+Cwww.lasantarosalia.com:lasantarosalia.com.:3600::
+@lasantarosalia.com.::mail.theartfarm.com.:0:3600::
+'lasantarosalia.com.:v=spf1 a mx -all:3600::
+'_dmarc.lasantarosalia.com:v=DMARC1; p=none; rua=mailto\072dmarc-feedback@theartfarm.com; ruf=mailto\072dmarc-feedback@theartfarm.com;:3600::
++andreguimond.com.:66.128.51.173:3600::
+Cwww.andreguimond.com:andreguimond.com.:3600::
+'andreguimond.com.:v=spf1 a mx -all:3600::
+:andreguimond.com.:99:\020v=spf1 a mx -all:3600::
++matchurchill.com.:66.128.51.173:3600::
+Cwww.matchurchill.com:matchurchill.com.:3600::
+'matchurchill.com.:v=spf1 -all:86400::
++stumpgrindingbydale.com.:66.128.51.173:3600::
+Cwww.stumpgrindingbydale.com:stumpgrindingbydale.com.:3600::
+@stumpgrindingbydale.com.::mail.theartfarm.com.:10:3600::
+'stumpgrindingbydale.com.:v=spf1 a mx -all:3600::
+:stumpgrindingbydale.com.:99:\020v=spf1 a mx -all:3600::
+'_dmarc.stumpgrindingbydale.com:v=DMARC1; p=none;:3600::
+^161.160/27.51.128.66.in-addr.arpa:gw.theartfarm.com.:86400::
+^162.160/27.51.128.66.in-addr.arpa:jails.tnpi.net.:86400::
+^163.160/27.51.128.66.in-addr.arpa:matt.simerson.net.:86400::
+^165.160/27.51.128.66.in-addr.arpa:mail.theartfarm.com.:86400::
+^167.160/27.51.128.66.in-addr.arpa:www.lynboyer.com.:86400::
+^170.160/27.51.128.66.in-addr.arpa:www.tnpi.net.:86400::
+^170.160/27.51.128.66.in-addr.arpa:www.tnpi.biz.:86400::
+^172.160/27.51.128.66.in-addr.arpa:www.theartfarm.com.:86400::
+^173.160/27.51.128.66.in-addr.arpa:vhost0.theartfarm.com.:86400::
+^174.160/27.51.128.66.in-addr.arpa:www.cadillac.net.:86400::
+^175.160/27.51.128.66.in-addr.arpa:ghost.simerson.net.:86400::
+^176.160/27.51.128.66.in-addr.arpa:jasonnoble.org.:86400::
+^177.160/27.51.128.66.in-addr.arpa:www.jasonnoble.com.:86400::
+^178.160/27.51.128.66.in-addr.arpa:mx-out.theartfarm.com.:86400::
+^179.160/27.51.128.66.in-addr.arpa:elasticsearch.tnpi.net.:86400::
+^180.160/27.51.128.66.in-addr.arpa:unnamed.theartfarm.com.:86400::
+^181.160/27.51.128.66.in-addr.arpa:unnamed.theartfarm.com.:86400::
+^182.160/27.51.128.66.in-addr.arpa:unnamed.theartfarm.com.:86400::
+^183.160/27.51.128.66.in-addr.arpa:unnamed.theartfarm.com.:86400::
+^184.160/27.51.128.66.in-addr.arpa:hyperv.tnpi.net.:86400::
+^185.160/27.51.128.66.in-addr.arpa:unnamed.theartfarm.com.:86400::
+^186.160/27.51.128.66.in-addr.arpa:firewall.tnpi.net.:86400::
+^187.160/27.51.128.66.in-addr.arpa:unnamed.theartfarm.com.:86400::
+^188.160/27.51.128.66.in-addr.arpa:accounting.robertsonpools.com.:86400::
+^189.160/27.51.128.66.in-addr.arpa:mail.mac2.net.:86400::
+^190.160/27.51.128.66.in-addr.arpa:vhost1.theartfarm.com.:86400::
+^170.160/27.51.128.66.in-addr.arpa:mail-toaster.org.:86400::
++wilsonwhitleymusic.com.:66.128.51.173:3600::
+Cwww.wilsonwhitleymusic.com:wilsonwhitleymusic.com.:3600::
++solutionsconsultantsllc.com.:66.128.51.173:86400::
+Cwww.solutionsconsultantsllc.com:solutionsconsultantsllc.com.:86400::
++rainydayreflections.net.:66.128.51.173:3600::
+Cwww.rainydayreflections.net:rainydayreflections.net.:3600::
+@rainydayreflections.net.::mail.theartfarm.com.:10:3600::
++siloremoval.com.:66.128.51.173:3600::
++mail.siloremoval.com:66.128.51.165:3600::
+Cwww.siloremoval.com:siloremoval.com.:3600::
+@siloremoval.com.::mail.siloremoval.com.:10:3600::
+'siloremoval.com.:v=spf1 a mx -all:3600::
+:siloremoval.com.:99:\020v=spf1 a mx -all:3600::
+'_dmarc.siloremoval.com:v=DMARC1; p=none; rua=mailto\072postmaster@siloremoval.com; ruf=mailto\072postmaster@siloremoval.com;:3600::
++cefalonia.org.:198.185.159.144:3600::
++mail.cefalonia.org:66.128.51.165:3600::
+Cwww.cefalonia.org:ext-cust.squarespace.com.:3600::
+@cefalonia.org.::mail.cefalonia.org.:10:3600::
+Chalgxnp8wzrk2c5nb3gp.cefalonia.org:verify.squarespace.com.:86400::
++cefalonia.org.:198.49.23.144:3600::
++w8ct.net.:66.128.51.173:3600::
+Cwww.w8ct.net:w8ct.net.:3600::
++equilateralarchitecture.com.:66.128.51.173:3600::
++mail.equilateralarchitecture.com:66.128.51.165:3600::
+Cwww.equilateralarchitecture.com:equilateralarchitecture.com.:3600::
+'equilateralarchitecture.com.:v=spf1 a mx -all:3600::
+:equilateralarchitecture.com.:99:\020v=spf1 a mx -all:3600::
+'_dmarc.equilateralarchitecture.com:v=DMARC1; p=none; rua=mailto\072postmaster@equilateralarchitecture.com; ruf=mailto\072postmaster@equilateralarchitecture.com;:3600::
++equi-lateral.com.:66.128.51.173:3600::
++mail.equi-lateral.com:66.128.51.165:3600::
+Cwww.equi-lateral.com:equi-lateral.com.:3600::
+@equi-lateral.com.::mail.equi-lateral.com.:10:3600::
+'equi-lateral.com.:v=spf1 a mx -all:3600::
+:equi-lateral.com.:99:\020v=spf1 a mx -all:3600::
+'_dmarc.equi-lateral.com:v=DMARC1; p=none; rua=mailto\072postmaster@equi-lateral.com; ruf=mailto\072postmaster@equi-lateral.com;:3600::
++qcwa10.net.:66.128.51.173:3600::
++mail.qcwa10.net:66.128.51.173:3600::
+Cwww.qcwa10.net:qcwa10.net.:3600::
+@qcwa10.net.::mail.qcwa10.net.:10:3600::
++interplayerartists.com.:66.128.51.173:3600::
++mail.interplayerartists.com:66.128.51.165:3600::
+Cwww.interplayerartists.com:interplayerartists.com.:3600::
+@interplayerartists.com.::mail.interplayerartists.com.:10:3600::
+'interplayerartists.com.:v=spf1 a mx -all:3600::
+:interplayerartists.com.:99:\020v=spf1 a mx -all:3600::
+'_dmarc.interplayerartists.com:v=DMARC1; p=none; rua=mailto\072postmaster@interplayerartists.com; ruf=mailto\072postmaster@interplayerartists.com;:3600::
++interplayartists.com.:66.128.51.173:3600::
++mail.interplayartists.com:66.128.51.165:3600::
+Cwww.interplayartists.com:interplayartists.com.:3600::
+@interplayartists.com.::mail.interplayartists.com.:10:3600::
+'interplayartists.com.:v=spf1 a mx -all:3600::
+:interplayartists.com.:99:\020v=spf1 a mx -all:3600::
+'_dmarc.interplayartists.com:v=DMARC1; p=none; rua=mailto\072postmaster@interplayartists.com; ruf=mailto\072postmaster@interplayartists.com;:3600::
+:_imaps._tcp.theartfarm.com:33:\000\001\000\000\003\341\004mail\012theartfarm\003com\000:86400::
+:_submission._tcp.theartfarm.com:33:\000\002\000\002\002K\004mail\012theartfarm\003com\000:86400::
+:_submissions._tcp.theartfarm.com:33:\000\001\000\000\001\321\004mail\012theartfarm\003com\000:86400::
+:_pop3s._tcp.theartfarm.com:33:\000\002\000\002\003\343\004mail\012theartfarm\003com\000:86400::
+:_pop3._tcp.theartfarm.com:33:\000\024\000\024\000\000\000:86400::
+:_imap._tcp.theartfarm.com:33:\000\012\000\012\000\000\000:86400::
++amenchorus.org.:66.128.51.173:3600::
++mail.amenchorus.org:66.128.51.165:3600::
+Cwww.amenchorus.org:amenchorus.org.:3600::
+@amenchorus.org.::mail.amenchorus.org.:10:3600::
+'amenchorus.org.:v=spf1 a mx -all:3600::
+:amenchorus.org.:99:\020v=spf1 a mx -all:3600::
+'_dmarc.amenchorus.org:v=DMARC1; p=none; rua=mailto\072postmaster@amenchorus.org; ruf=mailto\072postmaster@amenchorus.org;:3600::
++localhost.amenchorus.org:127.0.0.1:86400::
++ctacllc.com.:66.128.51.173:3600::
+Cwww.ctacllc.com:ctacllc.com.:3600::
+@ctacllc.com.::.:10:3600::
+'ctacllc.com.:v=spf1 a mx -all:3600::
