@@ -1,7 +1,7 @@
 
 import assert from 'assert'
 
-import { fullPath, valueCleanup } from '../index.js'
+import { fullPath } from '../index.js'
 
 
 describe('index', function () {
