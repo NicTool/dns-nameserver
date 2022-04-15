@@ -5,16 +5,13 @@ on: [ push ]
 
 env:
   CI: true
+  node_version: 14
 
 jobs:
 
   lint:
 
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [ 14 ]
 
     steps:
     - uses: actions/checkout@v2
@@ -23,9 +20,9 @@ jobs:
         fetch-depth: 1
 
     - uses: actions/setup-node@v3
-      name: Use Node.js ${{ matrix.node-version }}
+      name: Use Node.js ${{ env.node_version }}
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: ${{ env.node_version }}
 
     - run: npm install
 

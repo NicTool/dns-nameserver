@@ -1,8 +1,16 @@
 
+import path from 'path'
 
 
+export default {
+  fullPath,
+}
 
-
+export function fullPath (basePath, filePath) {
+  if (!basePath) return filePath
+  // if (filePath.startsWith('/')) return filePath
+  return path.resolve(basePath, path.basename(filePath))
+}
 
 export function valueCleanup (str) {
 

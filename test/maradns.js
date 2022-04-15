@@ -2,7 +2,7 @@
 import assert from 'assert'
 import fs     from 'fs/promises'
 
-import { parseConfig } from '../lib/maradns.js'
+import { getZones, parseConfig } from '../lib/maradns.js'
 
 describe('maradns', function () {
 
@@ -49,6 +49,19 @@ describe('maradns', function () {
         zone_transfer_acl      : '10.1.1.1/24, 10.100.100.100/255.255.255.224',
       })
     })
+  })
 
+  describe('getZones', function () {
+    it('returns a list of zones', async () => {
+
+      const filePath = './test/fixtures/maradns/example.com'
+      const r = await getZones(filePath)
+      // console.dir(r, { depth: null })
+      const expected = new Map([
+        [ 'example.com.', 'db.example.com' ],
+        [ 'example2.com.', 'db.example2.com' ],
+      ])
+      assert.deepStrictEqual(r, expected)
+    })
   })
 })

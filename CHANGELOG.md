@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/NicTool/dns-nameserver/compare/v0.1.0...v0.5.0) (2022-04-15)
+
+
+### Features
+
+* add getZones to bind, knot, mara, nsd, tiny ([4a125c8](https://github.com/NicTool/dns-nameserver/commit/4a125c89ffdaef2800a61dd31bd6de07d450f81a))
+* add maradns config parser ([#5](https://github.com/NicTool/dns-nameserver/issues/5)) ([4496497](https://github.com/NicTool/dns-nameserver/commit/449649784901ed02a3753a1b85f25d5617566492))
+* parsers added for Knot ([#2](https://github.com/NicTool/dns-nameserver/issues/2)) ([139235e](https://github.com/NicTool/dns-nameserver/commit/139235e8acd105ce872cddb22224e1470c972cbe))
+
 ## [0.4.0](https://github.com/NicTool/dns-nameserver/compare/v0.1.0...v0.4.0) (2022-04-10)
 
 

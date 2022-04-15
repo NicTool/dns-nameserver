@@ -2,7 +2,7 @@
 import assert from 'assert'
 import fs     from 'fs/promises'
 
-import { parseConfig } from '../lib/knot.js'
+import { getZones, parseConfig } from '../lib/knot.js'
 
 
 describe('knot', function () {
@@ -108,6 +108,22 @@ describe('knot', function () {
         ],
       })
     })
+  })
 
+  describe('getZones', function () {
+    it('returns a list of zones', async () => {
+
+      const filePath = './test/fixtures/knot/knot-flex.conf'
+      const r = await getZones(filePath)
+      // console.dir(r, { depth: null })
+      const expected = new Map([
+        [ 'example.com',  'example.com.zone' ],
+        [ 'example2.com', 'example2.com.zone' ],
+        [ 'example3.com', 'example3.com.zone' ],
+        [ 'example4.com', 'example4.com.zone' ],
+        [ 'example5.com', 'example5.com.zone' ],
+      ])
+      assert.deepStrictEqual(r, expected)
+    })
   })
 })

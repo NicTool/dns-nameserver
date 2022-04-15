@@ -39,10 +39,12 @@ jobs:
         uses: justincy/github-action-npm-release@2.0.1
         id: release
 
-      - name: Coverage Run
+      - name: run coverage
         run: |
-          npm install --no-save nyc codecov
-          npx nyc --reporter=lcovonly npm run test
+          npm install --no-save c8 codecov
+          npx c8 --reporter=lcovonly npm run test
+        env:
+         NODE_ENV: cov
 
       - name: Coveralls
         uses: coverallsapp/github-action@master
