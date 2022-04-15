@@ -25,15 +25,12 @@ Returns a list of zones (and zone files) from the specified nameserver config fi
     - [x] knot
     - [x] maradns
     - [x] tinydns
-    - [ ] powerdns
 - [ ] config generator
     - [ ] bind
     - [ ] nsd
     - [ ] knot
     - [ ] maradns
     - [ ] tinydns
-    - [ ] powerdns
-
 
 
 ## SEE ALSO

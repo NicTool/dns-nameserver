@@ -20,32 +20,46 @@ function usage () {
 const opts = cmdLineArgs(usageOptions())._all
 if (opts.verbose) console.error(opts)
 if (opts.help) usage()
+if (!opts.import) usage()
+if (!opts.file) usage()
 
+
+import zone     from 'dns-zone-validator'
+import bind     from '../lib/bind.js'
+import knot     from '../lib/knot.js'
+import maradns  from '../lib/maradns.js'
+import nsd      from '../lib/nsd.js'
+import tinydns  from '../lib/tinydns.js'
+
+const nsTypes = {
+  bind,
+  knot,
+  maradns,
+  nsd,
+  tinydns,
+}
 
 function usageOptions () {
   return [
     {
-      name        : 'import',
-      alias       : 'i',
-      defaultValue: 'bind',
-      type        : String,
-      typeLabel   : '<bind | knot | maradns | nsd | tinydns>',
-      description : 'nameserver type',
-      group       : 'io',
+      name       : 'import',
+      alias      : 'i',
+      type       : String,
+      typeLabel  : '<bind | knot | maradns | nsd | tinydns>',
+      description: 'nameserver type',
+      group      : 'io',
     },
     {
-      name        : 'export',
-      alias       : 'e',
-      defaultValue: 'js',
-      type        : String,
-      typeLabel   : '<bind | knot | maradns | nsd | tinydns>',
-      description : 'nameserver type',
-      group       : 'io',
+      name       : 'export',
+      alias      : 'e',
+      type       : String,
+      typeLabel  : '<bind | knot | maradns | nsd | tinydns>',
+      description: 'nameserver type',
+      group      : 'io',
     },
     {
       name       : 'file',
       alias      : 'f',
-      // defaultValue: '',
       type       : String,
       typeLabel  : '<file path>',
       description: 'source of DNS server config file',
@@ -54,7 +68,6 @@ function usageOptions () {
     {
       name       : 'base',
       alias      : 'b',
-      // defaultValue: '',
       type       : String,
       typeLabel  : '<zones dir>',
       description: 'path prefix for zone files',
@@ -117,4 +130,22 @@ function usageSections () {
       content: 'Project home: {underline https://github.com/NicTool/dns-nameserver}',
     },
   ]
+}
+
+
+getZoneList()
+  .then(r => {
+    console.log(r)
+    return r
+  })
+  .catch(e => {
+    console.error(e)
+  })
+
+async function getZoneList () {
+  const zoneList = await nsTypes[opts.import].getZones(opts.file, opts.base)
+  for (const z in zoneList) {
+    
+  }
+  return zoneList
 }
