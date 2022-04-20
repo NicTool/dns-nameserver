@@ -1,12 +1,10 @@
 #!node
 
-// import fs from 'node:fs/promises'
-// const path = require('path')
-// const os   = require('os')
-
 // eslint-disable-next-line node/shebang
-import chalk from 'chalk'
+import fs from 'fs/promises'
+import os from 'os'
 
+import chalk from 'chalk'
 import cmdLineArgs from 'command-line-args'
 import cmdLineUsage from 'command-line-usage'
 
@@ -24,19 +22,29 @@ if (!opts.import) usage()
 if (!opts.file) usage()
 
 
-import zone     from 'dns-zone-validator'
-import bind     from '../lib/bind.js'
-import knot     from '../lib/knot.js'
-import maradns  from '../lib/maradns.js'
-import nsd      from '../lib/nsd.js'
-import tinydns  from '../lib/tinydns.js'
+import * as zone from 'dns-zone-validator'
+import bind      from '../lib/bind.js'
+import knot      from '../lib/knot.js'
+import maradns   from '../lib/maradns.js'
+import nsd       from '../lib/nsd.js'
+import * as tinydns from '../lib/tinydns.js'
 
 const nsTypes = {
   bind,
   knot,
   maradns,
   nsd,
-  tinydns,
+}
+
+// zone file format, most DNS servers use RFC 103[4|5] format
+let zfType = 'bind'    // BIND, Knot, NSD, PowerDNS, etc.
+switch (opts.import) {
+  case 'tinydns':
+    zfType = 'tinydns'
+    break
+  case 'maradns':
+    zfType = 'maradns'
+    break
 }
 
 function usageOptions () {
@@ -100,11 +108,6 @@ function usageSections () {
       group     : 'io',
     },
     {
-      header    : 'NS Settings',
-      optionList: usageOptions(),
-      group     : 'main',
-    },
-    {
       header    : 'Misc',
       optionList: usageOptions(),
       group     : '_none',
@@ -114,15 +117,15 @@ function usageSections () {
       content: [
         {
           desc   : '1. ',
-          example: './bin/nt-ns.js ',
+          example: './bin/nt-ns.js -i knot -f ./knot/knot.conf',
         },
         {
           desc   : '2. ',
-          example: './bin/nt-ns.js ',
+          example: './bin/nt-ns.js -i bind -f ./bind/named.conf -b bind',
         },
         {
           desc   : '3. ',
-          example: './bin/nt-ns.js ',
+          example: './bin/nt-ns.js -i nsd -f ./nsd/nsd.conf -b nsd -v',
         },
       ],
     },
@@ -132,20 +135,30 @@ function usageSections () {
   ]
 }
 
-
-getZoneList()
-  .then(r => {
-    console.log(r)
-    return r
+if (opts.import === 'tinydns') {
+  tinydns.getZones(opts.file).then(async zones => {
+    for (const zName of zones.keys()) {
+      const lines = await tinydns.getZone(opts.file, zName)
+      if (opts.verbose) console.log(lines)
+      const r = await zone.tinydns.parseData(lines.join(os.EOL))
+      console.log(`OK, ${zName} has ${r.length} RRs`)
+    }
+    return zones
   })
-  .catch(e => {
-    console.error(e)
-  })
+    .catch(console.error)
+}
+else {
+  getZoneList().catch(console.error)
+}
 
 async function getZoneList () {
   const zoneList = await nsTypes[opts.import].getZones(opts.file, opts.base)
-  for (const z in zoneList) {
-    
+  for (const z of zoneList) {
+    const [ origin, filePath ] = z
+    const buf = await fs.readFile(filePath)
+    const rrs = await zone[ zfType ].parseZoneFile(buf.toString())
+    console.log(`OK, ${origin} has ${rrs.length - 2} RRs`)
+    if (opts.verbose) console.log(rrs)
   }
   return zoneList
 }
