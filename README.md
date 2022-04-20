@@ -31,6 +31,7 @@ Returns a list of zones (and zone files) from the specified nameserver config fi
     - [ ] knot
     - [ ] maradns
     - [ ] tinydns
+    - [ ] powerdns ([#30](https://github.com/msimerson/NicTool/issues/30))
 
 
 ## SEE ALSO

@@ -1,59 +1,54 @@
-# Changelog
+# Change Log
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
-## [0.5.0](https://github.com/NicTool/dns-nameserver/compare/v0.1.0...v0.5.0) (2022-04-15)
+#### 1.N.N - YYYY-MM-DD
 
 
-### Features
+#### 0.6.0 - 2022-04-20
+
+* import and validate zones from NS config ([72f0e2b](https://github.com/NicTool/dns-nameserver/commit/72f0e2b7f4d58a80edd6edad61cd5646e8bf80cb))
+* use -v to also show all the RRs
+* feat(tinydns): added getZone (extract RRs for a zone from data)
+* feat(tinydns): also include . as SOA record
+
+
+#### 0.5.0 - 2022-04-15
 
 * add getZones to bind, knot, mara, nsd, tiny ([4a125c8](https://github.com/NicTool/dns-nameserver/commit/4a125c89ffdaef2800a61dd31bd6de07d450f81a))
-* add maradns config parser ([#5](https://github.com/NicTool/dns-nameserver/issues/5)) ([4496497](https://github.com/NicTool/dns-nameserver/commit/449649784901ed02a3753a1b85f25d5617566492))
-* parsers added for Knot ([#2](https://github.com/NicTool/dns-nameserver/issues/2)) ([139235e](https://github.com/NicTool/dns-nameserver/commit/139235e8acd105ce872cddb22224e1470c972cbe))
-
-## [0.4.0](https://github.com/NicTool/dns-nameserver/compare/v0.1.0...v0.4.0) (2022-04-10)
+* cleanup: remove nearley parsers
 
 
-### ⚠ BREAKING CHANGES
-
-* convert from CJS to ESM
-
-### Features
-
-* add maradns config parser ([#5](https://github.com/NicTool/dns-nameserver/issues/5)) ([4496497](https://github.com/NicTool/dns-nameserver/commit/449649784901ed02a3753a1b85f25d5617566492))
-* parsers added for Knot ([#2](https://github.com/NicTool/dns-nameserver/issues/2)) ([139235e](https://github.com/NicTool/dns-nameserver/commit/139235e8acd105ce872cddb22224e1470c972cbe))
-
+#### 0.4.0 - 2022-04-10
 
 * convert from CJS to ESM ([11b66b2](https://github.com/NicTool/dns-nameserver/commit/11b66b2b83416fdb3338f9d537c9643814a13960))
+* reimplement parsers in pure JS (bye nearley & moo)
+* nsd: add value cleanups
+* knot: handle array-type items
+* test(bind): greatly improved test
+* feat: start on nt-ns.js
+* switch test coverage report nyc -> c8
 
-## [0.3.0](https://github.com/NicTool/dns-nameserver/compare/v0.1.0...v0.3.0) (2022-04-09)
 
-
-### ⚠ BREAKING CHANGES
-
-* add maradns config parser
-
-### Features
+#### 0.3.0 - 2022-04-09
 
 * add maradns config parser ([1b4608e](https://github.com/NicTool/dns-nameserver/commit/1b4608e22b60250a67823851772538418e59d187))
-* parsers added for Knot ([#2](https://github.com/NicTool/dns-nameserver/issues/2)) ([139235e](https://github.com/NicTool/dns-nameserver/commit/139235e8acd105ce872cddb22224e1470c972cbe))
-
-## [0.2.0](https://github.com/NicTool/dns-nameserver/compare/v0.1.2...v0.2.0) (2022-04-08)
-
-### [0.1.2](https://github.com/NicTool/dns-nameserver/compare/v0.1.0...v0.1.2) (2022-04-08)
+* split ns implementations into separate files
+* fix(nsd): strip double quotes off values
+* docs(nsd): tidy up and add comments
 
 
-### Features
+#### 0.2.0 - 2022-04-08
 
-* add additional knot fixed sections ([b6acaa3](https://github.com/NicTool/dns-nameserver/commit/b6acaa301de2247059ec13dc0c2701aa36a101a0))
-* add NSD parser ([fa49d1d](https://github.com/NicTool/dns-nameserver/commit/fa49d1da91e3e3bb2ac40d03bdfe60ea71b03710))
-* parsers added for Knot ([#2](https://github.com/NicTool/dns-nameserver/issues/2)) ([139235e](https://github.com/NicTool/dns-nameserver/commit/139235e8acd105ce872cddb22224e1470c972cbe))
-
-### [0.1.1](https://github.com/NicTool/dns-nameserver/compare/v0.1.0...v0.1.1) (2022-04-07)
+* knot: add additional fixed sections ([b6acaa3](https://github.com/NicTool/dns-nameserver/commit/b6acaa301de2247059ec13dc0c2701aa36a101a0))
+* knot: add URL to config file reference
+* nsd: add parser ([fa49d1d](https://github.com/NicTool/dns-nameserver/commit/fa49d1da91e3e3bb2ac40d03bdfe60ea71b03710))
 
 
-### Features
+#### 0.1.1 - 2022-04-07
 
-* add knot config parser ([a15014f](https://github.com/NicTool/dns-nameserver/commit/a15014f92268e361a4a37952d6e2c66173395083))
+* add knot config parser
+* named.conf parser, basics
 
-## 0.1.0 (2022-04-02)
+
+#### 0.1.0 - 2022-04-02
+
+* added CHANGELOG

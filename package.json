@@ -1,6 +1,6 @@
 {
   "name": "dns-nameserver",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "DNS Nameserver",
   "main": "index.js",
   "bin": {},
@@ -9,15 +9,9 @@
     "node": ">=14.0"
   },
   "scripts": {
-    "bind": "npx -p nearley nearleyc src/bind.ne -o dist/bind.js",
-    "knot": "npx -p nearley nearleyc src/knot.ne -o dist/knot.js",
-    "nsd": "npx -p nearley nearleyc src/nsd-moo.ne -o dist/nsd.js",
-    "mara": "npx -p nearley nearleyc src/mara.ne -o dist/mara.js",
-    "grammar": "npm run bind && npm run knot && npm run nsd",
     "coverage": "npx c8 npm test",
     "lint": "npx eslint index.js test/*.js",
     "lintfix": "npx eslint --fix index.js test/*.js",
-    "release": "npx standard-version --release-as=minor",
     "test": "npx mocha",
     "versions": "npx dependency-version-checker check"
   },
@@ -27,7 +21,9 @@
   },
   "keywords": [
     "dns",
-    "server"
+    "server",
+    "import",
+    "nictool"
   ],
   "author": "Matt Simerson <matt@tnpi.net>",
   "license": "BSD-3-Clause",
@@ -39,13 +35,12 @@
     "eslint": "^8.11.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
-    "mocha": "^9.2.2",
-    "standard-version": "^9.3.2"
+    "mocha": "^9.2.2"
   },
   "dependencies": {
     "chalk": "^5.0.1",
     "command-line-args": "^5.2.1",
     "command-line-usage": "^6.1.2",
-    "dns-zone-validator": "^0.8.0"
+    "dns-zone-validator": "^0.9.0"
   }
 }
