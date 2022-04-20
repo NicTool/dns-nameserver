@@ -12,3 +12,5 @@ codecov.yml
 .eslintrc.json
 package-lock.json
 dist/*.js
+ignore
+coverage
