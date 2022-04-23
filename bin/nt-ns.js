@@ -27,7 +27,7 @@ import bind      from '../lib/bind.js'
 import knot      from '../lib/knot.js'
 import maradns   from '../lib/maradns.js'
 import nsd       from '../lib/nsd.js'
-import * as tinydns from '../lib/tinydns.js'
+import tinydns   from '../lib/tinydns.js'
 
 const nsTypes = {
   bind,
@@ -136,16 +136,7 @@ function usageSections () {
 }
 
 if (opts.import === 'tinydns') {
-  tinydns.getZones(opts.file).then(async zones => {
-    for (const zName of zones.keys()) {
-      const lines = await tinydns.getZone(opts.file, zName)
-      if (opts.verbose) console.log(lines)
-      const r = await zone.tinydns.parseData(lines.join(os.EOL))
-      console.log(`OK, ${zName} has ${r.length} RRs`)
-    }
-    return zones
-  })
-    .catch(console.error)
+  getTinyZones().catch(console.error)
 }
 else {
   getZoneList().catch(console.error)
@@ -161,4 +152,18 @@ async function getZoneList () {
     if (opts.verbose) console.log(rrs)
   }
   return zoneList
+}
+
+async function getTinyZones () {
+  const zones = await tinydns.getZones(opts.file)
+
+  for (const name of zones.keys()) {
+    const lines = await tinydns.getZone(opts.file, name)
+    if (opts.verbose) console.log(lines)
+    zone.tinydns.zoneOpts.serial = await zone.serialByFileStat(opts.file)
+    const r = await zone.tinydns.parseData(lines.join(os.EOL))
+    console.log(`OK, ${name} has ${r.length} RRs`)
+  }
+
+  return zones
 }
