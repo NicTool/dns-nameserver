@@ -6,6 +6,8 @@
 
 - feat: added index.isDelegated, and tests
 - feat: add bin/cleanup
+- feat: make index.fullPath windows compatible
+- doc(README): add example ./bin/nt-ns.js
 - chore(ci): replace .release with submodule
 - chore(ci): depend on shared GHA workflows
 
