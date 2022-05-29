@@ -5,7 +5,9 @@
 #### 0.7.0 - 2022-04-20
 
 - feat: added index.isDelegated, and tests
-- 
+- feat: add bin/cleanup
+- chore(ci): replace .release with submodule
+- chore(ci): depend on shared GHA workflows
 
 
 #### 0.6.0 - 2022-04-20
