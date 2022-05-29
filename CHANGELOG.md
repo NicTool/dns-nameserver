@@ -1,6 +1,11 @@
 # Change Log
 
-#### 1.N.N - YYYY-MM-DD
+#### N.N.N - YYYY-MM-DD
+
+#### 0.7.0 - 2022-04-20
+
+- feat: added index.isDelegated, and tests
+- 
 
 
 #### 0.6.0 - 2022-04-20
