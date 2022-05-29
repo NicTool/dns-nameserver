@@ -1,6 +1,7 @@
 
 import assert from 'assert'
 import path   from 'path'
+import os     from 'os'
 
 import * as index from '../index.js'
 
@@ -24,10 +25,12 @@ describe('index', function () {
 
     it('resolves a zone file into base', async () => {
       // have to do this with path for windows compat
-      const expected = path.join('/', 'test', 'base', 'example.com')
+      const pathBits = [ 'test', 'base', 'example.com' ]
+      pathBits.unshift(os.platform === 'win32' ? 'D:' : '/')
+
       assert.strictEqual(
         index.fullPath('/test/base', 'zones/example.com'),
-        expected
+        path.join(...pathBits)
       )
     })
   })
