@@ -30,7 +30,7 @@ describe('index', function () {
 
       assert.strictEqual(
         index.fullPath('/test/base', 'zones/example.com'),
-        path.join(...pathBits)
+        path.resolve(...pathBits)
       )
     })
   })
