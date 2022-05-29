@@ -8,6 +8,37 @@ Nameserver configuration parsers and generators
 Name servers have configuration files, each with their own format. This package abstracts the unique implementations into a set of common actions.
 
 
+### nt-ns.js
+
+````
+✗ ./bin/nt-ns.js -h
+
+ +-+-+-+ +-+-+-+-+-+-+-+-+-+-+
+ |D|N|S| |N|A|M|E|S|E|R|V|E|R|
+ +-+-+-+ +-+-+-+-+-+-+-+-+-+-+
+
+I/O
+
+  -i, --import <bind | knot | maradns | nsd | tinydns>   nameserver type
+  -e, --export <bind | knot | maradns | nsd | tinydns>   nameserver type
+  -f, --file <file path>                                 source of DNS server config file
+  -b, --base <zones dir>                                 path prefix for zone files
+
+Misc
+
+  -v, --verbose    Show status messages during processing
+  -h, --help       Display this usage guide
+
+Examples
+
+  1.    ./bin/nt-ns.js -i knot -f ./knot/knot.conf
+  2.    ./bin/nt-ns.js -i bind -f ./bind/named.conf -b bind
+  3.    ./bin/nt-ns.js -i nsd -f ./nsd/nsd.conf -b nsd -v
+
+  Project home: https://github.com/NicTool/dns-nameserver
+````
+
+
 ## FUNCTIONS
 
 ### getZones
@@ -15,16 +46,18 @@ Name servers have configuration files, each with their own format. This package 
 Returns a list of zones (and zone files) from the specified nameserver config file.
 
 
+### parseConfig
+
+Does the heavy lifting for `getZones`. Accepts and string and returns an object where the keys are DNS zones and the value is a the file with that zones resource records.
+
+
+## FEATURES
+
+- config parsers for bind, nsd, knot, maradns, and tinydns
 
 
 ## TODO
 
-- config parser
-    - [x] bind
-    - [x] nsd
-    - [x] knot
-    - [x] maradns
-    - [x] tinydns
 - [ ] config generator
     - [ ] bind
     - [ ] nsd

@@ -1,6 +1,15 @@
 # Change Log
 
-#### 1.N.N - YYYY-MM-DD
+#### N.N.N - YYYY-MM-DD
+
+#### 0.7.0 - 2022-04-20
+
+- feat: added index.isDelegated, and tests
+- feat: add bin/cleanup
+- feat: make index.fullPath windows compatible
+- doc(README): add example ./bin/nt-ns.js
+- chore(ci): replace .release with submodule
+- chore(ci): depend on shared GHA workflows
 
 
 #### 0.6.0 - 2022-04-20
