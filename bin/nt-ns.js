@@ -22,7 +22,7 @@ if (!opts.import) usage()
 if (!opts.file) usage()
 
 
-import * as zone from 'dns-zone-validator'
+import * as zone from '@nictool/dns-zone'
 import bind      from '../lib/bind.js'
 import knot      from '../lib/knot.js'
 import maradns   from '../lib/maradns.js'

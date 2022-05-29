@@ -2,6 +2,12 @@
 
 #### N.N.N - YYYY-MM-DD
 
+
+#### 0.7.1 - 2022-05-29
+
+- chore: publish npm package in @nictool namespace
+
+
 #### 0.7.0 - 2022-04-20
 
 - feat: added index.isDelegated, and tests

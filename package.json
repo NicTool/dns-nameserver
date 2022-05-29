@@ -1,6 +1,6 @@
 {
-  "name": "dns-nameserver",
-  "version": "0.7.0",
+  "name": "@nictool/dns-nameserver",
+  "version": "0.7.1",
   "description": "DNS Nameserver",
   "main": "index.js",
   "bin": {},
@@ -10,8 +10,8 @@
   },
   "scripts": {
     "coverage": "npx c8 npm test",
-    "lint": "npx eslint index.js test/*.js",
-    "lintfix": "npx eslint --fix index.js test/*.js",
+    "lint": "npx eslint index.js test",
+    "lintfix": "npx eslint --fix index.js test",
     "test": "npx mocha",
     "versions": "npx dependency-version-checker check"
   },
@@ -41,6 +41,6 @@
     "chalk": "^5.0.1",
     "command-line-args": "^5.2.1",
     "command-line-usage": "^6.1.2",
-    "dns-zone-validator": "^1.0.0"
+    "@nictool/dns-zone": "^1.0.0"
   }
 }
