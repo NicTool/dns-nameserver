@@ -1,5 +1,5 @@
 
-import dns from 'dns/promises'
+import dns from 'node:dns/promises'
 
 import path from 'path'
 
