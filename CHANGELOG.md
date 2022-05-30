@@ -1,22 +1,6 @@
 # Change Log
 
-#### N.N.N - YYYY-MM-DD
-
-
-### [0.7.2] - 2022-05-29
-
-#### Added
-
-- 
-
-#### Fixed
-
-- 
-
-#### Changed
-
-- 
-
+#### Unpublished
 
 
 #### 0.7.1 - 2022-05-29
@@ -84,3 +68,5 @@
 #### 0.1.0 - 2022-04-02
 
 * added CHANGELOG
+
+[v0.7.3]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.7.3
