@@ -79,3 +79,6 @@ Does the heavy lifting for `getZones`. Accepts and string and returns an object 
   + fix, feature, BREAKING CHANGE, build, chore, ci, docs, style, test
 - [keep a changelog](https://keepachangelog.com/)
 - [sentimental versioning](http://sentimentalversioning.org)
+
+[![Module Tests](https://github.com/NicTool/dns-nameserver/actions/workflows/ci.yml/badge.svg)](https://github.com/NicTool/dns-nameserver/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/NicTool/dns-nameserver/badge.svg?branch=master)](https://coveralls.io/github/NicTool/dns-nameserver?branch=master)
