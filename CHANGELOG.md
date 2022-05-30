@@ -70,3 +70,4 @@
 * added CHANGELOG
 
 [v0.7.3]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.7.3
+[v0.7.4]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.7.4
