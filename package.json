@@ -1,6 +1,6 @@
 {
   "name": "@nictool/dns-nameserver",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "description": "DNS Nameserver",
   "main": "index.js",
   "bin": {},
