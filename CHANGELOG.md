@@ -3,31 +3,12 @@
 ### Unreleased
 
 
-### [0.7.8] - 2022-05-29
+### [0.7.2] - 2022-05-29
 
-#### Added
-
-- 
-
-#### Fixed
-
-- 
-
-#### Changed
-
-- 
-- bump version to 0.7.7
-- bump version to 0.7.6
-- bump version to 0.7.5
-- bump version to 0.7.4
-- bump version to v0.7.3
-- bump version to v0.7.2
-- bump version to v0.7.4
-- bump version to v0.7.3
-- bump version to v0.7.2
+- doc(README): add CI badges
 
 
-### 0.7.1 - 2022-05-29
+### [0.7.1] - 2022-05-29
 
 - chore: publish npm package in @nictool namespace
 
@@ -95,8 +76,5 @@
 
 
 [0.7.0]: https://github.com/NicTool/dns-nameserver/releases/tag/0.7.0
-[0.7.4]: https://github.com/NicTool/dns-nameserver/releases/tag/0.7.4
-[0.7.5]: https://github.com/NicTool/dns-nameserver/releases/tag/0.7.5
-[0.7.5]: https://github.com/NicTool/dns-nameserver/releases/tag/0.7.5
-[0.7.7]: https://github.com/NicTool/dns-nameserver/releases/tag/0.7.7
-[0.7.8]: https://github.com/NicTool/dns-nameserver/releases/tag/0.7.8
+[0.7.1]: https://github.com/NicTool/dns-nameserver/releases/tag/0.7.1
+[0.7.2]: https://github.com/NicTool/dns-nameserver/releases/tag/0.7.2
