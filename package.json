@@ -1,6 +1,6 @@
 {
   "name": "@nictool/dns-nameserver",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "DNS Nameserver",
   "main": "index.js",
   "bin": {},
@@ -9,7 +9,6 @@
     "node": ">=14.0"
   },
   "scripts": {
-    "coverage": "npx c8 npm test",
     "lint": "npx eslint index.js test",
     "lintfix": "npx eslint --fix index.js test",
     "test": "npx mocha",

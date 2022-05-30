@@ -3,6 +3,22 @@
 #### N.N.N - YYYY-MM-DD
 
 
+### [0.7.2] - 2022-05-29
+
+#### Added
+
+- 
+
+#### Fixed
+
+- 
+
+#### Changed
+
+- 
+
+
+
 #### 0.7.1 - 2022-05-29
 
 - chore: publish npm package in @nictool namespace
