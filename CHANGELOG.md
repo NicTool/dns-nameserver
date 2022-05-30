@@ -6,6 +6,7 @@
 ### [0.7.2] - 2022-05-29
 
 - doc(README): add CI badges
+- chore(ci): updated shared GHA workflow URLs
 
 
 ### [0.7.1] - 2022-05-29
