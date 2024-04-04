@@ -14,7 +14,7 @@
 - chore: publish npm package in @nictool namespace
 
 
-### [0.7.0] - 2022-04-20
+### 0.7.0 - 2022-04-20
 
 - feat: added index.isDelegated, and tests
 - feat: add bin/cleanup
@@ -76,6 +76,5 @@
 * added CHANGELOG
 
 
-[0.7.0]: https://github.com/NicTool/dns-nameserver/releases/tag/0.7.0
 [0.7.1]: https://github.com/NicTool/dns-nameserver/releases/tag/0.7.1
 [0.7.2]: https://github.com/NicTool/dns-nameserver/releases/tag/0.7.2
