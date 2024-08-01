@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "chalk": "^5.0.1",
-    "command-line-args": "^5.2.1",
+    "command-line-args": "^6.0.0",
     "command-line-usage": "^7.0.1",
     "@nictool/dns-zone": "^1.0.0"
   }
