@@ -15,7 +15,6 @@ extends:
   - plugin:node/recommended
 
 rules:
-  quotes: [ error, single, { avoidEscape: true, allowTemplateLiterals: true } ]
   no-unused-vars: [ error, { args: none } ]
   dot-notation: error
   prefer-const: warn
