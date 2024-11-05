@@ -20,7 +20,6 @@ rules:
   semi: [ error, never ]
   semi-style: [ error, last ]
   no-unused-vars: [ error, { args: none } ]
-  array-bracket-spacing: [ warn, always, { arraysInArrays: false, objectsInArrays: false } ]
   no-trailing-spaces: [ error ]
   space-before-function-paren: [ error, always ]
   object-curly-spacing: [ error, always ]
