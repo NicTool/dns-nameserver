@@ -1,6 +1,16 @@
+# Changelog
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/).
+
 # Change Log
 
 ### Unreleased
+
+### [0.7.3] - 2024-11-04
+
+- chore: doc/pkg updates (#18)
+- chore(deps): bump command-line-usage from 6.1.3 to 7.0.1 (#15)
+- ci: use shared test config (#16)
 
 
 ### [0.7.2] - 2022-05-29
@@ -78,3 +88,12 @@
 
 [0.7.1]: https://github.com/NicTool/dns-nameserver/releases/tag/0.7.1
 [0.7.2]: https://github.com/NicTool/dns-nameserver/releases/tag/0.7.2
+[0.7.3]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.7.3
+[0.1.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.1.0
+[0.1.1]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.1.1
+[0.1.2]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.1.2
+[0.2.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.2.0
+[0.3.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.3.0
+[0.4.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.4.0
+[0.5.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.5.0
+[0.6.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.6.0
