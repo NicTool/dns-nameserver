@@ -4,7 +4,7 @@ Nameserver configuration parsers and generators
 
 ## SYNOPSIS
 
-Name servers have configuration files, and each type has its own config file format. This package abstracts the unique implementations into a set of common actions.
+Name servers have configuration files, and each has its own config file format. This package abstracts the unique implementations into a set of common actions.
 
 ### nt-ns.js
 
@@ -46,7 +46,7 @@ Returns a list of zones (and zone files) from the specified nameserver config fi
 
 ### parseConfig
 
-Does the heavy lifting for `getZones`. Accepts and string and returns an object where the keys are DNS zones and the value is the file with that zones resource records.
+Does the heavy lifting for `getZones`. Accepts a string and returns an object where the keys are DNS zones and the value is the file with that zones resource records.
 
 
 ## FEATURES
@@ -62,7 +62,7 @@ Does the heavy lifting for `getZones`. Accepts and string and returns an object 
     - [ ] knot
     - [ ] maradns
     - [ ] tinydns
-    - [ ] powerdns ([#30](https://github.com/msimerson/NicTool/issues/30))
+    - [x] powerdns ([#30](https://github.com/nictool/NicTool/issues/30))
 
 
 ## SEE ALSO
@@ -76,7 +76,6 @@ Does the heavy lifting for `getZones`. Accepts and string and returns an object 
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
   + fix, feature, BREAKING CHANGE, build, chore, ci, docs, style, test
 - [keep a changelog](https://keepachangelog.com/)
-- [sentimental versioning](http://sentimentalversioning.org)
 
 [![Module Tests](https://github.com/NicTool/dns-nameserver/actions/workflows/ci.yml/badge.svg)](https://github.com/NicTool/dns-nameserver/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/NicTool/dns-nameserver/badge.svg?branch=master)](https://coveralls.io/github/NicTool/dns-nameserver?branch=master)

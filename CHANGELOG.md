@@ -8,17 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### [0.7.4] - 2026-03-28
 
-#### Added
-
-- 
-
-#### Fixed
-
-- 
-
-#### Changed
-
-- dep: changed test runner from mocha to node:test
+- dep(mocha): changed test runner from mocha to node:test
 - deps(all): bump to latest
   - dep(eslint): updated to v10
 - style: added prettier config

@@ -9,7 +9,6 @@ export default defineConfig([
       globals: {
         ...globals.node,
         ...globals.browser,
-        ...globals.mocha,
       },
       sourceType: 'module',
     },
