@@ -1,12 +1,12 @@
 {
   "name": "@nictool/dns-nameserver",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "DNS Nameserver",
   "main": "index.js",
   "bin": {},
   "type": "module",
   "engines": {
-    "node": ">=14.0"
+    "node": ">=20.0.0"
   },
   "files": [
     "bin",
@@ -14,11 +14,15 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "lint": "npx eslint index.js test",
-    "lint:fix": "npx eslint --fix index.js test",
-    "test": "npx mocha",
-    "versions": "npx dependency-version-checker check",
-    "versions:fix": "npx dependency-version-checker update"
+    "lint": "npx eslint index.js lib test",
+    "lint:fix": "npx eslint --fix index.js lib test",
+    "test": "node --test",
+    "versions": "npx npm-dep-mgr check",
+    "versions:fix": "npx npm-dep-mgr update",
+    "test:coverage": "npx c8 --reporter=text --reporter=text-summary npm test",
+    "format": "npm run prettier:fix && npm run lint:fix",
+    "prettier": "npx prettier . --check",
+    "prettier:fix": "npx prettier . --write --log-level=warn"
   },
   "repository": {
     "type": "git",
@@ -37,15 +41,19 @@
   },
   "homepage": "https://github.com/NicTool/dns-nameserver#readme",
   "devDependencies": {
-    "eslint": "^8.57.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^7.1.0",
-    "mocha": "^10.8.2"
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.1.0",
+    "globals": "^17.4.0"
   },
   "dependencies": {
-    "chalk": "^5.3.0",
-    "command-line-args": "^6.0.1",
-    "command-line-usage": "^7.0.3",
-    "@nictool/dns-zone": "^1.1.4"
+    "@nictool/dns-zone": "^1.1.7",
+    "chalk": "^5.6.2",
+    "command-line-args": "^6.0.2",
+    "command-line-usage": "^7.0.4"
+  },
+  "prettier": {
+    "printWidth": 90,
+    "singleQuote": true,
+    "semi": false
   }
 }

@@ -1,14 +1,11 @@
-
-import assert from 'assert'
-import fs     from 'fs/promises'
+import assert from 'node:assert'
+import fs from 'node:fs/promises'
+import { describe, it } from 'node:test'
 
 import { getZones, parseConfig } from '../lib/nsd.js'
 
-
 describe('nsd', function () {
-
   describe('parseConfig', function () {
-
     it('parses nsd.conf', async () => {
       const file = './test/fixtures/nsd/nsd.conf'
       const buf = await fs.readFile(file)
@@ -19,27 +16,27 @@ describe('nsd', function () {
         server: [
           {
             'server-count': 1,
-            database      : '',
-            zonelistfile  : '/var/db/nsd/zone.list',
-            username      : 'nsd',
-            logfile       : '/var/log/nsd.log',
-            pidfile       : '/var/run/nsd.pid',
-            xfrdfile      : '/var/db/nsd/xfrd.state',
+            database: '',
+            zonelistfile: '/var/db/nsd/zone.list',
+            username: 'nsd',
+            logfile: '/var/log/nsd.log',
+            pidfile: '/var/run/nsd.pid',
+            xfrdfile: '/var/db/nsd/xfrd.state',
           },
         ],
         zone: [
           { name: 'example.com', zonefile: '/etc/nsd/example.com.zone' },
           {
-            name         : 'masterzone.com',
-            zonefile     : '/etc/nsd/masterzone.com.zone',
-            notify       : '192.0.2.1 NOKEY',
+            name: 'masterzone.com',
+            zonefile: '/etc/nsd/masterzone.com.zone',
+            notify: '192.0.2.1 NOKEY',
             'provide-xfr': '192.0.2.1 NOKEY',
           },
           {
-            name          : 'secondzone.com',
-            zonefile      : '/etc/nsd/secondzone.com.zone',
+            name: 'secondzone.com',
+            zonefile: '/etc/nsd/secondzone.com.zone',
             'allow-notify': '192.0.2.2 NOKEY',
-            'request-xfr' : '192.0.2.2 NOKEY',
+            'request-xfr': '192.0.2.2 NOKEY',
           },
         ],
       })
@@ -55,25 +52,25 @@ describe('nsd', function () {
         server: [
           {
             'server-count': 1,
-            database      : '',
-            logfile       : '/var/log/nsd.log',
-            pidfile       : '/var/run/nsd.pid',
-            username      : 'nsd',
+            database: '',
+            logfile: '/var/log/nsd.log',
+            pidfile: '/var/run/nsd.pid',
+            username: 'nsd',
           },
         ],
         'remote-control': [
           {
             'control-cert-file': '/etc/nsd/nsd_control.pem',
-            'control-enable'   : 'yes',
+            'control-enable': 'yes',
             'control-interface': '127.0.0.1',
-            'control-key-file' : '/etc/nsd/nsd_control.key',
-            'server-cert-file' : '/etc/nsd/nsd_server.pem',
-            'server-key-file'  : '/etc/nsd/nsd_server.key',
+            'control-key-file': '/etc/nsd/nsd_control.key',
+            'server-cert-file': '/etc/nsd/nsd_server.pem',
+            'server-key-file': '/etc/nsd/nsd_server.key',
           },
         ],
         zone: [
           {
-            name    : 'example.com',
+            name: 'example.com',
             zonefile: '/etc/nsd/example.com.zone',
           },
         ],
@@ -89,16 +86,16 @@ describe('nsd', function () {
       assert.deepEqual(r, {
         zone: [
           {
-            name    : 'emeraldparadise.realty',
+            name: 'emeraldparadise.realty',
             zonefile: '/data/nsd/emeraldparadise.realty',
           },
           { name: 'virus.realty', zonefile: '/data/nsd/virus.realty' },
           {
-            name    : 'insanangelotx.realty',
+            name: 'insanangelotx.realty',
             zonefile: '/data/nsd/insanangelotx.realty',
           },
           {
-            name    : 'bluehawaii.realty',
+            name: 'bluehawaii.realty',
             zonefile: '/data/nsd/bluehawaii.realty',
           },
           { name: 'iz.feedback', zonefile: '/data/nsd/iz.feedback' },
@@ -110,17 +107,15 @@ describe('nsd', function () {
 
   describe('getZones', function () {
     it('returns a list of zones', async () => {
-
       const filePath = './test/fixtures/nsd/nsd.conf'
       const r = await getZones(filePath)
       // console.dir(r, { depth: null })
       const expected = new Map([
-        [ 'example.com',    '/etc/nsd/example.com.zone' ],
-        [ 'masterzone.com', '/etc/nsd/masterzone.com.zone' ],
-        [ 'secondzone.com', '/etc/nsd/secondzone.com.zone' ],
+        ['example.com', '/etc/nsd/example.com.zone'],
+        ['masterzone.com', '/etc/nsd/masterzone.com.zone'],
+        ['secondzone.com', '/etc/nsd/secondzone.com.zone'],
       ])
       assert.deepStrictEqual(r, expected)
     })
   })
-
 })

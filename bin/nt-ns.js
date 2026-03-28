@@ -8,7 +8,7 @@ import chalk from 'chalk'
 import cmdLineArgs from 'command-line-args'
 import cmdLineUsage from 'command-line-usage'
 
-function usage () {
+function usage() {
   console.error(cmdLineUsage(usageSections()))
   // eslint-disable-next-line no-process-exit
   process.exit(1)
@@ -21,13 +21,12 @@ if (opts.help) usage()
 if (!opts.import) usage()
 if (!opts.file) usage()
 
-
 import * as zone from '@nictool/dns-zone'
-import bind      from '../lib/bind.js'
-import knot      from '../lib/knot.js'
-import maradns   from '../lib/maradns.js'
-import nsd       from '../lib/nsd.js'
-import tinydns   from '../lib/tinydns.js'
+import bind from '../lib/bind.js'
+import knot from '../lib/knot.js'
+import maradns from '../lib/maradns.js'
+import nsd from '../lib/nsd.js'
+import tinydns from '../lib/tinydns.js'
 
 const nsTypes = {
   bind,
@@ -36,8 +35,8 @@ const nsTypes = {
   nsd,
 }
 
-// zone file format, most DNS servers use RFC 103[4|5] format
-let zfType = 'bind'    // BIND, Knot, NSD, PowerDNS, etc.
+// zone file format, most DNS servers use RFC 1034/1035 format
+let zfType = 'bind' // BIND, Knot, NSD, PowerDNS, etc.
 switch (opts.import) {
   case 'tinydns':
     zfType = 'tinydns'
@@ -47,84 +46,86 @@ switch (opts.import) {
     break
 }
 
-function usageOptions () {
+function usageOptions() {
   return [
     {
-      name       : 'import',
-      alias      : 'i',
-      type       : String,
-      typeLabel  : '<bind | knot | maradns | nsd | tinydns>',
+      name: 'import',
+      alias: 'i',
+      type: String,
+      typeLabel: '<bind | knot | maradns | nsd | tinydns>',
       description: 'nameserver type',
-      group      : 'io',
+      group: 'io',
     },
     {
-      name       : 'export',
-      alias      : 'e',
-      type       : String,
-      typeLabel  : '<bind | knot | maradns | nsd | tinydns>',
+      name: 'export',
+      alias: 'e',
+      type: String,
+      typeLabel: '<bind | knot | maradns | nsd | tinydns>',
       description: 'nameserver type',
-      group      : 'io',
+      group: 'io',
     },
     {
-      name       : 'file',
-      alias      : 'f',
-      type       : String,
-      typeLabel  : '<file path>',
+      name: 'file',
+      alias: 'f',
+      type: String,
+      typeLabel: '<file path>',
       description: 'source of DNS server config file',
-      group      : 'io',
+      group: 'io',
     },
     {
-      name       : 'base',
-      alias      : 'b',
-      type       : String,
-      typeLabel  : '<zones dir>',
+      name: 'base',
+      alias: 'b',
+      type: String,
+      typeLabel: '<zones dir>',
       description: 'path prefix for zone files',
-      group      : 'io',
+      group: 'io',
     },
     {
-      name       : 'verbose',
-      alias      : 'v',
+      name: 'verbose',
+      alias: 'v',
       description: 'Show status messages during processing',
-      type       : Boolean,
+      type: Boolean,
     },
     {
-      name       : 'help',
+      name: 'help',
       description: 'Display this usage guide',
-      alias      : 'h',
-      type       : Boolean,
+      alias: 'h',
+      type: Boolean,
     },
   ]
 }
 
-function usageSections () {
+function usageSections() {
   return [
     {
-      content: chalk.blue(` +-+-+-+ +-+-+-+-+-+-+-+-+-+-+\n |D|N|S| |N|A|M|E|S|E|R|V|E|R|\n +-+-+-+ +-+-+-+-+-+-+-+-+-+-+`),
-      raw    : true,
+      content: chalk.blue(
+        ` +-+-+-+ +-+-+-+-+-+-+-+-+-+-+\n |D|N|S| |N|A|M|E|S|E|R|V|E|R|\n +-+-+-+ +-+-+-+-+-+-+-+-+-+-+`,
+      ),
+      raw: true,
     },
     {
-      header    : 'I/O',
+      header: 'I/O',
       optionList: usageOptions(),
-      group     : 'io',
+      group: 'io',
     },
     {
-      header    : 'Misc',
+      header: 'Misc',
       optionList: usageOptions(),
-      group     : '_none',
+      group: '_none',
     },
     {
-      header : 'Examples',
+      header: 'Examples',
       content: [
         {
-          desc   : '1. ',
+          desc: '1. ',
           example: './bin/nt-ns.js -i knot -f ./knot/knot.conf',
         },
         {
-          desc   : '2. ',
+          desc: '2. ',
           example: './bin/nt-ns.js -i bind -f ./bind/named.conf -b bind',
         },
         {
-          desc   : '3. ',
+          desc: '3. ',
           example: './bin/nt-ns.js -i nsd -f ./nsd/nsd.conf -b nsd -v',
         },
       ],
@@ -137,24 +138,23 @@ function usageSections () {
 
 if (opts.import === 'tinydns') {
   getTinyZones().catch(console.error)
-}
-else {
+} else {
   getZoneList().catch(console.error)
 }
 
-async function getZoneList () {
+async function getZoneList() {
   const zoneList = await nsTypes[opts.import].getZones(opts.file, opts.base)
   for (const z of zoneList) {
-    const [ origin, filePath ] = z
+    const [origin, filePath] = z
     const buf = await fs.readFile(filePath)
-    const rrs = await zone[ zfType ].parseZoneFile(buf.toString())
+    const rrs = await zone[zfType].parseZoneFile(buf.toString())
     console.log(`OK, ${origin} has ${rrs.length - 2} RRs`)
     if (opts.verbose) console.log(rrs)
   }
   return zoneList
 }
 
-async function getTinyZones () {
+async function getTinyZones() {
   const zones = await tinydns.getZones(opts.file)
 
   for (const name of zones.keys()) {
