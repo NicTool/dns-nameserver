@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Unreleased
 
+### [0.7.4] - 2026-03-28
+
+#### Added
+
+- 
+
+#### Fixed
+
+- 
+
+#### Changed
+
+- 
+
+
 ### [0.7.3] - 2024-11-04
 
 - chore: doc/pkg updates (#18)
@@ -97,3 +112,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 [0.4.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.4.0
 [0.5.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.5.0
 [0.6.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.6.0
+[0.7.4]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.7.4
