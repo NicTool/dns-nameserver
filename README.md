@@ -2,11 +2,9 @@
 
 Nameserver configuration parsers and generators
 
-
 ## SYNOPSIS
 
-Name servers have configuration files, each with their own format. This package abstracts the unique implementations into a set of common actions.
-
+Name servers have configuration files, and each type has its own config file format. This package abstracts the unique implementations into a set of common actions.
 
 ### nt-ns.js
 
@@ -48,7 +46,7 @@ Returns a list of zones (and zone files) from the specified nameserver config fi
 
 ### parseConfig
 
-Does the heavy lifting for `getZones`. Accepts and string and returns an object where the keys are DNS zones and the value is a the file with that zones resource records.
+Does the heavy lifting for `getZones`. Accepts and string and returns an object where the keys are DNS zones and the value is the file with that zones resource records.
 
 
 ## FEATURES

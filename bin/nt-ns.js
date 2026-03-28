@@ -36,7 +36,7 @@ const nsTypes = {
   nsd,
 }
 
-// zone file format, most DNS servers use RFC 103[4|5] format
+// zone file format, most DNS servers use RFC 1034/1035 format
 let zfType = 'bind'    // BIND, Knot, NSD, PowerDNS, etc.
 switch (opts.import) {
   case 'tinydns':
