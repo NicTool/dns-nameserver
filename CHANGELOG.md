@@ -18,8 +18,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 #### Changed
 
-- 
-
+- deps(all): bump to latest
+  - dep(eslint): updated to v10
+- style: added prettier config
 
 ### [0.7.3] - 2024-11-04
 
