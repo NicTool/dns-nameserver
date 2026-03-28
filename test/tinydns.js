@@ -1,7 +1,8 @@
 
 
-import assert from 'assert'
-// import fs     from 'fs/promises'
+import assert from 'node:assert'
+import { describe, it } from 'node:test'
+// import fs     from 'node:fs/promises'
 
 import { getZones } from '../lib/tinydns.js'
 

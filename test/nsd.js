@@ -1,6 +1,7 @@
 
-import assert from 'assert'
-import fs     from 'fs/promises'
+import assert from 'node:assert'
+import fs     from 'node:fs/promises'
+import { describe, it } from 'node:test'
 
 import { getZones, parseConfig } from '../lib/nsd.js'
 

@@ -1,7 +1,8 @@
 
-import assert from 'assert'
-import path   from 'path'
-import os     from 'os'
+import assert from 'node:assert'
+import { describe, it } from 'node:test'
+import path   from 'node:path'
+import os     from 'node:os'
 
 import * as index from '../index.js'
 
@@ -47,8 +48,7 @@ describe('index', function () {
     })
   })
 
-  describe.skip('isDelegated', function () {
-    this.timeout(50000)
+  describe('isDelegated', { skip: true, timeout: 50000 }, function () {
     it('generates SQL to remove stale/invalid delegation', async function () {
       const zones = await tinydns.getZones('ignore/tinydns/data-ns2.cadillac')
       // console.log(zones)
