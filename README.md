@@ -8,7 +8,7 @@ Name servers have configuration files, and each has its own config file format. 
 
 ### nt-ns.js
 
-````
+```
 ✗ ./bin/nt-ns.js -h
 
  +-+-+-+ +-+-+-+-+-+-+-+-+-+-+
@@ -34,8 +34,7 @@ Examples
   3.    ./bin/nt-ns.js -i nsd -f ./nsd/nsd.conf -b nsd -v
 
   Project home: https://github.com/NicTool/dns-nameserver
-````
-
+```
 
 ## FUNCTIONS
 
@@ -43,38 +42,33 @@ Examples
 
 Returns a list of zones (and zone files) from the specified nameserver config file.
 
-
 ### parseConfig
 
 Does the heavy lifting for `getZones`. Accepts a string and returns an object where the keys are DNS zones and the value is the file with that zones resource records.
-
 
 ## FEATURES
 
 - config parsers for bind, nsd, knot, maradns, and tinydns
 
-
 ## TODO
 
 - [ ] config generator
-    - [ ] bind
-    - [ ] nsd
-    - [ ] knot
-    - [ ] maradns
-    - [ ] tinydns
-    - [x] powerdns ([#30](https://github.com/nictool/NicTool/issues/30))
-
+  - [ ] bind
+  - [ ] nsd
+  - [ ] knot
+  - [ ] maradns
+  - [ ] tinydns
+  - [x] powerdns ([#30](https://github.com/nictool/NicTool/issues/30))
 
 ## SEE ALSO
 
 - [Dictionary of DNS terms](https://nictool.github.io/web/Dictionary)
 - [Wikipedia, DNS Server Software](https://en.wikipedia.org/wiki/Comparison_of_DNS_server_software)
 
-
 ## DEVELOP
 
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
-  + fix, feature, BREAKING CHANGE, build, chore, ci, docs, style, test
+  - fix, feature, BREAKING CHANGE, build, chore, ci, docs, style, test
 - [keep a changelog](https://keepachangelog.com/)
 
 [![Module Tests](https://github.com/NicTool/dns-nameserver/actions/workflows/ci.yml/badge.svg)](https://github.com/NicTool/dns-nameserver/actions/workflows/ci.yml)
