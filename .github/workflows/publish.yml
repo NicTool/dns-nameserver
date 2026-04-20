@@ -9,5 +9,9 @@ env:
 
 jobs:
   publish:
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
     uses: NicTool/.github/.github/workflows/publish.yml@main
     secrets: inherit

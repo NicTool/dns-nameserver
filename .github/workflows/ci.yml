@@ -9,12 +9,18 @@ env:
 
 jobs:
   lint:
+    permissions:
+      contents: read
     uses: NicTool/.github/.github/workflows/lint.yml@main
 
   coverage:
+    permissions:
+      contents: read
     uses: NicTool/.github/.github/workflows/coverage.yml@main
     secrets: inherit
 
   test:
+    permissions:
+      contents: read
     uses: NicTool/.github/.github/workflows/test.yml@main
     secrets: inherit

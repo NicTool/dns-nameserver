@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Unreleased
 
+### [0.7.5] - 2026-04-20
+
+
 ### [0.7.4] - 2026-03-28
 
 - dep(mocha): changed test runner from mocha to node:test
@@ -94,3 +97,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 [0.5.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.5.0
 [0.6.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.6.0
 [0.7.4]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.7.4
+[0.7.5]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.7.5

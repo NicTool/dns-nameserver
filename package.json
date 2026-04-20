@@ -1,6 +1,6 @@
 {
   "name": "@nictool/dns-nameserver",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "DNS Nameserver",
   "main": "index.js",
   "bin": {},
@@ -14,15 +14,16 @@
     "CHANGELOG.md"
   ],
   "scripts": {
+    "format": "npm run prettier:fix && npm run lint:fix",
     "lint": "npx eslint index.js lib test",
     "lint:fix": "npx eslint --fix index.js lib test",
-    "test": "node --test",
-    "versions": "npx npm-dep-mgr check",
-    "versions:fix": "npx npm-dep-mgr update",
-    "test:coverage": "npx c8 --reporter=text --reporter=text-summary npm test",
-    "format": "npm run prettier:fix && npm run lint:fix",
     "prettier": "npx prettier . --check",
-    "prettier:fix": "npx prettier . --write --log-level=warn"
+    "prettier:fix": "npx prettier . --write --log-level=warn",
+    "test": "node --test",
+    "test:coverage": "node --test --experimental-test-coverage",
+    "test:coverage:lcov": "mkdir -p coverage && node --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=coverage/lcov.info",
+    "versions": "npx npm-dep-mgr check",
+    "versions:fix": "npx npm-dep-mgr update"
   },
   "repository": {
     "type": "git",
