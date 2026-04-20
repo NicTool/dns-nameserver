@@ -10,11 +10,11 @@ env:
 jobs:
   lint:
     uses: NicTool/.github/.github/workflows/lint.yml@main
-
-  coverage:
-    uses: NicTool/.github/.github/workflows/coverage.yml@main
-    secrets: inherit
+    permissions:
+      contents: read
 
   test:
     uses: NicTool/.github/.github/workflows/test.yml@main
     secrets: inherit
+    permissions:
+      contents: read
