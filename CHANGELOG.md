@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### [0.7.5] - 2026-04-20
 
+- ci: separate coverage runner, trigger on push to main
+- ci: remove codeql config, use default
+
 ### [0.7.4] - 2026-03-28
 
 - dep(mocha): changed test runner from mocha to node:test
