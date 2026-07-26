@@ -21,7 +21,7 @@ flowchart TD
 
     subgraph START["2 · ns.start()"]
         sc["source.connect() — no-op for TOML"]
-        ts["transport.start(publishCycle)\nbinds UDP + TCP sockets via dns2"]
+        ts["transport.start(publishCycle)\nbinds UDP + TCP sockets via node:dgram / node:net"]
         sc --> ts
     end
 
@@ -213,7 +213,7 @@ new FileEngine({
 | **Signer**                | `NoneSigner` / `MemorySigner` | `Rfc1035Signer` (optional)         | `NoneSigner`                  |
 | **Transport**             | `NoopTransport`               | `RsyncTransport` / `AxfrTransport` | `NoopTransport`               |
 | **Engine**                | `NativeNS`                    | `NsdNS` / `BindNS` / `KnotNS`      | `FileEngine`                  |
-| **Who serves DNS?**       | `dns2` in-process             | NSD daemon on remote host          | SaaS provider                 |
+| **Who serves DNS?**       | `NativeNS` in-process         | NSD daemon on remote host          | SaaS provider                 |
 | **Delivery mechanism**    | RAM Map swap                  | `rsync` push or DNS NOTIFY/AXFR    | REST API calls in `publish()` |
 | **DNSSEC**                | in-process signing            | `dnssec-signzone` on zone files    | provider-managed              |
 | **configure.html engine** | `native`                      | `nsd` / `bind` / `knot`            | _(not yet in UI)_             |

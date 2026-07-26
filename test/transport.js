@@ -56,6 +56,37 @@ describe('Transport', function () {
     assert.strictEqual(calls, after, 'stop() must cancel further ticks')
   })
 
+  it('rejects a start() without a pull function, naming the argument', async () => {
+    const t = new Transport({ interval: 0 })
+    const expected = { name: 'TypeError', message: /pullAndDeliver function is required/ }
+    await assert.rejects(() => t.start(), expected)
+    await assert.rejects(() => t.start('nope'), expected)
+  })
+
+  it('cancels a pending cooldown timer when a later change runs immediately', async () => {
+    let calls = 0
+    // long cooldown so the armed timer cannot fire on its own during the test
+    const t = new Transport({ interval: 0, cooldown: 10 })
+    await t.start(async () => {
+      calls += 1
+      return {}
+    })
+    assert.strictEqual(calls, 1)
+
+    await t.notifyChange()
+    assert.ok(t._cooldownTimer, 'a deferred run should be armed')
+    assert.strictEqual(calls, 1)
+
+    // the window elapsing while that timer is still pending is the state a
+    // lagging event loop produces; the immediate run must cancel it
+    t._lastRun = Date.now() - 11_000
+    await t.notifyChange()
+
+    assert.strictEqual(calls, 2)
+    assert.strictEqual(t._cooldownTimer, null, 'the stale timer must be cleared')
+    await t.stop()
+  })
+
   it('serialises overlapping publish cycles', async () => {
     let active = 0
     let maxActive = 0

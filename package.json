@@ -14,7 +14,7 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "clean": "rm -rf node_modules coverage",
+    "clean": "node -e \"for (const p of ['node_modules','coverage']) require('node:fs').rmSync(p, { recursive: true, force: true })\"",
     "format": "npm run prettier:fix && npm run lint:fix",
     "lint": "npx eslint index.js lib test",
     "lint:fix": "npx eslint --fix index.js lib test",

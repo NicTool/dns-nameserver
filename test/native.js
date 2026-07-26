@@ -252,6 +252,7 @@ const zones = new Map([
           address: `${'a'.repeat(70)}.example.com`,
           ttl: 300,
         },
+        { id: 19, zid: 1, type: 'A', name: 'bogus', address: 'not.an.ip.addr', ttl: 300 },
       ],
     },
   ],
@@ -363,6 +364,18 @@ describe('NativeNS', function () {
     assert.strictEqual(res.header.rcode, 1)
     assert.strictEqual(res.header.qdcount, 0, 'QDCOUNT must match the absent question')
     assert.strictEqual(res.length, 12, 'header only, no question section')
+  })
+
+  it('echoes the query ID on FORMERR so the client can match the reply', async () => {
+    const reply = await rawSend(malformedQuery(0xbeef, 0xc0, 12), { port })
+    assert.strictEqual(reply.readUInt16BE(0), 0xbeef)
+    assert.strictEqual(parseResponse(reply).header.rcode, 1)
+  })
+
+  it('skips a record with a malformed address rather than answering 0.0.0.0', async () => {
+    const res = await udpQuery('bogus.example.com', TYPE.A, { port })
+    assert.strictEqual(res.answers.length, 0)
+    assert.strictEqual(res.header.rcode, 0)
   })
 
   it('returns FORMERR for a truncated QNAME rather than misreading QTYPE', async () => {

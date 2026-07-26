@@ -40,6 +40,33 @@ describe('Nameserver', function () {
     await ns.stop()
   })
 
+  it('does not surface a failed publish as an unhandled rejection', async () => {
+    const ns = build()
+    const errors = []
+    ns.on('error', (err) => errors.push(err))
+    await ns.start()
+
+    // the source starts failing only after a clean start
+    ns.source.getZones = async () => {
+      throw new Error('source is down')
+    }
+
+    const rejections = []
+    const onRejection = (err) => rejections.push(err)
+    process.on('unhandledRejection', onRejection)
+    try {
+      ns.source.emit('zoneChanged')
+      for (let i = 0; i < 5; i++) await new Promise((r) => setImmediate(r))
+
+      assert.deepStrictEqual(rejections, [], 'the rejection must be swallowed')
+      assert.strictEqual(errors.length, 1, "but still reported via 'error'")
+      assert.match(errors[0].message, /source is down/)
+    } finally {
+      process.removeListener('unhandledRejection', onRejection)
+      await ns.stop()
+    }
+  })
+
   it('names the engine in start() errors when name is unset', async () => {
     const ns = new Nameserver({ engine: 'bind', publisher: new MemoryPublisher() })
     await assert.rejects(() => ns.start(), /^Error: bind: source is required$/)
