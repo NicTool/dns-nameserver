@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### [0.7.6] - 2026-07-25
 
+- add stub classes server expects
+
 ### [0.7.5] - 2026-04-20
 
 - ci: separate coverage runner, trigger on push to main
