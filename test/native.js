@@ -15,6 +15,7 @@ const TYPE = {
   NS: 2,
   CNAME: 5,
   SOA: 6,
+  PTR: 12,
   MX: 15,
   TXT: 16,
   AAAA: 28,
@@ -42,6 +43,17 @@ function buildQuery(name, typeId) {
   buf.writeUInt16BE(typeId, 12 + qname.length)
   buf.writeUInt16BE(1, 12 + qname.length + 2) // CLASS IN
   return buf
+}
+
+// A query carrying an EDNS OPT record advertising `payload` bytes (RFC 6891).
+function buildEdnsQuery(name, typeId, payload) {
+  const base = buildQuery(name, typeId)
+  base.writeUInt16BE(1, 10) // ARCOUNT
+  const opt = Buffer.alloc(11)
+  opt.writeUInt8(0, 0) // root name
+  opt.writeUInt16BE(41, 1) // TYPE OPT
+  opt.writeUInt16BE(payload, 3) // CLASS carries the payload size
+  return Buffer.concat([base, opt])
 }
 
 function readName(buf, offset) {
@@ -146,11 +158,28 @@ function parseResponse(buf) {
       case TYPE.TXT:
         rec.data = rdata.subarray(1, 1 + rdata[0]).toString('utf8')
         break
+      case TYPE.PTR:
+        rec.domain = readName(buf, rdStart).name
+        break
+      case TYPE.SRV:
+        rec.priority = rdata.readUInt16BE(0)
+        rec.weight = rdata.readUInt16BE(2)
+        rec.port = rdata.readUInt16BE(4)
+        rec.target = readName(buf, rdStart + 6).name
+        break
+      case TYPE.CAA: {
+        rec.flags = rdata[0]
+        const tagLen = rdata[1]
+        rec.tag = rdata.subarray(2, 2 + tagLen).toString('ascii')
+        rec.value = rdata.subarray(2 + tagLen).toString('utf8')
+        break
+      }
     }
     answers.push(rec)
   }
 
-  return { header: { rcode, aa, qdcount, ancount }, answers, length: buf.length }
+  const tc = (flags >> 9) & 1
+  return { header: { rcode, aa, tc, qdcount, ancount }, answers, length: buf.length }
 }
 
 function udpQuery(name, typeId, opts) {
@@ -256,6 +285,44 @@ const zones = new Map([
         { id: 20, zid: 1, type: 'SPF', name: 'spf', address: 'v=spf1 mx -all', ttl: 300 },
         { id: 21, zid: 1, type: 'SPF', name: 'both', address: 'v=spf1 a -all', ttl: 300 },
         { id: 22, zid: 1, type: 'TXT', name: 'both', address: 'v=spf1 a -all', ttl: 300 },
+        {
+          id: 23,
+          zid: 1,
+          type: 'SRV',
+          name: '_sip._tcp',
+          address: 'sipserver.example.com',
+          priority: 10,
+          weight: 20,
+          port: 5060,
+          ttl: 300,
+        },
+        {
+          id: 24,
+          zid: 1,
+          type: 'CAA',
+          name: '@',
+          address: 'letsencrypt.org',
+          tag: 'issue',
+          weight: 0,
+          ttl: 300,
+        },
+        {
+          id: 25,
+          zid: 1,
+          type: 'PTR',
+          name: 'ptr',
+          address: 'host.example.com',
+          ttl: 300,
+        },
+        // together these overflow a 512-byte UDP response
+        ...Array.from({ length: 8 }, (_, i) => ({
+          id: 30 + i,
+          zid: 1,
+          type: 'TXT',
+          name: 'big',
+          address: 'x'.repeat(200) + i,
+          ttl: 300,
+        })),
       ],
     },
   ],
@@ -326,6 +393,31 @@ describe('NativeNS', function () {
     const res = await udpQuery('example.com', TYPE.NS, { port })
     assert.strictEqual(res.answers.length, 1)
     assert.strictEqual(res.answers[0].ns, 'ns1.example.com')
+  })
+
+  it('answers SRV', async () => {
+    const res = await udpQuery('_sip._tcp.example.com', TYPE.SRV, { port })
+    assert.strictEqual(res.answers.length, 1)
+    const [a] = res.answers
+    assert.strictEqual(a.priority, 10)
+    assert.strictEqual(a.weight, 20)
+    assert.strictEqual(a.port, 5060)
+    assert.strictEqual(a.target, 'sipserver.example.com')
+  })
+
+  it('answers CAA', async () => {
+    const res = await udpQuery('example.com', TYPE.CAA, { port })
+    assert.strictEqual(res.answers.length, 1)
+    const [a] = res.answers
+    assert.strictEqual(a.flags, 0)
+    assert.strictEqual(a.tag, 'issue')
+    assert.strictEqual(a.value, 'letsencrypt.org')
+  })
+
+  it('answers PTR', async () => {
+    const res = await udpQuery('ptr.example.com', TYPE.PTR, { port })
+    assert.strictEqual(res.answers.length, 1)
+    assert.strictEqual(res.answers[0].domain, 'host.example.com')
   })
 
   it('synthesizes SOA at apex when qtype=SOA', async () => {
@@ -415,6 +507,24 @@ describe('NativeNS', function () {
     const res = await udpQuery('utf8.example.com', TYPE.TXT, { port })
     assert.strictEqual(res.header.rcode, 0)
     assert.strictEqual(res.answers.length, 1)
+  })
+
+  it('sets TC instead of sending an oversized UDP response', async () => {
+    const res = parseResponse(
+      await rawSend(buildQuery('big.example.com', TYPE.TXT), { port }),
+    )
+    assert.ok(res.length <= 512, `response is ${res.length} bytes, over the UDP limit`)
+    assert.strictEqual(res.header.tc, 1, 'TC must tell the client to retry over TCP')
+    assert.strictEqual(res.header.ancount, 0, 'a truncated reply carries no answers')
+  })
+
+  it('sends the full response when the client advertises a larger EDNS buffer', async () => {
+    const res = parseResponse(
+      await rawSend(buildEdnsQuery('big.example.com', TYPE.TXT, 4096), { port }),
+    )
+    assert.ok(res.length > 512, 'the full answer set exceeds 512 bytes')
+    assert.strictEqual(res.header.tc, 0, 'no truncation within the negotiated budget')
+    assert.strictEqual(res.header.ancount, 8)
   })
 
   it('returns NXDOMAIN for unknown zone', async () => {
