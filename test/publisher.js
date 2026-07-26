@@ -11,11 +11,26 @@ import TinydnsCdbPublisher from '../lib/publisher/tinydns-cdb.js'
 function zonesFixture() {
   const out = new Map()
   out.set('example.com', {
-    zone: { id: 1, name: 'example.com', ttl: 300, serial: 2026010101, mailaddr: 'ns1.example.com', rname: 'hostmaster.example.com' },
+    zone: {
+      id: 1,
+      name: 'example.com',
+      ttl: 300,
+      serial: 2026010101,
+      mailaddr: 'ns1.example.com',
+      rname: 'hostmaster.example.com',
+    },
     records: [
       { id: 10, zid: 1, type: 'A', name: '@', address: '192.0.2.10', ttl: 300 },
       { id: 11, zid: 1, type: 'A', name: 'www', address: '192.0.2.20', ttl: 300 },
-      { id: 12, zid: 1, type: 'MX', name: '@', address: 'mail.example.com', weight: 10, ttl: 300 },
+      {
+        id: 12,
+        zid: 1,
+        type: 'MX',
+        name: '@',
+        address: 'mail.example.com',
+        weight: 10,
+        ttl: 300,
+      },
       { id: 13, zid: 1, type: 'TXT', name: '@', address: 'v=spf1 -all', ttl: 300 },
     ],
   })

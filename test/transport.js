@@ -33,7 +33,10 @@ describe('Transport', function () {
   it('interval>0 schedules periodic runs and stop() cancels', async () => {
     let calls = 0
     const t = new Transport({ interval: 0.05 })
-    await t.start(async () => { calls += 1; return {} })
+    await t.start(async () => {
+      calls += 1
+      return {}
+    })
     await new Promise((r) => setTimeout(r, 170))
     await t.stop()
     const after = calls

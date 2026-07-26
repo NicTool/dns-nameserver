@@ -10,7 +10,17 @@ import Source from '../lib/source/base.js'
 
 // ── Minimal inline DNS wire codec (for test queries only) ────────────────────
 
-const TYPE = { A: 1, NS: 2, CNAME: 5, SOA: 6, MX: 15, TXT: 16, AAAA: 28, SRV: 33, CAA: 257 }
+const TYPE = {
+  A: 1,
+  NS: 2,
+  CNAME: 5,
+  SOA: 6,
+  MX: 15,
+  TXT: 16,
+  AAAA: 28,
+  SRV: 33,
+  CAA: 257,
+}
 
 function buildQuery(name, typeId) {
   const labels = name.replace(/\.$/, '').split('.')
@@ -23,14 +33,14 @@ function buildQuery(name, typeId) {
   ])
   const buf = Buffer.allocUnsafe(12 + qname.length + 4)
   buf.writeUInt16BE(Math.floor(Math.random() * 65536), 0)
-  buf.writeUInt16BE(0x0100, 2)  // RD=1
-  buf.writeUInt16BE(1, 4)       // QDCOUNT
+  buf.writeUInt16BE(0x0100, 2) // RD=1
+  buf.writeUInt16BE(1, 4) // QDCOUNT
   buf.writeUInt16BE(0, 6)
   buf.writeUInt16BE(0, 8)
   buf.writeUInt16BE(0, 10)
   qname.copy(buf, 12)
   buf.writeUInt16BE(typeId, 12 + qname.length)
-  buf.writeUInt16BE(1, 12 + qname.length + 2)  // CLASS IN
+  buf.writeUInt16BE(1, 12 + qname.length + 2) // CLASS IN
   return buf
 }
 
@@ -40,13 +50,21 @@ function readName(buf, offset) {
   let end = -1
   while (pos < buf.length) {
     const len = buf[pos]
-    if (len === 0) { if (end === -1) end = pos + 1; break }
+    if (len === 0) {
+      if (end === -1) end = pos + 1
+      break
+    }
     if ((len & 0xc0) === 0xc0) {
       if (end === -1) end = pos + 2
       pos = ((len & 0x3f) << 8) | buf[pos + 1]
       continue
     }
-    labels.push(buf.subarray(pos + 1, pos + 1 + len).toString('ascii').toLowerCase())
+    labels.push(
+      buf
+        .subarray(pos + 1, pos + 1 + len)
+        .toString('ascii')
+        .toLowerCase(),
+    )
     pos += 1 + len
   }
   return { name: labels.join('.'), end: end === -1 ? pos + 1 : end }
@@ -54,15 +72,23 @@ function readName(buf, offset) {
 
 function formatIPv6(bytes) {
   const groups = []
-  for (let i = 0; i < 16; i += 2) groups.push(((bytes[i] << 8) | bytes[i + 1]).toString(16))
-  let bestStart = -1, bestLen = 0, curStart = -1, curLen = 0
+  for (let i = 0; i < 16; i += 2)
+    groups.push(((bytes[i] << 8) | bytes[i + 1]).toString(16))
+  let bestStart = -1,
+    bestLen = 0,
+    curStart = -1,
+    curLen = 0
   for (let i = 0; i <= 8; i++) {
     if (i < 8 && groups[i] === '0') {
       if (curStart === -1) curStart = i
       curLen++
     } else {
-      if (curLen > bestLen) { bestStart = curStart; bestLen = curLen }
-      curStart = -1; curLen = 0
+      if (curLen > bestLen) {
+        bestStart = curStart
+        bestLen = curLen
+      }
+      curStart = -1
+      curLen = 0
     }
   }
   if (bestLen < 2) return groups.join(':')
@@ -128,13 +154,24 @@ function udpQuery(name, typeId, { port, address = '127.0.0.1' }) {
   return new Promise((resolve, reject) => {
     const buf = buildQuery(name, typeId)
     const sock = createSocket('udp4')
-    const timer = setTimeout(() => { sock.close(); reject(new Error('timeout')) }, 2000)
+    const timer = setTimeout(() => {
+      sock.close()
+      reject(new Error('timeout'))
+    }, 2000)
     sock.on('message', (msg) => {
       clearTimeout(timer)
       sock.close()
-      try { resolve(parseResponse(msg)) } catch (e) { reject(e) }
+      try {
+        resolve(parseResponse(msg))
+      } catch (e) {
+        reject(e)
+      }
     })
-    sock.on('error', (err) => { clearTimeout(timer); sock.close(); reject(err) })
+    sock.on('error', (err) => {
+      clearTimeout(timer)
+      sock.close()
+      reject(err)
+    })
     sock.send(buf, port, address)
   })
 }
@@ -153,8 +190,13 @@ function freePort() {
 // ── Fake Source ───────────────────────────────────────────────────────────────
 
 class FakeSource extends Source {
-  constructor(map) { super(); this._map = map }
-  async getZones() { return this._map }
+  constructor(map) {
+    super()
+    this._map = map
+  }
+  async getZones() {
+    return this._map
+  }
 }
 
 // ── Test data ─────────────────────────────────────────────────────────────────
@@ -165,13 +207,28 @@ const zones = new Map([
     {
       zone: { id: 1, name: 'example.com', ttl: 300, serial: 2026010101 },
       records: [
-        { id: 10, zid: 1, type: 'A',     name: '@',     address: '192.0.2.10', ttl: 300 },
-        { id: 11, zid: 1, type: 'A',     name: 'www',   address: '192.0.2.20', ttl: 300 },
-        { id: 12, zid: 1, type: 'AAAA',  name: 'www',   address: '2001:db8::1', ttl: 300 },
-        { id: 13, zid: 1, type: 'MX',    name: '@',     address: 'mail.example.com', weight: 10, ttl: 300 },
-        { id: 14, zid: 1, type: 'TXT',   name: '@',     address: 'v=spf1 -all', ttl: 300 },
-        { id: 15, zid: 1, type: 'CNAME', name: 'alias', address: 'www.example.com', ttl: 300 },
-        { id: 16, zid: 1, type: 'NS',    name: '@',     address: 'ns1.example.com', ttl: 300 },
+        { id: 10, zid: 1, type: 'A', name: '@', address: '192.0.2.10', ttl: 300 },
+        { id: 11, zid: 1, type: 'A', name: 'www', address: '192.0.2.20', ttl: 300 },
+        { id: 12, zid: 1, type: 'AAAA', name: 'www', address: '2001:db8::1', ttl: 300 },
+        {
+          id: 13,
+          zid: 1,
+          type: 'MX',
+          name: '@',
+          address: 'mail.example.com',
+          weight: 10,
+          ttl: 300,
+        },
+        { id: 14, zid: 1, type: 'TXT', name: '@', address: 'v=spf1 -all', ttl: 300 },
+        {
+          id: 15,
+          zid: 1,
+          type: 'CNAME',
+          name: 'alias',
+          address: 'www.example.com',
+          ttl: 300,
+        },
+        { id: 16, zid: 1, type: 'NS', name: '@', address: 'ns1.example.com', ttl: 300 },
       ],
     },
   ],
@@ -196,7 +253,9 @@ describe('NativeNS', function () {
     await ns.start()
   })
 
-  after(async () => { await ns.stop() })
+  after(async () => {
+    await ns.stop()
+  })
 
   it('answers A for zone apex', async () => {
     const res = await udpQuery('example.com', TYPE.A, { port })

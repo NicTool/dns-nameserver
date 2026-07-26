@@ -51,14 +51,17 @@ flowchart TD
 ```
 
 **Config object:**
+
 ```js
 new NativeNS({
-  source:    new TomlSource({ path: './data' }),
+  source: new TomlSource({ path: './data' }),
   publisher: new MemoryPublisher(),
-  signer:    new NoneSigner(),
+  signer: new NoneSigner(),
   transport: new NoopTransport({ interval: 300, cooldown: 5 }),
-  listen:    [{ address: '0.0.0.0', port: 53, proto: 'udp' },
-              { address: '0.0.0.0', port: 53, proto: 'tcp' }],
+  listen: [
+    { address: '0.0.0.0', port: 53, proto: 'udp' },
+    { address: '0.0.0.0', port: 53, proto: 'tcp' },
+  ],
 })
 ```
 
@@ -114,13 +117,14 @@ flowchart TD
 ```
 
 **Config object:**
+
 ```js
 new NsdNS({
-  source:    new MysqlSource({ dsn: 'mysql://nictool:pass@127.0.0.1/nictool' }),
+  source: new MysqlSource({ dsn: 'mysql://nictool:pass@127.0.0.1/nictool' }),
   publisher: new Rfc1035Publisher({ path: './zones-out' }),
-  signer:    new NoneSigner(),                        // or Rfc1035Signer
+  signer: new NoneSigner(), // or Rfc1035Signer
   transport: new RsyncTransport({
-    remote:   'nsd@ns1.example.com:/etc/nsd/zones',
+    remote: 'nsd@ns1.example.com:/etc/nsd/zones',
     interval: 300,
     cooldown: 5,
   }),
@@ -183,15 +187,17 @@ flowchart TD
 ```
 
 **Config object (Cloudflare example):**
+
 ```js
 new FileEngine({
-  engine:    'cloudflare',
-  source:    new TomlSource({ path: './data' }),
-  publisher: new CloudflarePublisher({   // implement Publisher subclass
-    apiToken:  process.env.CF_API_TOKEN,
+  engine: 'cloudflare',
+  source: new TomlSource({ path: './data' }),
+  publisher: new CloudflarePublisher({
+    // implement Publisher subclass
+    apiToken: process.env.CF_API_TOKEN,
     accountId: process.env.CF_ACCOUNT_ID,
   }),
-  signer:    new NoneSigner(),
+  signer: new NoneSigner(),
   transport: new NoopTransport({ interval: 60, cooldown: 5 }),
 })
 ```
@@ -200,14 +206,14 @@ new FileEngine({
 
 ## Summary comparison
 
-| | **A: NativeNS (RAM)** | **B: NSD (file-based)** | **C: SaaS API** |
-|---|---|---|---|
-| **Source** | `TomlSource` | `MysqlSource` | `TomlSource` or `MysqlSource` |
-| **Publisher** | `MemoryPublisher` | `Rfc1035Publisher` | custom `SaasPublisher` |
-| **Signer** | `NoneSigner` / `MemorySigner` | `Rfc1035Signer` (optional) | `NoneSigner` |
-| **Transport** | `NoopTransport` | `RsyncTransport` / `AxfrTransport` | `NoopTransport` |
-| **Engine** | `NativeNS` | `NsdNS` / `BindNS` / `KnotNS` | `FileEngine` |
-| **Who serves DNS?** | `dns2` in-process | NSD daemon on remote host | SaaS provider |
-| **Delivery mechanism** | RAM Map swap | `rsync` push or DNS NOTIFY/AXFR | REST API calls in `publish()` |
-| **DNSSEC** | in-process signing | `dnssec-signzone` on zone files | provider-managed |
-| **configure.html engine** | `native` | `nsd` / `bind` / `knot` | *(not yet in UI)* |
+|                           | **A: NativeNS (RAM)**         | **B: NSD (file-based)**            | **C: SaaS API**               |
+| ------------------------- | ----------------------------- | ---------------------------------- | ----------------------------- |
+| **Source**                | `TomlSource`                  | `MysqlSource`                      | `TomlSource` or `MysqlSource` |
+| **Publisher**             | `MemoryPublisher`             | `Rfc1035Publisher`                 | custom `SaasPublisher`        |
+| **Signer**                | `NoneSigner` / `MemorySigner` | `Rfc1035Signer` (optional)         | `NoneSigner`                  |
+| **Transport**             | `NoopTransport`               | `RsyncTransport` / `AxfrTransport` | `NoopTransport`               |
+| **Engine**                | `NativeNS`                    | `NsdNS` / `BindNS` / `KnotNS`      | `FileEngine`                  |
+| **Who serves DNS?**       | `dns2` in-process             | NSD daemon on remote host          | SaaS provider                 |
+| **Delivery mechanism**    | RAM Map swap                  | `rsync` push or DNS NOTIFY/AXFR    | REST API calls in `publish()` |
+| **DNSSEC**                | in-process signing            | `dnssec-signzone` on zone files    | provider-managed              |
+| **configure.html engine** | `native`                      | `nsd` / `bind` / `knot`            | _(not yet in UI)_             |
