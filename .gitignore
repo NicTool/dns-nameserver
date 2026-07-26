@@ -106,3 +106,4 @@ dist/*-grammar.js
 dist/*.js
 package-lock.json
 ignore/*
+scripts/*
