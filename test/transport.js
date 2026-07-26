@@ -87,6 +87,37 @@ describe('Transport', function () {
     await t.stop()
   })
 
+  it('runs a follow-up cycle for a change that arrives mid-publish', async () => {
+    let calls = 0
+    let release
+    const gate = new Promise((r) => {
+      release = r
+    })
+
+    const t = new Transport({ interval: 0, cooldown: 0 })
+    const started = t.start(async () => {
+      calls += 1
+      if (calls === 1) await gate // hold the first cycle open
+      return {}
+    })
+    await waitFor(() => calls === 1, 'first cycle to begin')
+
+    // the change lands after cycle 1 already read its zones, so joining that
+    // cycle would silently drop it
+    const notified = t.notifyChange()
+    await sleep(20)
+    assert.strictEqual(calls, 1, 'still inside the first cycle')
+
+    release()
+    await started
+    await notified
+
+    await waitFor(() => calls === 2, 'follow-up cycle for the mid-flight change')
+    await sleep(50)
+    assert.strictEqual(calls, 2, 'exactly one follow-up, not a loop')
+    await t.stop()
+  })
+
   it('serialises overlapping publish cycles', async () => {
     let active = 0
     let maxActive = 0
