@@ -150,7 +150,7 @@ function parseResponse(buf) {
     answers.push(rec)
   }
 
-  return { header: { rcode, aa }, answers }
+  return { header: { rcode, aa, qdcount, ancount }, answers, length: buf.length }
 }
 
 function udpQuery(name, typeId, opts) {
@@ -340,6 +340,29 @@ describe('NativeNS', function () {
     await rawSend(malformedQuery(0x1235, 0xc0, 200), { port })
     const res = await udpQuery('example.com', TYPE.A, { port })
     assert.strictEqual(res.answers[0].address, '192.0.2.10')
+  })
+
+  it('rejects a label length above 63 rather than accepting a reserved prefix', async () => {
+    // the label is fully present, so only the length check can reject it
+    const buf = Buffer.alloc(98)
+    buf.writeUInt16BE(0x1237, 0)
+    buf.writeUInt16BE(0x0100, 2)
+    buf.writeUInt16BE(1, 4)
+    buf.writeUInt8(0x50, 12) // 80: reserved 0b01 prefix, and > 63
+    Buffer.alloc(80, 0x61).copy(buf, 13)
+    buf.writeUInt8(0, 93)
+    buf.writeUInt16BE(TYPE.A, 94)
+    buf.writeUInt16BE(1, 96)
+
+    const res = parseResponse(await rawSend(buf, { port }))
+    assert.strictEqual(res.header.rcode, 1, 'expected FORMERR')
+  })
+
+  it('omits the question section and QDCOUNT when the query cannot be parsed', async () => {
+    const res = parseResponse(await rawSend(malformedQuery(0x1238, 0xc0, 12), { port }))
+    assert.strictEqual(res.header.rcode, 1)
+    assert.strictEqual(res.header.qdcount, 0, 'QDCOUNT must match the absent question')
+    assert.strictEqual(res.length, 12, 'header only, no question section')
   })
 
   it('returns FORMERR for a truncated QNAME rather than misreading QTYPE', async () => {
