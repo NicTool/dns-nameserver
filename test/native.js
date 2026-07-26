@@ -48,17 +48,20 @@ function readName(buf, offset) {
   const labels = []
   let pos = offset
   let end = -1
-  while (pos < buf.length) {
+  let jumps = 0
+  while (pos >= 0 && pos < buf.length) {
     const len = buf[pos]
     if (len === 0) {
       if (end === -1) end = pos + 1
       break
     }
     if ((len & 0xc0) === 0xc0) {
+      if (pos + 1 >= buf.length || ++jumps > 64) break
       if (end === -1) end = pos + 2
       pos = ((len & 0x3f) << 8) | buf[pos + 1]
       continue
     }
+    if (pos + 1 + len > buf.length) break
     labels.push(
       buf
         .subarray(pos + 1, pos + 1 + len)
@@ -150,9 +153,12 @@ function parseResponse(buf) {
   return { header: { rcode, aa }, answers }
 }
 
-function udpQuery(name, typeId, { port, address = '127.0.0.1' }) {
+function udpQuery(name, typeId, opts) {
+  return rawSend(buildQuery(name, typeId), opts).then(parseResponse)
+}
+
+function rawSend(buf, { port, address = '127.0.0.1' }) {
   return new Promise((resolve, reject) => {
-    const buf = buildQuery(name, typeId)
     const sock = createSocket('udp4')
     const timer = setTimeout(() => {
       sock.close()
@@ -161,11 +167,7 @@ function udpQuery(name, typeId, { port, address = '127.0.0.1' }) {
     sock.on('message', (msg) => {
       clearTimeout(timer)
       sock.close()
-      try {
-        resolve(parseResponse(msg))
-      } catch (e) {
-        reject(e)
-      }
+      resolve(msg)
     })
     sock.on('error', (err) => {
       clearTimeout(timer)
@@ -174,6 +176,18 @@ function udpQuery(name, typeId, { port, address = '127.0.0.1' }) {
     })
     sock.send(buf, port, address)
   })
+}
+
+function malformedQuery(id, ptrHigh, ptrLow) {
+  const buf = Buffer.alloc(18)
+  buf.writeUInt16BE(id, 0)
+  buf.writeUInt16BE(0x0100, 2)
+  buf.writeUInt16BE(1, 4)
+  buf.writeUInt8(ptrHigh, 12)
+  buf.writeUInt8(ptrLow, 13)
+  buf.writeUInt16BE(TYPE.A, 14)
+  buf.writeUInt16BE(1, 16)
+  return buf
 }
 
 function freePort() {
@@ -229,6 +243,7 @@ const zones = new Map([
           ttl: 300,
         },
         { id: 16, zid: 1, type: 'NS', name: '@', address: 'ns1.example.com', ttl: 300 },
+        { id: 17, zid: 1, type: 'TXT', name: 'utf8', address: 'é'.repeat(200), ttl: 300 },
       ],
     },
   ],
@@ -305,6 +320,24 @@ describe('NativeNS', function () {
     const res = await udpQuery('example.com', TYPE.SOA, { port })
     assert.strictEqual(res.answers.length, 1)
     assert.strictEqual(res.answers[0].type, TYPE.SOA)
+  })
+
+  it('survives a cyclic compression pointer', async () => {
+    await rawSend(malformedQuery(0x1234, 0xc0, 12), { port })
+    const res = await udpQuery('example.com', TYPE.A, { port })
+    assert.strictEqual(res.answers[0].address, '192.0.2.10')
+  })
+
+  it('survives a compression pointer past the end of the packet', async () => {
+    await rawSend(malformedQuery(0x1235, 0xc0, 200), { port })
+    const res = await udpQuery('example.com', TYPE.A, { port })
+    assert.strictEqual(res.answers[0].address, '192.0.2.10')
+  })
+
+  it('answers a multi-byte TXT value', async () => {
+    const res = await udpQuery('utf8.example.com', TYPE.TXT, { port })
+    assert.strictEqual(res.header.rcode, 0)
+    assert.strictEqual(res.answers.length, 1)
   })
 
   it('returns NXDOMAIN for unknown zone', async () => {

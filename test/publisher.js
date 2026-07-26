@@ -74,11 +74,12 @@ describe('Rfc1035Publisher', function () {
     const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'nictool-pub-'))
     try {
       const zones = zonesFixture()
-      zones.get('example.com').records.push(
-        { id: 14, zid: 1, type: 'TXT', name: 'quote', address: 'say "hi"', ttl: 300 },
-        // a trailing backslash swallowed the closing quote before it was doubled
-        { id: 15, zid: 1, type: 'TXT', name: 'slash', address: 'c:\\path\\', ttl: 300 },
-      )
+      zones
+        .get('example.com')
+        .records.push(
+          { id: 14, zid: 1, type: 'TXT', name: 'quote', address: 'say "hi"', ttl: 300 },
+          { id: 15, zid: 1, type: 'TXT', name: 'slash', address: 'c:\\path\\', ttl: 300 },
+        )
 
       const pub = new Rfc1035Publisher({ path: dir })
       await pub.publish(zones)
@@ -87,7 +88,6 @@ describe('Rfc1035Publisher', function () {
       assert.match(text, /quote\s+300\s+IN\s+TXT\s+"say \\"hi\\""$/m)
       assert.match(text, /slash\s+300\s+IN\s+TXT\s+"c:\\\\path\\\\"$/m)
 
-      // every emitted character-string closes on an unescaped quote
       for (const line of text.split('\n').filter((l) => /\sTXT\s/.test(l))) {
         const value = line.slice(line.indexOf('"'))
         assert.match(value, /^"(?:[^"\\]|\\.)*"(?: "(?:[^"\\]|\\.)*")*$/, line)
@@ -121,7 +121,66 @@ describe('Rfc1035Publisher', function () {
       await fs.rm(dir, { recursive: true, force: true })
     }
   })
+
+  it('chunks multi-byte TXT values on bytes, not code units', async () => {
+    const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'nictool-pub-'))
+    try {
+      const zones = zonesFixture()
+      zones.get('example.com').records.push({
+        id: 17,
+        zid: 1,
+        type: 'TXT',
+        name: 'utf8',
+        address: 'é'.repeat(200),
+        ttl: 300,
+      })
+
+      const pub = new Rfc1035Publisher({ path: dir })
+      await pub.publish(zones)
+      const text = await fs.readFile(path.join(dir, 'example.com.zone'), 'utf8')
+
+      const line = text.split('\n').find((l) => l.startsWith('utf8'))
+      const chunks = line.slice(line.indexOf('"')).split('" "')
+      assert.ok(chunks.length >= 2, `expected a split, got ${chunks.length}`)
+      for (const c of chunks) {
+        assert.ok(
+          Buffer.byteLength(c.replace(/^"|"$/g, ''), 'utf8') <= 255,
+          'each character-string must fit in 255 bytes',
+        )
+      }
+    } finally {
+      await fs.rm(dir, { recursive: true, force: true })
+    }
+  })
+
+  it('refuses a zone name that would escape the output directory', async () => {
+    const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'nictool-pub-'))
+    try {
+      const zones = new Map()
+      zones.set('../../etc/passwd', {
+        zone: { id: 2, name: 'evil', ttl: 300, serial: 1 },
+        records: [],
+      })
+
+      const pub = new Rfc1035Publisher({ path: dir })
+      await assert.rejects(() => pub.publish(zones), /unsafe zone name/)
+
+      const escaped = path.resolve(dir, '../../etc/passwd.zone')
+      assert.strictEqual(await exists(escaped), false)
+    } finally {
+      await fs.rm(dir, { recursive: true, force: true })
+    }
+  })
 })
+
+async function exists(p) {
+  try {
+    await fs.stat(p)
+    return true
+  } catch {
+    return false
+  }
+}
 
 describe('TinydnsCdbPublisher', function () {
   it('throws a clear not-yet-implemented error', async () => {
