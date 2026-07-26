@@ -244,6 +244,14 @@ const zones = new Map([
         },
         { id: 16, zid: 1, type: 'NS', name: '@', address: 'ns1.example.com', ttl: 300 },
         { id: 17, zid: 1, type: 'TXT', name: 'utf8', address: 'é'.repeat(200), ttl: 300 },
+        {
+          id: 18,
+          zid: 1,
+          type: 'CNAME',
+          name: 'toolong',
+          address: `${'a'.repeat(70)}.example.com`,
+          ttl: 300,
+        },
       ],
     },
   ],
@@ -332,6 +340,25 @@ describe('NativeNS', function () {
     await rawSend(malformedQuery(0x1235, 0xc0, 200), { port })
     const res = await udpQuery('example.com', TYPE.A, { port })
     assert.strictEqual(res.answers[0].address, '192.0.2.10')
+  })
+
+  it('returns FORMERR for a truncated QNAME rather than misreading QTYPE', async () => {
+    // label claims 9 bytes but the packet ends after 4
+    const buf = Buffer.alloc(21)
+    buf.writeUInt16BE(0x1236, 0)
+    buf.writeUInt16BE(0x0100, 2)
+    buf.writeUInt16BE(1, 4)
+    buf.writeUInt8(9, 12)
+    Buffer.from('abcd').copy(buf, 13)
+
+    const res = parseResponse(await rawSend(buf, { port }))
+    assert.strictEqual(res.header.rcode, 1, 'expected FORMERR')
+  })
+
+  it('skips a record whose label exceeds 63 bytes instead of emitting a wrapped length', async () => {
+    const res = await udpQuery('toolong.example.com', TYPE.CNAME, { port })
+    assert.strictEqual(res.answers.length, 0)
+    assert.strictEqual(res.header.rcode, 0)
   })
 
   it('answers a multi-byte TXT value', async () => {

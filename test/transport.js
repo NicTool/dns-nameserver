@@ -1,6 +1,10 @@
 import assert from 'node:assert'
+import fs from 'node:fs/promises'
+import os from 'node:os'
+import path from 'node:path'
 import { describe, it } from 'node:test'
 
+import RsyncTransport from '../lib/transport/rsync.js'
 import Transport from '../lib/transport/base.js'
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
@@ -74,5 +78,60 @@ describe('Transport', function () {
     assert.strictEqual(maxActive, 1, 'publish cycles must not overlap')
     assert.ok(calls >= 1)
     await t.stop()
+  })
+})
+
+describe('RsyncTransport', function () {
+  // Shims a fake rsync onto PATH that records the argv it was invoked with.
+  async function captureArgs({ remote, sshKey, directory }) {
+    const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'nictool-rsync-'))
+    const argvFile = path.join(dir, 'argv')
+    const bin = path.join(dir, 'rsync')
+    await fs.writeFile(
+      bin,
+      `#!/bin/sh\n: > ${JSON.stringify(argvFile)}\nfor a in "$@"; do printf '%s\\n' "$a" >> ${JSON.stringify(argvFile)}; done\n`,
+      { mode: 0o755 },
+    )
+
+    const savedPath = process.env.PATH
+    process.env.PATH = `${dir}:${savedPath}`
+    try {
+      const t = new RsyncTransport({ remote, sshKey })
+      await t.deliver({ directory })
+      return (await fs.readFile(argvFile, 'utf8')).split('\n').filter(Boolean)
+    } finally {
+      process.env.PATH = savedPath
+      await fs.rm(dir, { recursive: true, force: true })
+    }
+  }
+
+  it('terminates option parsing before the operands', async () => {
+    const argv = await captureArgs({
+      remote: 'user@host:/zones',
+      directory: '/tmp/zones',
+    })
+    const sep = argv.indexOf('--')
+    assert.ok(sep !== -1, 'expected a -- operand terminator')
+    assert.deepStrictEqual(argv.slice(sep + 1), ['/tmp/zones/', 'user@host:/zones'])
+  })
+
+  it('does not let a leading-dash remote become an option', async () => {
+    const argv = await captureArgs({ remote: '--dry-run', directory: '/tmp/zones' })
+    const sep = argv.indexOf('--')
+    assert.ok(sep !== -1, 'expected a -- operand terminator')
+    assert.ok(
+      argv.indexOf('--dry-run') > sep,
+      '--dry-run must appear only after the terminator',
+    )
+  })
+
+  it('quotes an ssh key path containing shell metacharacters', async () => {
+    const argv = await captureArgs({
+      remote: 'user@host:/zones',
+      sshKey: '/tmp/k;touch /tmp/pwned',
+      directory: '/tmp/zones',
+    })
+    const e = argv[argv.indexOf('-e') + 1]
+    assert.strictEqual(e, `ssh -i '/tmp/k;touch /tmp/pwned'`)
   })
 })
