@@ -253,6 +253,9 @@ const zones = new Map([
           ttl: 300,
         },
         { id: 19, zid: 1, type: 'A', name: 'bogus', address: 'not.an.ip.addr', ttl: 300 },
+        { id: 20, zid: 1, type: 'SPF', name: 'spf', address: 'v=spf1 mx -all', ttl: 300 },
+        { id: 21, zid: 1, type: 'SPF', name: 'both', address: 'v=spf1 a -all', ttl: 300 },
+        { id: 22, zid: 1, type: 'TXT', name: 'both', address: 'v=spf1 a -all', ttl: 300 },
       ],
     },
   ],
@@ -395,6 +398,17 @@ describe('NativeNS', function () {
     const res = await udpQuery('toolong.example.com', TYPE.CNAME, { port })
     assert.strictEqual(res.answers.length, 0)
     assert.strictEqual(res.header.rcode, 0)
+  })
+
+  it('answers an SPF-typed record to a TXT query (RFC 7208)', async () => {
+    const res = await udpQuery('spf.example.com', TYPE.TXT, { port })
+    assert.strictEqual(res.answers[0].type, TYPE.TXT)
+    assert.match(String(res.answers[0].data), /v=spf1 mx -all/)
+  })
+
+  it('collapses SPF and TXT records that encode to identical wire data', async () => {
+    const res = await udpQuery('both.example.com', TYPE.TXT, { port })
+    assert.strictEqual(res.answers.length, 1, 'the same TXT must not be sent twice')
   })
 
   it('answers a multi-byte TXT value', async () => {
