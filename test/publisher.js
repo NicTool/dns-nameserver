@@ -69,6 +69,58 @@ describe('Rfc1035Publisher', function () {
       await fs.rm(dir, { recursive: true, force: true })
     }
   })
+
+  it('escapes backslashes and quotes in TXT character-strings', async () => {
+    const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'nictool-pub-'))
+    try {
+      const zones = zonesFixture()
+      zones.get('example.com').records.push(
+        { id: 14, zid: 1, type: 'TXT', name: 'quote', address: 'say "hi"', ttl: 300 },
+        // a trailing backslash swallowed the closing quote before it was doubled
+        { id: 15, zid: 1, type: 'TXT', name: 'slash', address: 'c:\\path\\', ttl: 300 },
+      )
+
+      const pub = new Rfc1035Publisher({ path: dir })
+      await pub.publish(zones)
+      const text = await fs.readFile(path.join(dir, 'example.com.zone'), 'utf8')
+
+      assert.match(text, /quote\s+300\s+IN\s+TXT\s+"say \\"hi\\""$/m)
+      assert.match(text, /slash\s+300\s+IN\s+TXT\s+"c:\\\\path\\\\"$/m)
+
+      // every emitted character-string closes on an unescaped quote
+      for (const line of text.split('\n').filter((l) => /\sTXT\s/.test(l))) {
+        const value = line.slice(line.indexOf('"'))
+        assert.match(value, /^"(?:[^"\\]|\\.)*"(?: "(?:[^"\\]|\\.)*")*$/, line)
+      }
+    } finally {
+      await fs.rm(dir, { recursive: true, force: true })
+    }
+  })
+
+  it('chunks long TXT values on the unescaped length', async () => {
+    const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'nictool-pub-'))
+    try {
+      const zones = zonesFixture()
+      zones.get('example.com').records.push({
+        id: 16,
+        zid: 1,
+        type: 'TXT',
+        name: 'long',
+        address: '"'.repeat(300),
+        ttl: 300,
+      })
+
+      const pub = new Rfc1035Publisher({ path: dir })
+      await pub.publish(zones)
+      const text = await fs.readFile(path.join(dir, 'example.com.zone'), 'utf8')
+
+      const line = text.split('\n').find((l) => l.startsWith('long'))
+      const chunks = line.slice(line.indexOf('"')).split('" "')
+      assert.strictEqual(chunks.length, 2)
+    } finally {
+      await fs.rm(dir, { recursive: true, force: true })
+    }
+  })
 })
 
 describe('TinydnsCdbPublisher', function () {

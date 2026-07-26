@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### [0.7.6] - 2026-07-25
 
-- add stub classes server expects
+- add stub classes server expects: publisher, signer, source, transport
 
 ### [0.7.5] - 2026-04-20
 
