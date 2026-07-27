@@ -248,49 +248,84 @@ const zones = new Map([
   [
     'example.com',
     {
-      zone: { id: 1, name: 'example.com', ttl: 300, serial: 2026010101 },
+      zone: { id: 1, zone: 'example.com', ttl: 300, serial: 2026010101 },
       records: [
-        { id: 10, zid: 1, type: 'A', name: '@', address: '192.0.2.10', ttl: 300 },
-        { id: 11, zid: 1, type: 'A', name: 'www', address: '192.0.2.20', ttl: 300 },
-        { id: 12, zid: 1, type: 'AAAA', name: 'www', address: '2001:db8::1', ttl: 300 },
+        { id: 10, zid: 1, type: 'A', owner: '@', address: '192.0.2.10', ttl: 300 },
+        { id: 11, zid: 1, type: 'A', owner: 'www', address: '192.0.2.20', ttl: 300 },
+        { id: 12, zid: 1, type: 'AAAA', owner: 'www', address: '2001:db8::1', ttl: 300 },
         {
           id: 13,
           zid: 1,
           type: 'MX',
-          name: '@',
-          address: 'mail.example.com',
-          weight: 10,
+          owner: '@',
+          exchange: 'mail.example.com',
+          preference: 10,
           ttl: 300,
         },
-        { id: 14, zid: 1, type: 'TXT', name: '@', address: 'v=spf1 -all', ttl: 300 },
+        { id: 14, zid: 1, type: 'TXT', owner: '@', data: 'v=spf1 -all', ttl: 300 },
         {
           id: 15,
           zid: 1,
           type: 'CNAME',
-          name: 'alias',
-          address: 'www.example.com',
+          owner: 'alias',
+          cname: 'www.example.com',
           ttl: 300,
         },
-        { id: 16, zid: 1, type: 'NS', name: '@', address: 'ns1.example.com', ttl: 300 },
-        { id: 17, zid: 1, type: 'TXT', name: 'utf8', address: 'é'.repeat(200), ttl: 300 },
+        { id: 16, zid: 1, type: 'NS', owner: '@', dname: 'ns1.example.com', ttl: 300 },
+        {
+          id: 17,
+          zid: 1,
+          type: 'TXT',
+          owner: 'utf8',
+          data: 'é'.repeat(200),
+          ttl: 300,
+        },
         {
           id: 18,
           zid: 1,
           type: 'CNAME',
-          name: 'toolong',
-          address: `${'a'.repeat(70)}.example.com`,
+          owner: 'toolong',
+          cname: `${'a'.repeat(70)}.example.com`,
           ttl: 300,
         },
-        { id: 19, zid: 1, type: 'A', name: 'bogus', address: 'not.an.ip.addr', ttl: 300 },
-        { id: 20, zid: 1, type: 'SPF', name: 'spf', address: 'v=spf1 mx -all', ttl: 300 },
-        { id: 21, zid: 1, type: 'SPF', name: 'both', address: 'v=spf1 a -all', ttl: 300 },
-        { id: 22, zid: 1, type: 'TXT', name: 'both', address: 'v=spf1 a -all', ttl: 300 },
+        {
+          id: 19,
+          zid: 1,
+          type: 'A',
+          owner: 'bogus',
+          address: 'not.an.ip.addr',
+          ttl: 300,
+        },
+        {
+          id: 20,
+          zid: 1,
+          type: 'SPF',
+          owner: 'spf',
+          data: 'v=spf1 mx -all',
+          ttl: 300,
+        },
+        {
+          id: 21,
+          zid: 1,
+          type: 'SPF',
+          owner: 'both',
+          data: 'v=spf1 a -all',
+          ttl: 300,
+        },
+        {
+          id: 22,
+          zid: 1,
+          type: 'TXT',
+          owner: 'both',
+          data: 'v=spf1 a -all',
+          ttl: 300,
+        },
         {
           id: 23,
           zid: 1,
           type: 'SRV',
-          name: '_sip._tcp',
-          address: 'sipserver.example.com',
+          owner: '_sip._tcp',
+          target: 'sipserver.example.com',
           priority: 10,
           weight: 20,
           port: 5060,
@@ -300,18 +335,18 @@ const zones = new Map([
           id: 24,
           zid: 1,
           type: 'CAA',
-          name: '@',
-          address: 'letsencrypt.org',
+          owner: '@',
+          value: 'letsencrypt.org',
           tag: 'issue',
-          weight: 0,
+          flags: 0,
           ttl: 300,
         },
         {
           id: 25,
           zid: 1,
           type: 'PTR',
-          name: 'ptr',
-          address: 'host.example.com',
+          owner: 'ptr',
+          dname: 'host.example.com',
           ttl: 300,
         },
         // together these overflow a 512-byte UDP response
@@ -319,8 +354,8 @@ const zones = new Map([
           id: 30 + i,
           zid: 1,
           type: 'TXT',
-          name: 'big',
-          address: 'x'.repeat(200) + i,
+          owner: 'big',
+          data: 'x'.repeat(200) + i,
           ttl: 300,
         })),
       ],
@@ -530,5 +565,61 @@ describe('NativeNS', function () {
   it('returns NXDOMAIN for unknown zone', async () => {
     const res = await udpQuery('nope.invalid', TYPE.A, { port })
     assert.strictEqual(res.header.rcode, 3)
+  })
+})
+
+// The API names the domain `zone` (see @nictool/validate); the fixtures above
+// use the older `name` spelling. Reading only `name` made every API-created
+// zone answer NXDOMAIN, so both spellings are covered.
+describe('NativeNS with the API zone spelling', function () {
+  let ns
+  let port
+
+  const apiZones = new Map([
+    [
+      'api.example',
+      {
+        zone: {
+          id: 1,
+          zone: 'api.example',
+          ttl: 300,
+          serial: 2026010101,
+          mailaddr: 'hostmaster.api.example.',
+        },
+        records: [
+          { id: 1, zid: 1, type: 'A', owner: 'www', address: '192.0.2.77', ttl: 300 },
+        ],
+      },
+    ],
+  ])
+
+  before(async () => {
+    port = await freePort()
+    ns = new NativeNS({
+      id: 2,
+      name: 'ns1.api.example.',
+      listen: [{ address: '127.0.0.1', port, proto: 'udp' }],
+      source: new FakeSource(apiZones),
+      publisher: new MemoryPublisher(),
+      transport: new NoopTransport({ interval: 0 }),
+    })
+    await ns.start()
+  })
+
+  after(async () => {
+    await ns.stop()
+  })
+
+  it('answers A for a zone stored under `zone`', async () => {
+    const res = await udpQuery('www.api.example', TYPE.A, { port })
+    assert.strictEqual(res.answers.length, 1)
+    assert.strictEqual(res.answers[0].address, '192.0.2.77')
+    assert.strictEqual(res.header.aa, 1)
+  })
+
+  it('synthesizes SOA at the apex', async () => {
+    const res = await udpQuery('api.example', TYPE.SOA, { port })
+    assert.strictEqual(res.answers.length, 1)
+    assert.strictEqual(res.answers[0].type, TYPE.SOA)
   })
 })

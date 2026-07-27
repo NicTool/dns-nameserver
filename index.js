@@ -15,7 +15,7 @@ export {
 } from './lib/file-engine.js'
 
 export { default as Source } from './lib/source/base.js'
-export { default as TomlSource } from './lib/source/toml.js'
+export { default as FileSource } from './lib/source/file.js'
 export { default as MysqlSource } from './lib/source/mysql.js'
 
 export { default as Publisher } from './lib/publisher/base.js'
@@ -23,6 +23,15 @@ export { default as MemoryPublisher } from './lib/publisher/memory.js'
 export { default as Rfc1035Publisher } from './lib/publisher/rfc1035.js'
 export { default as TinydnsCdbPublisher } from './lib/publisher/tinydns-cdb.js'
 export { default as PowerdnsDbPublisher } from './lib/publisher/powerdns-db.js'
+export { default as MaradnsPublisher } from './lib/publisher/maradns.js'
+
+export {
+  toBindConfig,
+  toKnotConfig,
+  toMaradnsConfig,
+  toNsdConfig,
+  toNameserverConfig,
+} from './lib/config.js'
 
 export { default as Transport } from './lib/transport/base.js'
 export { default as NoopTransport } from './lib/transport/noop.js'
