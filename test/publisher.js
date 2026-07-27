@@ -6,32 +6,30 @@ import { describe, it } from 'node:test'
 
 import MemoryPublisher from '../lib/publisher/memory.js'
 import Rfc1035Publisher from '../lib/publisher/rfc1035.js'
-import TinydnsCdbPublisher from '../lib/publisher/tinydns-cdb.js'
 
 function zonesFixture() {
   const out = new Map()
   out.set('example.com', {
     zone: {
       id: 1,
-      name: 'example.com',
+      zone: 'example.com',
       ttl: 300,
       serial: 2026010101,
-      mailaddr: 'ns1.example.com',
-      rname: 'hostmaster.example.com',
+      mailaddr: 'hostmaster.example.com',
     },
     records: [
-      { id: 10, zid: 1, type: 'A', name: '@', address: '192.0.2.10', ttl: 300 },
-      { id: 11, zid: 1, type: 'A', name: 'www', address: '192.0.2.20', ttl: 300 },
+      { id: 10, zid: 1, type: 'A', owner: '@', address: '192.0.2.10', ttl: 300 },
+      { id: 11, zid: 1, type: 'A', owner: 'www', address: '192.0.2.20', ttl: 300 },
       {
         id: 12,
         zid: 1,
         type: 'MX',
-        name: '@',
-        address: 'mail.example.com',
-        weight: 10,
+        owner: '@',
+        exchange: 'mail.example.com.',
+        preference: 10,
         ttl: 300,
       },
-      { id: 13, zid: 1, type: 'TXT', name: '@', address: 'v=spf1 -all', ttl: 300 },
+      { id: 13, zid: 1, type: 'TXT', owner: '@', data: 'v=spf1 -all', ttl: 300 },
     ],
   })
   return out
@@ -43,7 +41,7 @@ describe('MemoryPublisher', function () {
     await pub.publish(zonesFixture())
     const z = pub.findZone('www.example.com')
     assert.ok(z)
-    assert.strictEqual(z.zone.name, 'example.com')
+    assert.strictEqual(z.zone.zone, 'example.com')
     assert.strictEqual(pub.findZone('nowhere.test'), null)
   })
 })
@@ -60,10 +58,11 @@ describe('Rfc1035Publisher', function () {
       const text = await fs.readFile(path.join(dir, 'example.com.zone'), 'utf8')
       assert.match(text, /\$ORIGIN example\.com\./)
       assert.match(text, /\$TTL 300/)
-      assert.match(text, /IN\s+SOA\s+ns1\.example\.com\./)
+      // hide.origin relativizes in-zone names; ns1 expands via $ORIGIN.
+      assert.match(text, /IN\s+SOA\s+ns1\s/)
       assert.match(text, /@\s+300\s+IN\s+A\s+192\.0\.2\.10/)
       assert.match(text, /www\s+300\s+IN\s+A\s+192\.0\.2\.20/)
-      assert.match(text, /@\s+300\s+IN\s+MX\s+10 mail\.example\.com\./)
+      assert.match(text, /@\s+300\s+IN\s+MX\s+10\s+mail/)
       assert.match(text, /IN\s+TXT\s+"v=spf1 -all"/)
     } finally {
       await fs.rm(dir, { recursive: true, force: true })
@@ -74,12 +73,17 @@ describe('Rfc1035Publisher', function () {
     const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'nictool-pub-'))
     try {
       const zones = zonesFixture()
-      zones
-        .get('example.com')
-        .records.push(
-          { id: 14, zid: 1, type: 'TXT', name: 'quote', address: 'say "hi"', ttl: 300 },
-          { id: 15, zid: 1, type: 'TXT', name: 'slash', address: 'c:\\path\\', ttl: 300 },
-        )
+      zones.get('example.com').records.push(
+        { id: 14, zid: 1, type: 'TXT', owner: 'quote', data: 'say "hi"', ttl: 300 },
+        {
+          id: 15,
+          zid: 1,
+          type: 'TXT',
+          owner: 'slash',
+          data: 'c:\\path\\',
+          ttl: 300,
+        },
+      )
 
       const pub = new Rfc1035Publisher({ path: dir })
       await pub.publish(zones)
@@ -105,8 +109,8 @@ describe('Rfc1035Publisher', function () {
         id: 16,
         zid: 1,
         type: 'TXT',
-        name: 'long',
-        address: '"'.repeat(300),
+        owner: 'long',
+        data: '"'.repeat(300),
         ttl: 300,
       })
 
@@ -130,8 +134,8 @@ describe('Rfc1035Publisher', function () {
         id: 17,
         zid: 1,
         type: 'TXT',
-        name: 'utf8',
-        address: 'é'.repeat(200),
+        owner: 'utf8',
+        data: 'é'.repeat(200),
         ttl: 300,
       })
 
@@ -158,7 +162,7 @@ describe('Rfc1035Publisher', function () {
     try {
       const zones = new Map()
       zones.set('../../etc/passwd', {
-        zone: { id: 2, name: 'evil', ttl: 300, serial: 1 },
+        zone: { id: 2, zone: 'evil', ttl: 300, serial: 1 },
         records: [],
       })
 
@@ -181,10 +185,3 @@ async function exists(p) {
     return false
   }
 }
-
-describe('TinydnsCdbPublisher', function () {
-  it('throws a clear not-yet-implemented error', async () => {
-    const pub = new TinydnsCdbPublisher()
-    await assert.rejects(() => pub.publish(new Map()), /not yet implemented/)
-  })
-})

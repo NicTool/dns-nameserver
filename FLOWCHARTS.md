@@ -6,12 +6,12 @@ The pipeline is always: **Source → Publisher → [Signer] → Transport → de
 
 ## A) In-process DNS server (RAM, loaded from files)
 
-**Component choices:** `TomlSource` · `MemoryPublisher` · `NoneSigner` · `NoopTransport` · `NativeNS`
+**Component choices:** `FileSource` · `MemoryPublisher` · `NoneSigner` · `NoopTransport` · `NativeNS`
 
 ```mermaid
 flowchart TD
     subgraph ASSEMBLE["1 · Assemble NativeNS"]
-        src["TomlSource\npath: ./data\n(zone.toml + zone_record.toml)"]
+        src["FileSource\npath: ./data\n(zone.json + zone_record.json)"]
         pub["MemoryPublisher\nholds live Map in process"]
         sig["NoneSigner\n(or MemorySigner for DNSSEC)"]
         trn["NoopTransport\ninterval: 300 s  cooldown: 5 s"]
@@ -54,7 +54,7 @@ flowchart TD
 
 ```js
 new NativeNS({
-  source: new TomlSource({ path: './data' }),
+  source: new FileSource({ path: './data' }),
   publisher: new MemoryPublisher(),
   signer: new NoneSigner(),
   transport: new NoopTransport({ interval: 300, cooldown: 5 }),
@@ -135,14 +135,14 @@ new NsdNS({
 
 ## C) Publishing to a SaaS DNS provider via their API
 
-**Component choices:** `TomlSource` or `MysqlSource` · **custom `SaasPublisher`** · `NoneSigner` · `NoopTransport` · `FileEngine`
+**Component choices:** `FileSource` or `MysqlSource` · **custom `SaasPublisher`** · `NoneSigner` · `NoopTransport` · `FileEngine`
 
 > **Note:** No built-in SaaS publisher exists yet. The framework is designed for it — subclass `Publisher` and the rest wires up identically. The SaaS API call happens inside `publish()`, so `NoopTransport` is correct (delivery is implicit in the publish step, the same pattern as `PowerdnsDbPublisher`).
 
 ```mermaid
 flowchart TD
     subgraph ASSEMBLE["1 · Assemble FileEngine (SaaS target)"]
-        src["TomlSource  or  MysqlSource\n(same as scenarios A & B)"]
+        src["FileSource  or  MysqlSource\n(same as scenarios A & B)"]
         pub["CloudflarePublisher  /  Route53Publisher\n(custom subclass of Publisher)\nholds previous zone state for diffing"]
         sig["NoneSigner\n(SaaS handles DNSSEC internally)"]
         trn["NoopTransport\n(delivery is inside publish step)\ninterval: 60 s  cooldown: 5 s"]
@@ -191,7 +191,7 @@ flowchart TD
 ```js
 new FileEngine({
   engine: 'cloudflare',
-  source: new TomlSource({ path: './data' }),
+  source: new FileSource({ path: './data' }),
   publisher: new CloudflarePublisher({
     // implement Publisher subclass
     apiToken: process.env.CF_API_TOKEN,
@@ -208,7 +208,7 @@ new FileEngine({
 
 |                           | **A: NativeNS (RAM)**         | **B: NSD (file-based)**            | **C: SaaS API**               |
 | ------------------------- | ----------------------------- | ---------------------------------- | ----------------------------- |
-| **Source**                | `TomlSource`                  | `MysqlSource`                      | `TomlSource` or `MysqlSource` |
+| **Source**                | `FileSource`                  | `MysqlSource`                      | `FileSource` or `MysqlSource` |
 | **Publisher**             | `MemoryPublisher`             | `Rfc1035Publisher`                 | custom `SaasPublisher`        |
 | **Signer**                | `NoneSigner` / `MemorySigner` | `Rfc1035Signer` (optional)         | `NoneSigner`                  |
 | **Transport**             | `NoopTransport`               | `RsyncTransport` / `AxfrTransport` | `NoopTransport`               |

@@ -2,9 +2,19 @@
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
-# Change Log
-
 ### Unreleased
+
+### [0.9.0] - 2026-07-27
+
+- feat(publisher/maradns): added
+- feat(publisher/powerdns-db): added
+- feat(publisher/tinydns-cdb): completed
+- change(source/file): TomlSource -> FileSource, with formats JSON or TOML.
+- feat(source/mysql): completed
+- feat(config): generates named.conf, nsd.conf, knot.conf, mararc
+- feat(native): JS native DNS server (dns2)
+- change(rfc1035): use dns-zone.toBind() as exporter
+- deps(all): bump to latest
 
 ### [0.8.0] - 2026-07-26
 
@@ -106,3 +116,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 [0.7.4]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.7.4
 [0.7.5]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.7.5
 [0.8.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.8.0
+[0.9.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.9.0
