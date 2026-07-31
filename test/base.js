@@ -67,8 +67,8 @@ describe('Nameserver', function () {
     }
   })
 
-  it('names the engine in start() errors when name is unset', async () => {
-    const ns = new Nameserver({ engine: 'bind', publisher: new MemoryPublisher() })
+  it('names the type in start() errors when name is unset', async () => {
+    const ns = new Nameserver({ type: 'bind', publisher: new MemoryPublisher() })
     await assert.rejects(() => ns.start(), /^Error: bind: source is required$/)
   })
 

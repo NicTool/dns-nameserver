@@ -12,11 +12,18 @@ describe('Signer', function () {
     assert.strictEqual(await s.sign(art), art)
   })
 
-  it('MemorySigner throws a clear not-yet-implemented error', async () => {
-    await assert.rejects(() => new MemorySigner({}).sign({}), /not yet implemented/)
+  // MemorySigner is exercised properly in test/signer-memory.js, against keys
+  // it can actually sign with. This only pins the case where no publisher is
+  // attached, which must not be mistaken for a zone with nothing to sign.
+  it('MemorySigner passes through when no publisher is attached', async () => {
+    const artifacts = { kind: 'memory' }
+    assert.strictEqual(await new MemorySigner({}).sign(artifacts), artifacts)
   })
 
-  it('Rfc1035Signer throws a clear not-yet-implemented error', async () => {
-    await assert.rejects(() => new Rfc1035Signer({}).sign({}), /not yet implemented/)
+  // Rfc1035Signer is exercised properly in test/dnssec.js, against the real
+  // dnssec-signzone. This only pins the no-zones case, which needs no tooling.
+  it('Rfc1035Signer passes through when there are no zone files', async () => {
+    const artifacts = { kind: 'rfc1035', files: [] }
+    assert.strictEqual(await new Rfc1035Signer({}).sign(artifacts), artifacts)
   })
 })

@@ -4,6 +4,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Unreleased
 
+### [0.10.0] - 2026-07-30
+
+- feat(signer/memory): MemorySigner completed. The native engine signs the live zone map in process — NativeNS returns them when the query carries the DO bit.
+- feat(dnssec-keys): loads BIND-format keysets into node KeyObjects, so a zone moves between the in-process signer and the file signer without re-keying. Elliptic curves only.
+- feat(dnssec-sign): RFC 4034 signing core.
+- change(dnssec): native moves from strategy `none` to `memory`.
+- feat(backend): answers queries live from NicTool API
+- feat(backend/powerdns-pipe): Installs as `nt-powerdns`.
+
 ### [0.9.0] - 2026-07-27
 
 - feat(publisher/maradns): added
@@ -117,3 +126,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 [0.7.5]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.7.5
 [0.8.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.8.0
 [0.9.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.9.0
+[0.10.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.10.0

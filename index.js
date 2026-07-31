@@ -3,6 +3,7 @@ import dns from 'node:dns/promises'
 import path from 'path'
 
 export { default as Nameserver } from './lib/base.js'
+export { default as PublishMetrics, STAGES, countZones } from './lib/metrics.js'
 export { default as NativeNS } from './lib/native.js'
 export {
   default as FileEngine,
@@ -10,6 +11,8 @@ export {
   KnotNS,
   NsdNS,
   PowerdnsNS,
+  CorednsNS,
+  DjbdnsNS,
   TinydnsNS,
   MaradnsNS,
 } from './lib/file-engine.js'
@@ -24,20 +27,42 @@ export { default as Rfc1035Publisher } from './lib/publisher/rfc1035.js'
 export { default as TinydnsCdbPublisher } from './lib/publisher/tinydns-cdb.js'
 export { default as PowerdnsDbPublisher } from './lib/publisher/powerdns-db.js'
 export { default as MaradnsPublisher } from './lib/publisher/maradns.js'
+export { default as NonePublisher } from './lib/publisher/none.js'
+export { default as CorednsRedisPublisher } from './lib/publisher/coredns-redis.js'
 
 export {
   toBindConfig,
+  toCorefileConfig,
   toKnotConfig,
   toMaradnsConfig,
   toNsdConfig,
   toNameserverConfig,
 } from './lib/config.js'
 
+export { corednsRedisRdata, corednsRedisSoa, COREDNS_TYPES } from './lib/coredns-rdata.js'
+export { toResource, soaResource, encodable, wireTypeName } from './lib/wire.js'
+export { default as RespClient, encodeCommand, parseReply } from './lib/resp.js'
+
+export { default as Backend } from './lib/backend/base.js'
+export { default as PowerdnsPipeBackend } from './lib/backend/powerdns-pipe.js'
+
+export { default as AxfrServer } from './lib/axfr-server.js'
+
 export { default as Transport } from './lib/transport/base.js'
 export { default as NoopTransport } from './lib/transport/noop.js'
+export { default as PullTransport } from './lib/transport/pull.js'
 export { default as RsyncTransport } from './lib/transport/rsync.js'
 export { default as AxfrTransport } from './lib/transport/axfr.js'
 export { default as DbReplicationTransport } from './lib/transport/db-replication.js'
+
+export {
+  DNSSEC_STRATEGY,
+  ALGORITHMS,
+  DEFAULT_ALGORITHM,
+  strategyFor,
+  ensureKeys,
+  signZoneFile,
+} from './lib/dnssec.js'
 
 export { default as Signer } from './lib/signer/base.js'
 export { default as NoneSigner } from './lib/signer/none.js'

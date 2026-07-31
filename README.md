@@ -36,6 +36,52 @@ Examples
   Project home: https://github.com/NicTool/dns-nameserver
 ```
 
+### nt-powerdns
+
+A PowerDNS pipe/co-process backend. PowerDNS forks it and asks it a question at
+a time over stdin/stdout, and it answers from the NicTool database directly, so
+there is nothing to publish and nothing to go stale.
+
+Configured from the environment, because PowerDNS gives a `pipe-command` no
+arguments of its own:
+
+| variable            | default     |                                   |
+| ------------------- | ----------- | --------------------------------- |
+| `NT_PDNS_DB_HOST`   | `127.0.0.1` |                                   |
+| `NT_PDNS_DB_PORT`   | `3306`      |                                   |
+| `NT_PDNS_DB_USER`   | `nictool`   |                                   |
+| `NT_PDNS_DB_PASS`   | —           | required                          |
+| `NT_PDNS_DB_NAME`   | `nictool`   |                                   |
+| `NT_PDNS_NS_ID`     | `1`         | which nameserver's zones to serve |
+| `NT_PDNS_LOG`       | —           | `1` for verbose stderr logging    |
+| `NT_PDNS_CACHE_TTL` | `20`        | seconds to cache a query result   |
+
+In `pdns.conf`:
+
+```
+launch=pipe
+pipe-command=/path/to/node_modules/.bin/nt-powerdns
+pipe-abi-version=1
+```
+
+## ARCHITECTURE
+
+A nameserver is composed from five kinds of part:
+
+| type          | role                                                     |
+| ------------- | -------------------------------------------------------- |
+| **Source**    | reads NicTool's zone truth (`FileSource`, `MysqlSource`) |
+| **Publisher** | writes that truth out as artifacts a nameserver serves   |
+| **Signer**    | signs the published zones                                |
+| **Transport** | moves the artifacts to where the nameserver reads them   |
+| **Backend**   | answers queries live, instead of publishing anything     |
+
+`Publisher` and `Backend` are the two ways to get NicTool data into a
+nameserver, and PowerDNS is the one engine that supports both:
+`PowerdnsDbPublisher` pushes rows into a gmysql schema, while
+`PowerdnsPipeBackend` is asked one question at a time. They share the rdata
+encoder, so the two models cannot answer differently.
+
 ## FUNCTIONS
 
 ### getZones
@@ -49,6 +95,9 @@ Does the heavy lifting for `getZones`. Accepts a string and returns an object wh
 ## FEATURES
 
 - config parsers for bind, nsd, knot, maradns, and tinydns
+- config generators for bind, nsd, knot, and maradns
+- publishers for RFC 1035 zone files, tinydns cdb, maradns csv2, and PowerDNS
+- a PowerDNS pipe backend (`nt-powerdns`)
 
 ## TODO
 
