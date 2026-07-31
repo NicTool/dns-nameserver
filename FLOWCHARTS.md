@@ -28,7 +28,7 @@ flowchart TD
     subgraph CYCLE["3 · publishCycle()  (runs every 300 s or on zoneChanged)"]
         gz["source.getZones()\nread zone.toml → zones\nread zone_record.toml → records\nfilter deleted, key by zone name"]
         pp["publisher.publish(zones)\natomic Map swap\n{ kind:'memory', zoneCount }"]
-        ss["signer.sign(artifacts)\nnoop pass-through\n(MemorySigner adds RRSIG/DNSKEY inline)"]
+        ss["signer.sign(artifacts)\nnoop pass-through\n(MemorySigner adds DNSKEY, RRSIG and the NSEC chain inline)"]
         td["transport.deliver(artifacts)\nnoop — RAM already updated"]
         gz --> pp --> ss --> td
         td -->|"setTimeout(interval)\nor source 'zoneChanged'"| gz
@@ -74,10 +74,10 @@ new NativeNS({
 ```mermaid
 flowchart TD
     subgraph ASSEMBLE["1 · Assemble NsdNS"]
-        src["MysqlSource\nDSN: mysql://user:pass@host/nictool\n(scaffolded — implement getZones + connect)"]
+        src["MysqlSource\nDSN: mysql://user:pass@host/nictool\nzones filtered by nt_zone_nameserver"]
         pub["Rfc1035Publisher\npath: ./zones-out"]
         sig["Rfc1035Signer  (optional)\nruns dnssec-signzone on each file"]
-        trn["RsyncTransport\nremote: nsd@ns1.example.com:/etc/nsd/zones\ninterval: 300 s\n───── or ─────\nAxfrTransport\nmaster: 127.0.0.1  (send NOTIFY → AXFR pull)"]
+        trn["RsyncTransport\nremote: nsd@ns1.example.com:/etc/nsd/zones\ninterval: 300 s\n───── or ─────\nAxfrTransport\nnotify: [ns2.example.com]  (NOTIFY → secondary pulls AXFR)"]
         ns["NsdNS  (FileEngine)\nno sockets bound here"]
         src & pub & sig & trn --> ns
     end
@@ -105,8 +105,8 @@ flowchart TD
     end
 
     subgraph AXFR["AxfrTransport.deliver()  (alternate)"]
-        ax["send DNS NOTIFY to configured master IP"]
-        nsdp["NSD receives NOTIFY\npulls zone via AXFR"]
+        ax["send one DNS NOTIFY per zone\nto each notify target"]
+        nsdp["secondary receives NOTIFY\ntransfers the zone by AXFR\nfrom the primary NSD"]
         nsd2["NSD serves DNS"]
         ax --> nsdp --> nsd2
     end
@@ -190,7 +190,7 @@ flowchart TD
 
 ```js
 new FileEngine({
-  engine: 'cloudflare',
+  type: 'cloudflare',
   source: new FileSource({ path: './data' }),
   publisher: new CloudflarePublisher({
     // implement Publisher subclass

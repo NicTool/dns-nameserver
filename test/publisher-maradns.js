@@ -66,6 +66,42 @@ describe('MaradnsPublisher zone files', () => {
     )
   })
 
+  // MaraDNS 3.5's default csv2_tilde_handling=2 accepts tildes only if "the
+  // first record can not be a TXT, WKS, or LOC record" (mararc.5). Every record
+  // this publisher writes is tilde-terminated, so the export is only loadable
+  // because zoneToRRs always puts the synthesized SOA first. If that ordering
+  // ever changed, modern MaraDNS would reject the whole zone.
+  it('leads with SOA, which is what makes the tildes legal', async () => {
+    const out = await fs.mkdtemp(path.join(os.tmpdir(), 'nt-mara-soa-'))
+    try {
+      const publisher = new MaradnsPublisher({ path: out })
+      await publisher.publish(
+        new Map([
+          [
+            'first.example',
+            {
+              zone: { zone: 'first.example', ttl: 300, serial: 1 },
+              // A TXT first in record order, to prove the SOA still leads.
+              records: [
+                { id: 1, type: 'TXT', owner: '@', data: 'must not be first', ttl: 300 },
+                { id: 2, type: 'A', owner: '@', address: '192.0.2.1', ttl: 300 },
+              ],
+            },
+          ],
+        ]),
+      )
+
+      const text = await fs.readFile(path.join(out, 'first.example.csv2'), 'utf8')
+      const records = text
+        .split('\n')
+        .filter((l) => l && !l.startsWith('#') && !l.startsWith('/'))
+      assert.match(records[0], /\sSOA\s/, 'the first record must be the SOA')
+      assert.match(records[0], /~$/, 'and it is tilde-terminated like the rest')
+    } finally {
+      await fs.rm(out, { recursive: true, force: true })
+    }
+  })
+
   it('emits csv2 records, not RFC 1035 ones', async () => {
     await publish([NS, { owner: 'www', type: 'A', address: '192.0.2.1', ttl: 300 }])
     const text = await zoneText()
