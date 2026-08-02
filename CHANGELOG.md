@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### [0.10.1] - 2026-08-01
 
+- fix(file): watcher windows compatibility
+
 ### [0.10.0] - 2026-07-30
 
 - feat(signer/memory): MemorySigner completed. The native engine signs the live zone map in process — NativeNS returns them when the query carries the DO bit.
