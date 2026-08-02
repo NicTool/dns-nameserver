@@ -1,6 +1,6 @@
 {
   "name": "@nictool/dns-nameserver",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "DNS Nameserver",
   "main": "index.js",
   "bin": {
@@ -50,7 +50,7 @@
     "globals": "^17.8.0"
   },
   "dependencies": {
-    "@nictool/dns-resource-record": "^1.8.2",
+    "@nictool/dns-resource-record": "^1.9.0",
     "@nictool/dns-zone": "^1.2.4",
     "chalk": "^6.0.0",
     "command-line-args": "^6.0.2",
