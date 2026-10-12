@@ -19,7 +19,7 @@ I/O
 
   -i, --import <bind | knot | maradns | nsd | tinydns>   nameserver type
   -e, --export <bind | knot | maradns | nsd | tinydns>   nameserver type
-  -f, --file <file path>                                 source of DNS server config
+  -f, --file <file path>                                 source of DNS server config file
   -b, --base <zones dir>                                 path prefix for zone files
 
 Misc
@@ -98,6 +98,16 @@ Does the heavy lifting for `getZones`. Accepts a string and returns an object wh
 - config generators for bind, nsd, knot, and maradns
 - publishers for RFC 1035 zone files, tinydns cdb, maradns csv2, and PowerDNS
 - a PowerDNS pipe backend (`nt-powerdns`)
+
+## TODO
+
+- [ ] config generator
+  - [ ] bind
+  - [ ] nsd
+  - [ ] knot
+  - [ ] maradns
+  - [ ] tinydns
+  - [x] powerdns ([#30](https://github.com/nictool/NicTool/issues/30))
 
 ## SEE ALSO
 
