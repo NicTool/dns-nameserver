@@ -6,14 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### [0.11.0] - 2026-10-13
 
-#### Fixed
-
-- resolve a test hang (#29)
-
-#### Other
-
-- doc(README): remove stale TODO section (#28)
-
 - deps(all): bump to latest
 - fix: resolve a test hang #29
 - doc(README): remove stale TODO section #28
