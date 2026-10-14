@@ -4,6 +4,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Unreleased
 
+### [0.11.0] - 2026-10-13
+
+#### Fixed
+
+- resolve a test hang (#29)
+
+#### Other
+
+- doc(README): remove stale TODO section (#28)
+
+- deps(all): bump to latest
+- fix: resolve a test hang #29
+- doc(README): remove stale TODO section #28
+
 ### [0.10.1] - 2026-08-01
 
 - fix(file): watcher windows compatibility
@@ -132,3 +146,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 [0.9.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.9.0
 [0.10.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.10.0
 [0.10.1]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.10.1
+[0.11.0]: https://github.com/NicTool/dns-nameserver/releases/tag/v0.11.0
