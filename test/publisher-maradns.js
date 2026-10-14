@@ -116,7 +116,7 @@ describe('MaradnsPublisher zone files', () => {
 
     assert.match(
       await zoneText(),
-      /mara\.test\.\s+SOA\s+ns1\.mara\.test\.\s+hostmaster\.mara\.test\./,
+      /mara\.test\.\s+\+\d+\s+SOA\s+ns1\.mara\.test\.\s+hostmaster\.mara\.test\./,
     )
   })
 
