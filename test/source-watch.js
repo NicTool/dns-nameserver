@@ -121,10 +121,19 @@ describe('FileSource watching', () => {
 
     let count = 0
     src.on('zoneChanged', () => count++)
-    await write('nameserver', { nameserver: [{ id: 1 }] })
+    await write('user', { user: [{ id: 1 }] })
     await new Promise((r) => setTimeout(r, 250))
 
     assert.equal(count, 0)
+  })
+
+  it('emits when a nameserver is renamed, since it names the apex NS', async () => {
+    await write('nameserver', { nameserver: [{ id: 1, name: 'ns1.example.com.' }] })
+    const src = await open({ settleMs: 20 })
+
+    const seen = nextEvent(src, 'zoneChanged')
+    await write('nameserver', { nameserver: [{ id: 1, name: 'ns2.example.com.' }] })
+    await seen
   })
 
   it('reports watches=false when the directory is absent', async () => {

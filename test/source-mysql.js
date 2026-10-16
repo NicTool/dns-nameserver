@@ -14,6 +14,8 @@ const DSN =
 
 const ZONE_ID = 990001
 const NS_ID = 9901 // nt_nameserver_id is SMALLINT UNSIGNED
+const NS_LOW_ID = 9900
+const NS_DELETED_ID = 9899
 const GROUP_ID = 1
 
 let conn = null
@@ -55,6 +57,14 @@ before(async () => {
     [ZONE_ID, a.id, ZONE_ID, a.id, ZONE_ID, srv.id],
   )
 
+  await conn.query(
+    `INSERT INTO nt_nameserver (nt_nameserver_id, nt_group_id, name, ttl, address, export_type_id, deleted)
+     VALUES (?, ?, 'ns-b.mysqlsource.test.', 600, '192.0.2.1', 1, 0),
+            (?, ?, 'ns-a.mysqlsource.test.', 900, '192.0.2.2', 1, 0),
+            (?, ?, 'ns-gone.mysqlsource.test.', 900, '192.0.2.3', 1, 1)`,
+    [NS_ID, GROUP_ID, NS_LOW_ID, GROUP_ID, NS_DELETED_ID, GROUP_ID],
+  )
+
   source = new MysqlSource({ dsn: DSN })
 })
 
@@ -70,6 +80,9 @@ async function cleanup() {
   await conn.query('DELETE FROM nt_zone_record WHERE nt_zone_id = ?', [ZONE_ID])
   await conn.query('DELETE FROM nt_zone_nameserver WHERE nt_zone_id = ?', [ZONE_ID])
   await conn.query('DELETE FROM nt_zone WHERE nt_zone_id = ?', [ZONE_ID])
+  await conn.query('DELETE FROM nt_nameserver WHERE nt_nameserver_id IN (?)', [
+    [NS_ID, NS_LOW_ID, NS_DELETED_ID],
+  ])
 }
 
 describe('MysqlSource', () => {
@@ -146,6 +159,24 @@ describe('MysqlSource', () => {
     const assigned = await source.getZones({ nameserverId: NS_ID })
     assert.equal(assigned.size, 1)
     assert.ok(assigned.has('mysqlsource.test'))
+  })
+
+  it('leads with the active assigned nameservers as apex NS, lowest id first', async (t) => {
+    if (skip) return t.skip(skip)
+
+    await conn.query(
+      'INSERT IGNORE INTO nt_zone_nameserver (nt_zone_id, nt_nameserver_id) VALUES (?, ?), (?, ?), (?, ?)',
+      [ZONE_ID, NS_ID, ZONE_ID, NS_LOW_ID, ZONE_ID, NS_DELETED_ID],
+    )
+
+    const { records } = (await source.getZones({})).get('mysqlsource.test')
+    assert.deepEqual(
+      records.filter((r) => r.type === 'NS').map((r) => [r.owner, r.dname, r.ttl]),
+      [
+        ['mysqlsource.test.', 'ns-a.mysqlsource.test.', 900],
+        ['mysqlsource.test.', 'ns-b.mysqlsource.test.', 600],
+      ],
+    )
   })
 
   it('accepts discrete connection options as well as a DSN', async (t) => {

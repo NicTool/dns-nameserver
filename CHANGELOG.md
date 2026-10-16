@@ -4,6 +4,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ### Unreleased
 
+- source: a zone's assigned nameservers are its apex NS set and SOA MNAME
+- FileSource serves a nameserver only its assigned zones
+
 ### [0.11.0] - 2026-10-13
 
 - deps(all): bump to latest
