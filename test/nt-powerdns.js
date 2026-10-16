@@ -201,6 +201,19 @@ describe('nt_powerdns pipe backend', () => {
     assert.ok(types.includes('SRV'))
   })
 
+  it('answers a query in mixed case, as DNS 0x20 sends it', async (t) => {
+    if (skip) return t.skip(skip)
+
+    const out = await ask([
+      `Q\twWw.${ZONE.toUpperCase()}\tIN\tA\t-1\t127.0.0.1`,
+      `Q\t${ZONE.toUpperCase()}\tIN\tSOA\t-1\t127.0.0.1`,
+    ])
+    const [a, soa] = dataLines(out)
+
+    assert.equal(a[6], '192.0.2.7')
+    assert.equal(soa[3], 'SOA')
+  })
+
   it('resolves a name stored relative to its zone', async (t) => {
     if (skip) return t.skip(skip)
 
