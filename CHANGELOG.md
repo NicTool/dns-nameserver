@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 - source: a zone's assigned nameservers are its apex NS set and SOA MNAME
 - FileSource serves a nameserver only its assigned zones
+- fix(powerdns-pipe): answer queries in any case
 
 ### [0.11.0] - 2026-10-13
 
